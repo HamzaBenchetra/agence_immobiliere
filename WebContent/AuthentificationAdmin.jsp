@@ -49,7 +49,7 @@
                     <h2 style="color: lightgrey;">Authentification Admin</h2>
                 </div>
                 <div class="login-form">
-                    <form action="http://192.168.43.108:8080/AgenceImmobiliere/LoginAdmin" method="post">
+                    <form action="/AgenceImmobiliere/LoginAdmin" method="post">
                         <div class="form-group">
                             <label>Email ou mobile</label>
                             <input name="mail" type="text" class="form-control" placeholder="Email ou Mobile">

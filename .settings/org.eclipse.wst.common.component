@@ -2,7 +2,7 @@
     <wb-module deploy-name="AgenceImmobiliere">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="AgenceImmobiliere"/>
         <property name="java-output-path" value="/AgenceImmobiliere/build/classes"/>
+        <property name="context-root" value="AenceImmobiliere"/>
     </wb-module>
 </project-modules>
