@@ -338,6 +338,7 @@
 		    			$("#IdBat").val("3"); 
 		    			$("#etage").val("4");
 		    			$("#Type").val("F3");
+		    			
 		    			$("#prix").val("D");
 		    			$("#description").val("E");
     				}
