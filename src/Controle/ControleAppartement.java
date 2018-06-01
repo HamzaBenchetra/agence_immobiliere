@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Model.Appartement;
+import Model.OperationsAdmin;
 
 
 @WebServlet("/ControleAppartement")
