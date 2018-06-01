@@ -27,20 +27,23 @@ public class OperationsClient {
 			}                   
 	        
 	  }
-	public static ArrayList<Appartement> RecupererListeApparts(){
+
+public static ArrayList<Appartement> RecupererListeApparts(){
 		
 		ConnecterBD();
 		   ArrayList<Appartement> A = new ArrayList<Appartement>();
 		   try {
 				
-		 Statement statement = connexion.createStatement();
-			String Query="SELECT idAppart,type,etage,prix FROM Appartement where etat=0; ";
+			Statement statement = connexion.createStatement();
+			String Query="select * from appartement as a, batiment as b,localite as l where a.idBat=b.idBatiment and b.idLocal=l.idLocalite and a.etat=0; ";
 			ResultSet rs=statement.executeQuery(Query);
 			
 		//	ResultSet r = null;
 			while(rs.next()){
 				Appartement a=new Appartement ();
 				a.setIdAppart(rs.getInt("idAppart"));
+				a.setNomLocal(rs.getString("nomLocalite"));
+				a.setImg1(rs.getString("img1"));
 				a.setType(rs.getString("type"));
 				a.setEtage(rs.getInt("etage"));
 				a.setPrix(rs.getDouble("prix"));
@@ -54,6 +57,111 @@ public class OperationsClient {
 		}
 		   return A ;		
 	}
+public static ArrayList<Integer>  RecupererEtage(){
+	
+	ConnecterBD();
+	   ArrayList<Integer> E = new ArrayList<Integer>();
+
+	   try {
+			
+		Statement statement = connexion.createStatement();
+		String Query="SELECT etage FROM agenceimmobiliere.appartement Group by etage; ";
+		ResultSet rs=statement.executeQuery(Query);
+		
+	//	ResultSet r = null;
+		while(rs.next()){
+			
+			int a=(rs.getInt("etage"));
+       		E.add(a);
+		}
+		return E ;
+   } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		
+	}
+	   return E;		
+}
+public static ArrayList<String>  RecupererLocalite(){
+	
+	ConnecterBD();
+	   ArrayList<String> E = new ArrayList<String>();
+
+	   try {
+			
+		Statement statement = connexion.createStatement();
+		String Query="SELECT nomLocalite FROM agenceimmobiliere.localite Group by nomLocalite; ";
+		ResultSet rs=statement.executeQuery(Query);
+		
+	//	ResultSet r = null;
+		while(rs.next()){
+			
+			String a=(rs.getString("nomLocalite"));
+       		E.add(a);
+		}
+		return E ;
+   } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		
+	}
+	   return E;		
+}
+public static ArrayList<String>  RecupererTypeAppart(){
+	
+	ConnecterBD();
+	   ArrayList<String> E = new ArrayList<String>();
+
+	   try {
+			
+		Statement statement = connexion.createStatement();
+		String Query="SELECT type FROM agenceimmobiliere.appartement Group by type; ";
+		ResultSet rs=statement.executeQuery(Query);
+		
+	//	ResultSet r = null;
+		while(rs.next()){
+			
+			String a=(rs.getString("type"));
+       		E.add(a);
+		}
+		return E ;
+   } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		
+	}
+	   return E;		
+}
+public static ArrayList<Appartement> RechercherAppart(String localite,String type,int etage){
+	ConnecterBD();
+	
+	ArrayList<Appartement> a = new ArrayList<Appartement>();
+	try {
+	Statement statement = connexion.createStatement();
+	String Query="select * from appartement as a, batiment as b,localite as l where a.idBat=b.idBatiment and b.idLocal=l.idLocalite and l.nomLocalite='"+localite+"' and a.type='"+type+"' and a.etage="+etage+" and a.etat=0;";
+	ResultSet rs=statement.executeQuery(Query);
+	Appartement A=new Appartement();
+	while(rs.next()){
+		
+		A.setIdAppart(rs.getInt("idAppart"));
+		A.setIdBatiment(rs.getInt("idBat"));
+		A.setType(rs.getString("type"));
+		A.setImg1(rs.getString("img1"));
+
+		A.setEtage(rs.getInt("etage"));
+		A.setPrix(rs.getDouble("prix"));
+		A.setNomLocal(rs.getString("nomLocalite"));
+		a.add(A);
+	}
+	return a ;
+	
+	}catch(Exception e){
+		e.printStackTrace();
+		
+	}
+	return a;
+}
+	
 	public static Appartement AfficherAppart(int id){
 		ConnecterBD();
 		Appartement A=new Appartement();
@@ -141,6 +249,11 @@ public static ArrayList<RDV> RecupererListeRDV(int idc){
 	}	
 	
 	public static void main(String[] args) {
-		//prendreRDV(1,1,"'2018-04-22 08:00:00'");
-	}
+OperationsClient.RecupererTypeAppart();
+
+ArrayList<String> v=OperationsClient.RecupererTypeAppart();
+for(String s : v)
+    System.out.println(s);
+
+}
 }
