@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -40,19 +40,19 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="http://192.168.43.108:8080/AgenceImmobiliere/EspaceAdmin.jsp"> Espace Admin<!-- <img src="images/logo.png" alt="Logo"> --></a>
+                <a class="navbar-brand" href="/AgenceImmobiliere/EspaceAdmin.jsp"> Espace Admin<!-- <img src="images/logo.png" alt="Logo"> --></a>
                 <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="http://192.168.43.108:8080/AgenceImmobiliere/EspaceAdmin.jsp"> <i class="menu-icon fa fa-dashboard"></i>Accueil </a>
+                        <a href="/AgenceImmobiliere/EspaceAdmin.jsp"> <i class="menu-icon fa fa-dashboard"></i>Accueil </a>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Inscriptions</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="http://192.168.43.108:8080/AgenceImmobiliere/AfficherListDemandes.jsp">valider</a></li>
+                            <li><i class="fa fa-table"></i><a href="/AgenceImmobiliere/AfficherListDemandes.jsp">valider</a></li>
                             <li><i class="fa fa-table"></i><a href="tables-data.html">Supprimer</a></li>
                         </ul>
                     </li>
@@ -61,17 +61,16 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/ControleAppartement?what=add">Ajouter un logement</a></li>
                             <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/ControleAppartement?what=mod">Modifier un logement</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/ControleAppartement?what=del">Supprimer un logement</a></li>
                         </ul>
                     </li>
 
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>LocalitÈes</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Localit√©es</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="#">Ajouter une localitÈ</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="#">Supprimer une localitÈ</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="#">Modifier une localitÈ</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="#">Ajouter une localit√©</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="#">Supprimer une localit√©</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="#">Modifier une localit√©</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -84,7 +83,7 @@
                     </li>
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>EmployÈs</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Employ√©s</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-map-o"></i><a href="#">Approuver</a></li>
                             <li><i class="menu-icon fa fa-street-view"></i><a href="#">Affecter des agents</a></li>
@@ -207,7 +206,7 @@
 
                                 <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                                <a class="nav-link" href="http://192.168.43.108:8080/AgenceImmobiliere/LogoutServlet"><i class="fa fa-power -off"></i>Logout</a>
+                                <a class="nav-link" href="/AgenceImmobiliere/LogoutServlet"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
@@ -246,18 +245,25 @@
                 </div>
             </div>
         </div>
+        <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show" id="msg" style="display : none">
+            <span class="badge badge-pill badge-primary">Succ√®s</span>
+               Appartement Ajout√© avec succ√®s.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">√ó</span>
+            </button>
+        </div>
         <div class="content mt-3">
         <div class="col-lg-12">
                     <div class="card">
                       <div class="card-header">
-                        <strong>GÈrer les appartements</strong> Ajouter
+                        <strong>G√©rer les appartements</strong> Ajouter
                       </div>
                       <div class="card-body card-block">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <form action="/AgenceImmobiliere/ControleAppartement" method="post"  class="form-horizontal">
                           
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="IdBat" class=" form-control-label">Id du Batiment</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="IdBat" name="IdBat" placeholder="Text" class="form-control"></div>
+                            <div class="col-12 col-md-9"><input type="text" id="IdBat" name="IdBat" placeholder="ID du batiment" class="form-control"></div>
                           </div>
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="etage" class=" form-control-label">Etage</label></div>
@@ -282,7 +288,7 @@
                           </div>
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="prix" class=" form-control-label">Prix</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="prix" name="prix" placeholder="Text" class="form-control"></div>
+                            <div class="col-12 col-md-9"><input type="text" id="prix" name="prix" placeholder="Prix en DA" class="form-control"></div>
                           </div>
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="description" class=" form-control-label">Description de l'appartement</label></div>
@@ -290,18 +296,17 @@
                           </div>
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="file-multiple-input" class=" form-control-label">Photos</label></div>
-                            <div class="col-12 col-md-9"><input type="file" id="Image" name="Image" multiple="" class="form-control-file"></div>
+                            <div class="col-12 col-md-9"><input type="file" id="Image" name="Image" multiple="true" class="form-control-file"></div>
                           </div>
+                          <input type="hidden" value="add" id="what" name="what">
+                        	<button type="submit" class="btn btn-primary btn-sm">
+                          		<i class="fa fa-dot-circle-o"></i> Submit
+                        	</button>
+                          
                         </form>
+                        
                       </div>
-                      <div class="card-footer">
-                        <button type="submit" class="btn btn-primary btn-sm">
-                          <i class="fa fa-dot-circle-o"></i> Submit
-                        </button>
-                        <button type="reset" class="btn btn-danger btn-sm">
-                          <i class="fa fa-ban"></i> Reset
-                        </button>
-                      </div>
+                      
                     </div>
                     
                   </div>
@@ -348,7 +353,13 @@
     	   });
     
     
-    });</script>
+    });
+    var m='<%= request.getAttribute("msg")%>';
+    console.log(m);
+    if(m=="OK"){
+    	 $( "#msg" ).css({'display': 'block'});
+    }
+    </script>
     
 
 </body>

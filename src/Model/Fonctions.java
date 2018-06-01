@@ -471,18 +471,20 @@ public class Fonctions {
 		public static Appartement getAppart(int id) {
 			ConnecterBD();
 			Statement s;
-			Appartement a=new Appartement();
+			
 			try {
 				s = connexion.createStatement();
 				ResultSet rs=s.executeQuery("SELECT * from APPARTEMENT where idappart="+id+";");
 				
 				if(rs.next()) {
+					Appartement a=new Appartement();
 					a.setIdBatiment(rs.getInt("idbat"));
 					a.setPrix(rs.getFloat("prix"));
 					a.setType(rs.getString("Type"));
 					a.setEtage(rs.getInt("etage"));
+					return a;
 				}
-				return a;
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

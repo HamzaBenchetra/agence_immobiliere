@@ -31,7 +31,7 @@
 				<td><%= allA.get(i).getEtage()%></td>
 				<td><%= (int)allA.get(i).getPrix()%></td>
 				<td><div align="center">
-	<form   action="http://192.168.43.108:8080/AgenceImmobiliere/ConsuListApparts"  method = "post">
+	<form   action="/AgenceImmobiliere/ConsuListApparts"  method = "post">
 				<input type="hidden" name ="IDA" value="<%=allA.get(i).getIdAppart() %>" >		
 		  		<input type=submit value="Voir Détails"/>
 	</form>
@@ -48,7 +48,7 @@
 			</tbody>
 			</table>
 	
-	<button><a href="http://192.168.43.108:8080/AgenceImmobiliere/EspaceClient.jsp">Retour a l'accueil</a></button>
+	<button><a href="/AgenceImmobiliere/EspaceClient.jsp">Retour a l'accueil</a></button>
 	
 </body>
 </body>

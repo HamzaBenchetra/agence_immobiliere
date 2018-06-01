@@ -43,7 +43,7 @@
                     <h2 style="color: LightGrey;">Authentification Employé</h2>
                 </div>
                 <div class="login-form">
-                    <form action="http://192.168.43.108:8080/AgenceImmobiliere/LoginEmploye" method="post">
+                    <form action="/AgenceImmobiliere/LoginEmploye" method="post">
                         <div class="form-group">
                             <label>Email ou mobile</label>
                             <input name="mail" type="text" class="form-control" placeholder="Email ou Mobile">

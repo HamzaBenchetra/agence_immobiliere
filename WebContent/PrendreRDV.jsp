@@ -16,7 +16,7 @@ DateFormat dt= new SimpleDateFormat("yyyy-MM-dd");
 Date date=new Date();
 
 %>
-	<form action="http://192.168.43.108:8080/AgenceImmobiliere/PrendreRDV" method="post" >
+	<form action="/AgenceImmobiliere/PrendreRDV" method="post" >
 		
 		<input type="date" name="date" min="<%=dt.format(date)%>" required>
 		
@@ -37,7 +37,7 @@ Date date=new Date();
 		
 	</form>
 	
-		<button><a href="http://192.168.43.108:8080/AgenceImmobiliere/EspaceClient.jsp">Retour a l'accueil</a></button>
+		<button><a href="/AgenceImmobiliere/EspaceClient.jsp">Retour a l'accueil</a></button>
 	</div>
 </body>
 </html>

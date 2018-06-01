@@ -40,19 +40,19 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="http://192.168.43.108:8080/AgenceImmobiliere/EspaceAdmin.jsp"> Espace Admin<!-- <img src="images/logo.png" alt="Logo"> --></a>
+                <a class="navbar-brand" href="/AgenceImmobiliere/EspaceAdmin.jsp"> Espace Admin<!-- <img src="images/logo.png" alt="Logo"> --></a>
                 <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="http://192.168.43.108:8080/AgenceImmobiliere/EspaceAdmin.jsp"> <i class="menu-icon fa fa-dashboard"></i>Accueil </a>
+                        <a href="/AgenceImmobiliere/EspaceAdmin.jsp"> <i class="menu-icon fa fa-dashboard"></i>Accueil </a>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Inscriptions</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="http://192.168.43.108:8080/AgenceImmobiliere/AfficherListDemandes.jsp">valider</a></li>
+                            <li><i class="fa fa-table"></i><a href="/AgenceImmobiliere/AfficherListDemandes.jsp">valider</a></li>
                             <li><i class="fa fa-table"></i><a href="tables-data.html">Supprimer</a></li>
                         </ul>
                     </li>
@@ -61,7 +61,7 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/ControleAppartement?what=add">Ajouter un logement</a></li>
                             <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/ControleAppartement?what=mod">Modifier un logement</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/ControleAppartement?what=del">Supprimer un logement</a></li>
+                            
                         </ul>
                     </li>
 
@@ -207,7 +207,7 @@
 
                                 <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                                <a class="nav-link" href="http://192.168.43.108:8080/AgenceImmobiliere/LogoutServlet"><i class="fa fa-power -off"></i>Logout</a>
+                                <a class="nav-link" href="/AgenceImmobiliere/LogoutServlet"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
@@ -246,6 +246,13 @@
                 </div>
             </div>
         </div>
+        <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show" id="msg" style="display : none">
+            <span class="badge badge-pill badge-primary">Succès</span>
+               Appartement mit à jour avec succès.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">×</span>
+            </button>
+        </div>
         <div class="content mt-3">
         <div class="col-lg-12">
                     <div class="card">
@@ -253,15 +260,15 @@
                         <strong>Gérer les appartements</strong> Modifier
                       </div>
                       <div class="card-body card-block">
-                        <div class="row form-group">
-                            <div class="col col-md-3"><label for="IdApp" class=" form-control-label">Code de l'appartement</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="IdApp" name="IdApp" placeholder="ID" class="form-control"></div>
-                        </div>
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" style="display : none;" id="formulaire">
-                          
+                        
+                        <form action="/AgenceImmobiliere/ControleAppartement" method="post"  class="form-horizontal">
+                          <div class="row form-group">
+                            <div class="col col-md-3"><label for="IdApp" class=" form-control-label">Id de l'appartement</label></div>
+                            <div class="col-12 col-md-9"><input type="text" id="IdApp" name="IdApp" placeholder="ID de l'appartement" class="form-control"></div>
+                          </div>
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="IdBat" class=" form-control-label">Id du Batiment</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="IdBat" name="IdBat" placeholder="ID" class="form-control"></div>
+                            <div class="col-12 col-md-9"><input type="text" id="IdBat" name="IdBat" placeholder="ID du batiment" class="form-control"></div>
                           </div>
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="etage" class=" form-control-label">Etage</label></div>
@@ -286,7 +293,7 @@
                           </div>
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="prix" class=" form-control-label">Prix</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="prix" name="prix" placeholder="Text" class="form-control"></div>
+                            <div class="col-12 col-md-9"><input type="text" id="prix" name="prix" placeholder="Prix en DA" class="form-control"></div>
                           </div>
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="description" class=" form-control-label">Description de l'appartement</label></div>
@@ -294,18 +301,16 @@
                           </div>
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="file-multiple-input" class=" form-control-label">Photos</label></div>
-                            <div class="col-12 col-md-9"><input type="file" id="Image" name="Image" multiple="" class="form-control-file"></div>
+                            <div class="col-12 col-md-9"><input type="file" id="Image" name="Image" multiple="true" class="form-control-file"></div>
                           </div>
+                          <input type="hidden" value="mod" id="what" name="what">
+                        	<button type="submit" class="btn btn-primary btn-sm">
+                          		<i class="fa fa-dot-circle-o"></i> Submit
+                        	</button>
+                          
                         </form>
                       </div>
-                      <div class="card-footer">
-                        <button type="submit" class="btn btn-primary btn-sm">
-                          <i class="fa fa-dot-circle-o"></i> Submit
-                        </button>
-                        <button type="reset" class="btn btn-danger btn-sm">
-                          <i class="fa fa-ban"></i> Reset
-                        </button>
-                      </div>
+                      
                     </div>
                     
                   </div>
@@ -329,18 +334,19 @@
 
     	   $.ajax({url: "http://localhost:8080/AgenceImmobiliere/api?action=idapp&val="+$( "#IdApp" ).val(),
     			   success: function(result){
+    				   console.log(result);
     				if(result ==="ghalt"){//hna tgerer lgholta
     					   $( "#IdApp" ).css({'background-color': '#ef5350'});
     					   
     				}else{
+    					var Appart = JSON.parse(result);
     					
-    					$( "#formulaire" ).css({'display': 'block'});
-		    			$("#IdBat").val("3"); 
-		    			$("#etage").val("4");
-		    			$("#Type").val("F3");
-		    			
-		    			$("#prix").val("D");
-		    			$("#description").val("E");
+    					$( "#IdApp" ).css({'background-color': 'white'});
+		    			$("#IdBat").val(Appart.idBat); 
+		    			$("#etage").val(Appart.etage);
+		    			$("#Type").val(Appart.type);
+		    			$("#prix").val(Appart.prix);
+		    			$("#description").val(Appart.NomLoca);
     				}
     	    },
     	    error :  function(error){}
@@ -377,7 +383,13 @@
  	   });
  
  
- });</script>
+ });
+    var m='<%= request.getAttribute("msg")%>';
+    console.log(m);
+    if(m=="OK"){
+    	 $( "#msg" ).css({'display': 'block'});
+    }
+    </script>
     
 
 </body>

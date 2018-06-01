@@ -8,6 +8,6 @@
 </head>
 <body>
 <h1>Veuillez d'abors vous identifier</h1>
-<button><a href="http://192.168.43.108:8080/AgenceImmobiliere/LoginServlet">S'authentifier</a></button>
+<button><a href="/AgenceImmobiliere/LoginServlet">S'authentifier</a></button>
 </body>
 </html>

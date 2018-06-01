@@ -45,7 +45,7 @@
                 	<h4 style="color: red;">E mail innexistant</h4>
                 
                 <div class="login-form">
-                    <form action="http://192.168.43.108:8080/AgenceImmobiliere/RecupererM" method="post" >
+                    <form action="/AgenceImmobiliere/RecupererM" method="post" >
                         <div class="form-group">
                             <label>Email de récuperation</label>
                             <input name="mail" type="email" class="form-control" placeholder="Email">
@@ -60,7 +60,7 @@
                 	<%if((e!=0)&&(e!=(-1))){ %>
                 	<h4 style="color: red;">Un code vous a été envoyé </h4>
                 <div class="login-form">
-                    <form action="http://192.168.43.108:8080/AgenceImmobiliere/RecupererM" method="post" >
+                    <form action="/AgenceImmobiliere/RecupererM" method="post" >
                         <div class="form-group">
                             
                             <label>Code de récuperation</label>
@@ -77,7 +77,7 @@
                 	<%if(e==0){ %>
                 	
                 <div class="login-form">
-                    <form action="http://192.168.43.108:8080/AgenceImmobiliere/RecupererM" method="post" >
+                    <form action="/AgenceImmobiliere/RecupererM" method="post" >
                         <div class="form-group">
                             <label>Email de récuperation</label>
                             <input name="mail" type="email" class="form-control" placeholder="Email">

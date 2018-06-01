@@ -24,15 +24,15 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		String t=(String) s.getAttribute("type");
 		switch(t) {
 		case("Admin") : s.invalidate();
-		this.getServletContext().getRequestDispatcher("/LoginAdmin").forward(request, response);break;
+		response.sendRedirect("/AgenceImmobiliere/LoginAdmin");break;
 		case("Operateur") : s.invalidate();
-		this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);break;
+		response.sendRedirect("/AgenceImmobiliere/LoginEmploye");break;
 		case("Agent") : s.invalidate();
-		this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);break;
+		response.sendRedirect("/AgenceImmobiliere/LoginEmploye");break;
 		case("Client") : s.invalidate();
-		this.getServletContext().getRequestDispatcher("/LoginServlet").forward(request, response);
+		response.sendRedirect("/AgenceImmobiliere/LoginServlet");break;
 		case("respventes") : s.invalidate();
-		this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);break;
+		response.sendRedirect("/AgenceImmobiliere/LoginEmploye");break;
 		}
 		
 		

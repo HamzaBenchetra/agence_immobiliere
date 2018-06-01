@@ -10,7 +10,7 @@
 
 <div align="center">
 <h1>Rendez-Vous fixé avec succès</h1>
-<button><a href="http://192.168.43.108:8080/AgenceImmobiliere/Operateur.jsp"> Retour a l'accueil</a></button>
+<button><a href="/AgenceImmobiliere/Operateur.jsp"> Retour a l'accueil</a></button>
 </div>
 
 </body>

@@ -42,7 +42,7 @@
                     </a>
                 </div>
                 <div class="login-form">
-                    <form action="http://192.168.43.108:8080/AgenceImmobiliere/SignupServlet" method="post">
+                    <form action="/AgenceImmobiliere/SignupServlet" method="post">
                         <div class="form-group">
                             <label>Nom</label>
                             <input name="nom" type="text" class="form-control" placeholder="Nom" required>
@@ -100,7 +100,7 @@
                         <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">ENVOYER</button>
                         
                         <div class="register-link m-t-15 text-center">
-                            <p>Déja membre ? <a href="http://192.168.43.108:8080/AgenceImmobiliere/LoginServlet"> connectez vous!</a></p>
+                            <p>Déja membre ? <a href="/AgenceImmobiliere/LoginServlet"> connectez vous!</a></p>
                         </div>
                     </form>
                 </div>

@@ -8,7 +8,7 @@
 </head>
 <body>
 
- <form action="http://192.168.43.108:8080/AgenceImmobiliere/Preavis" method="post">
+ <form action="/AgenceImmobiliere/Preavis" method="post">
 
 
 <label >avis</label>

@@ -3,6 +3,7 @@ package Model;
 public class Appartement {
 private int idAppart,idBatiment,etage;
 private double prix;
+private String description;
 private String type,nomLocal;
 public int getIdAppart() {
 	return idAppart;
@@ -40,4 +41,17 @@ public String getNomLocal() {
 public void setNomLocal(String nomLocal) {
 	this.nomLocal = nomLocal;
 }
+public String getDescription() {
+	return description;
+}
+public void setDescription(String description) {
+	this.description = description;
+}
+@Override
+public String toString() {
+	return "Appartement [idAppart=" + idAppart + ", idBatiment=" + idBatiment + ", etage=" + etage + ", prix=" + prix
+			+ ", description=" + description + ", type=" + type + ", nomLocal=" + nomLocal + "]";
+}
+
+
 }

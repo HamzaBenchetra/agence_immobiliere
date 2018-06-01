@@ -39,19 +39,19 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="http://192.168.43.108:8080/AgenceImmobiliere/Operateur.jsp">Espace Operateur</a>
+                <a class="navbar-brand" href="/AgenceImmobiliere/Operateur.jsp">Espace Operateur</a>
                 <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="http://192.168.43.108:8080/AgenceImmobiliere/Operateur.jsp"> <i class="menu-icon fa fa-dashboard"></i>Accueil </a>
+                        <a href="/AgenceImmobiliere/Operateur.jsp"> <i class="menu-icon fa fa-dashboard"></i>Accueil </a>
                     </li>
                     <li class="menu-item-has-children active dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Rendez-vous</a>
                         <ul class="sub-menu children  dropdown-menu">
-                            <li><i class="fa fa-puzzle-piece"></i><a href="http://192.168.43.108:8080/AgenceImmobiliere/FixerRDVOp.jsp">Fixer</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="/AgenceImmobiliere/FixerRDVOp.jsp">Fixer</a></li>
                             <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Modifier</a></li>
                             <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Supprimer</a></li>
                         </ul>
@@ -59,7 +59,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Acheter</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="http://192.168.43.108:8080/AgenceImmobiliere/ChercherClientAchat.jsp">Demander Achat</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/ChercherClientAchat.jsp">Demander Achat</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -255,7 +255,7 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="http://192.168.43.108:8080/AgenceImmobiliere/Operateur.jsp">Accueil</a></li>
+                            <li><a href="/AgenceImmobiliere/Operateur.jsp">Accueil</a></li>
                             <li><a href="#">Rendez-vous</a></li>
                             <li class="active">Fixer</li>
                         </ol>
@@ -277,7 +277,7 @@
 
                       </div>
                       <div class="card-body card-block">
-                        <form action="http://192.168.43.108:8080/AgenceImmobiliere/VerifierClientOperateur" method="post" class="post"><div class="form-group"><label for="nf-email" class=" form-control-label">Mobile</label><input type="text" id="nf-email" name="numtel" placeholder="Numero de telephone" class="form-control"></div>
+                        <form action="/AgenceImmobiliere/VerifierClientOperateur" method="post" class="post"><div class="form-group"><label for="nf-email" class=" form-control-label">Mobile</label><input type="text" id="nf-email" name="numtel" placeholder="Numero de telephone" class="form-control"></div>
                           <button type="submit" class="btn btn-primary btn-sm">
                           <i class="fa fa-dot-circle-o"></i> Trouver</button>
                         </form>

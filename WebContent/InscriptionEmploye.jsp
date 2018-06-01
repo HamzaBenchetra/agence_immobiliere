@@ -42,7 +42,7 @@
                     </a>
                 </div>
                 <div class="login-form">
-                    <form action="http://192.168.43.108:8080/AgenceImmobiliere/SignupEmp" method="post">
+                    <form action="/AgenceImmobiliere/SignupEmp" method="post">
                         <div class="form-group">
                             <label>Nom</label>
                             <input name="nom" type="text" class="form-control" placeholder="Nom" required>

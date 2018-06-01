@@ -43,7 +43,7 @@
                     <h2 style="color: lightgrey;">Authentification Client</h2>
                 </div>
                 <div class="login-form">
-                    <form action="http://192.168.43.108:8080/AgenceImmobiliere/LoginServlet" method="post">
+                    <form action="/AgenceImmobiliere/LoginServlet" method="post">
                         <div class="form-group">
                             <label>Email ou mobile</label>
                             <input name="mail" type="text" class="form-control" placeholder="Email ou Mobile">
@@ -57,13 +57,13 @@
                                 <input type="checkbox"> Remember Me
                             </label>
                             <label class="pull-right">
-                                <a href="http://192.168.43.108:8080/AgenceImmobiliere/RecupererM">Mot de pass oublié</a>
+                                <a href="/AgenceImmobiliere/RecupererM">Mot de pass oublié</a>
                             </label>
 
                         </div>
                         <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Connexion</button>
                         <div class="register-link m-t-15 text-center">
-                            <p>Pas encore membre ? <a href="http://192.168.43.108:8080/AgenceImmobiliere/SignupServlet"> Créez un compte</a></p>
+                            <p>Pas encore membre ? <a href="/AgenceImmobiliere/SignupServlet"> Créez un compte</a></p>
                         </div>
                     </form>
                 </div>

@@ -10,8 +10,8 @@
 <body>
 <h1 align="center">Connexion OK Bienvenue </h1>
 	
-		<a href="http://192.168.43.108:8080/AgenceImmobiliere/LogoutServlet"> Deconnexion</a>
-		<a href="http://192.168.43.108:8080/AgenceImmobiliere/ConsuListApparts"> Consulter nos appartements</a>
-		<a href="http://192.168.43.108:8080/AgenceImmobiliere/ListeRDV">Consultez vos-RendezVous</a>
+		<a href="/AgenceImmobiliere/LogoutServlet"> Deconnexion</a>
+		<a href="/AgenceImmobiliere/ConsuListApparts"> Consulter nos appartements</a>
+		<a href="/AgenceImmobiliere/ListeRDV">Consultez vos-RendezVous</a>
 </body>
 </html>

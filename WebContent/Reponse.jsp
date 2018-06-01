@@ -11,7 +11,7 @@
 
 <h1>Ce Rendez-vous Existe deja</h1>
 
-	<form action="http://192.168.43.108:8080/AgenceImmobiliere/FixerRDVOperateurClient.jsp">
+	<form action="/AgenceImmobiliere/FixerRDVOperateurClient.jsp">
 		<button type="submit">Réessayer</button>
 	</form>
 

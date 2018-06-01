@@ -43,19 +43,19 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="http://192.168.43.108:8080/AgenceImmobiliere/EspaceAdmin.jsp">Espace Admin</a>
+                <a class="navbar-brand" href="/AgenceImmobiliere/EspaceAdmin.jsp">Espace Admin</a>
                 <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="http://192.168.43.108:8080/AgenceImmobiliere/EspaceAdmin.jsp"> <i class="menu-icon fa fa-dashboard"></i>Accueil </a>
+                        <a href="/AgenceImmobiliere/EspaceAdmin.jsp"> <i class="menu-icon fa fa-dashboard"></i>Accueil </a>
                     </li>
                     <li class="menu-item-has-children active dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Inscriptions</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-puzzle-piece"></i><a href="http://192.168.43.108:8080/AgenceImmobiliere/validation">Valider</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="/AgenceImmobiliere/validation">Valider</a></li>
                             <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Supprimer</a></li>
                             
                         </ul>
@@ -218,7 +218,7 @@
 
                                 <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                                <a class="nav-link" href="http://192.168.43.108:8080/AgenceImmobiliere/LogoutServlet"><i class="fa fa-power -off"></i>Logout</a>
+                                <a class="nav-link" href="/AgenceImmobiliere/LogoutServlet"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
@@ -260,7 +260,7 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="http://192.168.43.108:8080/AgenceImmobiliere/EspaceAdmin.jsp">Accueil</a></li>
+                            <li><a href="/AgenceImmobiliere/EspaceAdmin.jsp">Accueil</a></li>
                             <li><a href="#">Inscriptions</a></li>
                             <li class="active">Valider</li>
                         </ol>
@@ -316,7 +316,7 @@
 							          </div>
 							          <div class="modal-footer">
 							             <button class="btn btn-default" data-dismiss="modal">Fermer</button>
-							             <form action="http://192.168.43.108:8080/AgenceImmobiliere/validation" method="post">
+							             <form action="/AgenceImmobiliere/validation" method="post">
 							             <input type="hidden" name="TypeVal" value="Operateur">
 							             <input type="hidden" name="IDO" value="<%=allO.get(i).getIdemp()%>">
 							             <button class="btn btn-secondary" type="submit" name="valid" value="oui">Accepter</button>
@@ -374,7 +374,7 @@
 							          </div>
 							          <div class="modal-footer">
 							             <button class="btn btn-default" data-dismiss="modal">Fermer</button>
-							             <form action="http://192.168.43.108:8080/AgenceImmobiliere/validation" method="post">
+							             <form action="/AgenceImmobiliere/validation" method="post">
 							             <input type="hidden" name="TypeVal" value="Agent">
 							             <input type="hidden" name="IDA" value="<%=allA.get(i).getIdemp()%>">
 							             <button class="btn btn-secondary" type="submit" name="valid" value="oui">Accepter</button>
@@ -431,7 +431,7 @@
 							          </div>
 							          <div class="modal-footer">
 							             <button class="btn btn-default" data-dismiss="modal">Fermer</button>
-							             <form action="http://192.168.43.108:8080/AgenceImmobiliere/validation" method="post">
+							             <form action="/AgenceImmobiliere/validation" method="post">
 							             <input type="hidden" name="TypeVal" value="Client">
 							             <input type="hidden" name="IDC" value="<%=allC.get(i).getIdc()%>">
 							             <button class="btn btn-secondary" type="submit" name="valid" value="oui">Accepter</button>

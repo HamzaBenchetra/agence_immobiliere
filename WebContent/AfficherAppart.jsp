@@ -36,7 +36,7 @@
 				<td><%= (int)Ap.getPrix()%></td>
 				<td>
 				<div align="center">
-					<form   action="http://192.168.43.108:8080/AgenceImmobiliere/PrendreRDV"  method = "get">
+					<form   action="/AgenceImmobiliere/PrendreRDV"  method = "get">
 						<input type="hidden" name ="IDApp" value="<%=Ap.getIdAppart() %>" >		
 		  				<input type=submit value="Prendre Rendez-Vous!"/>
 					</form>
@@ -46,7 +46,7 @@
 			</tbody>
 			</table>
 			<div align="center">
-			<form   action="http://192.168.43.108:8080/AgenceImmobiliere/ConsuListApparts"  method = "get">
+			<form   action="/AgenceImmobiliere/ConsuListApparts"  method = "get">
 			<button type="submit">Retour</button>
 		    </form>
 	</div>
