@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+
+@import url("font-awesome.min.css");
+@import url("framework.css");
+
+.row0{border-top:1px solid;}
+.row1, .row1 a{}
+.row2, .row2 a{}
+.row3, .row3 a{}
+.row4, .row4 a{}
+.row5, .row5 a{}
+
+
+
+
+/* Content */
+.container .content{}
+
+.sectiontitle{display:block; max-width:55%; margin:0 auto 80px; text-align:center;}
+.sectiontitle *{margin:0;}
+
+.cta{}
+.cta article{display:block; position:relative; padding:0 0 0 95px; line-height:normal;}
+.cta article *{margin:0; padding:0;}
+.cta article i{display:inline-block; position:absolute; top:0; left:0; width:85px; overflow:hidden; line-height:1; font-size:65px;}
+.cta article .heading{margin-bottom:10px;}
+
+.services{}
+.services article{display:block; padding:30px; padding-top:150px;}
+.services article *{margin:0; padding:0;}
+.services article i{margin-bottom:15px;}
+.services article .heading{margin-bottom:10px;}
+
+#gallery{display:block; width:100%; margin-bottom:50px;}
+#gallery figure figcaption{display:block; width:100%; clear:both;}
+#gallery li{margin-bottom:30px;}
+
+
+a:active, a:focus{background:transparent;}background */
+
+.overlay::after{color:inherit; background-color:rgba(0,0,0,.55); background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABhJREFUeNpiYGBgePz//38GRhABAgABBgBFTAbfCBNE2AAAAABJRU5ErkJggg==");}
+
+.cta article i{color:rgba(0,0,0,.2);}
+.cta article:hover .heading a, .cta article:hover i{color:inherit;}
+
+.services article *
+
+{	color:#CCC;}
+.services article:hover{box-shadow:5px 5px 0px #F60;}
+.services article:hover a{
+	color:#F60;}
+
+@media screen and (min-width:978px){
+	.hoc{max-width:978px;}
+}
+
+
+
+@media screen and (max-width:650px){
+	.scrollable{display:block; width:100%; margin:0 0 30px 0; padding:0 0 15px 0; overflow:auto; overflow-x:scroll;}
+	.scrollable table{margin:0; padding:0; white-space:nowrap;}
+
+	.inline li{display:block; margin-bottom:10px;}
+	.pushright li{margin-right:0;}
+
+	.font-x2{font-size:1.4rem;}
+	.font-x3{font-size:1.6rem;}
+}

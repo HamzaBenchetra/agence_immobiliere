@@ -3,7 +3,7 @@ package Model;
 public class Appartement {
 private int idAppart,idBatiment,etage;
 private double prix;
-private String type,nomLocal;
+private String type,nomLocal,img1;
 public int getIdAppart() {
 	return idAppart;
 }
@@ -39,5 +39,11 @@ public String getNomLocal() {
 }
 public void setNomLocal(String nomLocal) {
 	this.nomLocal = nomLocal;
+}
+public String getImg1() {
+	return img1;
+}
+public void setImg1(String img1) {
+	this.img1 = img1;
 }
 }
