@@ -69,9 +69,22 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Localitées</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="#">Ajouter une localité</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="#">Supprimer une localité</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="#">Modifier une localité</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/AgenceImmobiliere/ControleLocalite?what=add">Ajouter une localité</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="/AgenceImmobiliere/ControleLocalite?what=mod">Modifier une localité</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Regions</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/AgenceImmobiliere/ControleRegion?what=add">Ajouter une region</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="/AgenceImmobiliere/ControleRegion?what=mod">Modifier une region</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Batiments</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/AgenceImmobiliere/Controlebatiment?what=add">Ajouter un batiment</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="/AgenceImmobiliere/ControleBatiment?what=mod">Modifier un batiment</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -264,16 +277,17 @@
                         <form action="/AgenceImmobiliere/ControleAppartement" method="post"  class="form-horizontal">
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="IdApp" class=" form-control-label">Id de l'appartement</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="IdApp" name="IdApp" placeholder="ID de l'appartement" class="form-control"></div>
+                            <div class="col-12 col-md-9"><input type="text" id="IdApp" name="IdApp" placeholder="ID de l'appartement" class="form-control"required></div>
                           </div>
+                          <div id="formulaire" style="display : none">
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="IdBat" class=" form-control-label">Id du Batiment</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="IdBat" name="IdBat" placeholder="ID du batiment" class="form-control"></div>
+                            <div class="col-12 col-md-9"><input type="text" id="IdBat" name="IdBat" placeholder="ID du batiment" class="form-control" required></div>
                           </div>
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="etage" class=" form-control-label">Etage</label></div>
                             <div class="col-12 col-md-9">
-                              <select name="etage" id="etage" class="form-control">
+                              <select name="etage" id="etage" class="form-control" required>
                                 <option value="0">Selectionnez l'etage</option>
                               </select>
                             </div>
@@ -282,7 +296,7 @@
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="Type" class=" form-control-label">Type</label></div>
                             <div class="col-12 col-md-9">
-                              <select name="Type" id="Type" class="form-control">
+                              <select name="Type" id="Type" class="form-control" required>
                                 <option value="0">Selectionner le type</option>
                                 <option value="F2">F2</option>
                                 <option value="F3">F3</option>
@@ -293,11 +307,11 @@
                           </div>
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="prix" class=" form-control-label">Prix</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="prix" name="prix" placeholder="Prix en DA" class="form-control"></div>
+                            <div class="col-12 col-md-9"><input type="text" id="prix" name="prix" placeholder="Prix en DA" class="form-control" required></div>
                           </div>
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="description" class=" form-control-label">Description de l'appartement</label></div>
-                            <div class="col-12 col-md-9"><textarea name="description" id="description" rows="9" placeholder="Description Generale..." class="form-control"></textarea></div>
+                            <div class="col-12 col-md-9"><textarea name="description" id="description" rows="6" placeholder="Description Generale..." class="form-control" required></textarea></div>
                           </div>
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="file-multiple-input" class=" form-control-label">Photos</label></div>
@@ -307,7 +321,7 @@
                         	<button type="submit" class="btn btn-primary btn-sm">
                           		<i class="fa fa-dot-circle-o"></i> Submit
                         	</button>
-                          
+                          </div>
                         </form>
                       </div>
                       
@@ -337,10 +351,10 @@
     				   console.log(result);
     				if(result ==="ghalt"){//hna tgerer lgholta
     					   $( "#IdApp" ).css({'background-color': '#ef5350'});
-    					   
+    					   $( "#formulaire" ).css({'display': 'none'});
     				}else{
     					var Appart = JSON.parse(result);
-    					
+    					$( "#formulaire" ).css({'display': 'block'});
     					$( "#IdApp" ).css({'background-color': 'white'});
 		    			$("#IdBat").val(Appart.idBat); 
 		    			$("#etage").val(Appart.etage);
@@ -389,7 +403,7 @@
     if(m=="OK"){
     	 $( "#msg" ).css({'display': 'block'});
     }
-    </script>
+</script>
     
 
 </body>

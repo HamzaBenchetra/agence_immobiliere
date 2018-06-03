@@ -421,9 +421,7 @@ public class Fonctions {
 				e.printStackTrace();
 			}
 		}
-		public static void main(String[] args) {
-			//System.out.println(Recuperer("hamza.ben2zelda@gmail.com"));
-		}
+		
 		public static Client getClient(String val) {
 			Client ca=new Client();
 			ConnecterBD();
@@ -491,5 +489,52 @@ public class Fonctions {
 			}
 			return null;
 		}
+		public static ArrayList<Localite> ListeLocalitees() {
+			ConnecterBD();
+			try {
+				Statement s=connexion.createStatement();
+				ArrayList<Localite> l=new ArrayList<Localite>();
+				
+				ResultSet rs=s.executeQuery("SELECT * FROM localite;");
+				while(rs.next()) {
+					Localite lo=new Localite();
+					lo.setIdLocalite(rs.getInt(1));
+					lo.setNomLocalite(rs.getString(2));
+					l.add(lo);
+				}
+				return l;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+		public static ArrayList<Region> ListeRegions() {
+			ConnecterBD();
+			try {
+				Statement s=connexion.createStatement();
+				ArrayList<Region> l=new ArrayList<Region>();
+				
+				ResultSet rs=s.executeQuery("SELECT idSecteur,nomSecteur FROM secteur;");
+				while(rs.next()) {
+					Region lo=new Region();
+					lo.setIdRegion(rs.getInt(1));
+					lo.setNomRegion(rs.getString(2));
+					l.add(lo);
+				}
+				for(Region R:l)
+					System.out.println(R.getIdRegion()+" "+R.getNomRegion());
+				return l;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
 		
+		public static void main(String[] args) {
+			/*ArrayList<Region> LR=Fonctions.ListeRegions();
+			for(Region R:LR)
+				System.out.println(R.getIdRegion()+" "+R.getNomRegion());*/
+		}
 }

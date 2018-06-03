@@ -59,4 +59,57 @@ public class OperationsAdmin {
 		}
 	}
 
+	public static void AjouterLocalite(String nomL) {
+		ConnecterBD();
+		PreparedStatement ps;
+		System.out.print(nomL);
+		try {
+			ps = connexion.prepareStatement("insert into localite(nomLocalite)values('"+nomL+"');");
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static void ModifierLocalite(int id, String nom) {
+		ConnecterBD();
+		System.out.println(id +" "+ nom);
+		PreparedStatement ps;
+		try {
+			ps = connexion.prepareStatement("UPDATE Localite SET nomLocalite='"+nom+"'  WHERE idLocalite="+id+";");
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void AjouterRegion(int idLocalite, String nomRegion) {
+		ConnecterBD();
+		PreparedStatement ps;
+		System.out.print(idLocalite+" "+nomRegion);
+		try {
+			ps = connexion.prepareStatement("insert into secteur(idLocal,nomSecteur)values("+idLocalite+",'"+nomRegion+"');");
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static void ModifierRegion(int idRegion, String nom) {
+		ConnecterBD();
+		System.out.println(idRegion +" "+ nom);
+		PreparedStatement ps;
+		try {
+			ps = connexion.prepareStatement("UPDATE secteur SET nomSecteur='"+nom+"'  WHERE idSecteur="+idRegion+";");
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 }

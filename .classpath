@@ -15,7 +15,7 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="C:/java-mail-1.4.4.jar"/>
 	<classpathentry kind="lib" path="C:/itextpdf-5.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/jxl-2.6.12.jar"/>
-	<classpathentry kind="lib" path="C:/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/jxl-2.6.jar"/>
+	<classpathentry kind="lib" path="C:/jstl.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

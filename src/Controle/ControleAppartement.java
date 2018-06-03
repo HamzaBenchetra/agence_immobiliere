@@ -28,9 +28,6 @@ public class ControleAppartement extends HttpServlet {
 		case "mod":
 			this.getServletContext().getRequestDispatcher("/ModifierAppart.jsp").forward(request, response);
 			break;
-		case "del":
-			this.getServletContext().getRequestDispatcher("/SupprimerAppart.jsp").forward(request, response);
-			break;
 		default:
 			break;
 		}

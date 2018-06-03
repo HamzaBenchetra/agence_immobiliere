@@ -67,9 +67,22 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Localitées</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="#">Ajouter une localité</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="#">Supprimer une localité</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="#">Modifier une localité</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/AgenceImmobiliere/ControleLocalite?what=add">Ajouter une localité</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="/AgenceImmobiliere/ControleLocalite?what=mod">Modifier une localité</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Regions</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/AgenceImmobiliere/ControleRegion?what=add">Ajouter une region</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="/AgenceImmobiliere/ControleRegion?what=mod">Modifier une region</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Batiments</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/AgenceImmobiliere/Controlebatiment?what=add">Ajouter un batiment</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="/AgenceImmobiliere/ControleBatiment?what=mod">Modifier un batiment</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -244,19 +257,7 @@
                 </div>
             </div>
         </div>
-		<div>
-			<form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                          <div class="row form-group">
-                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Num Tel</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="numtel" name="numtel" placeholder="Text" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
-                          </div>
-                          
-                          <div class="row form-group">
-                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nom</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="nom" name="nom" placeholder="Text" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
-                          </div>
-            </form>
-		</div>
+		
         
 
 
@@ -274,26 +275,6 @@
     <script src="assets/js/lib/chart-js/chartjs-init.js"></script>
     <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
     
-    <script>$( "#numtel" ).change(function() {
-
-    	   $.ajax({url: "http://localhost:8080/AgenceImmobiliere/api?action=complete&val="+$( "#numtel" ).val(),
-    			   success: function(result){
-    				   if(result ==="ghalt"){//hna tgerer lgholta
-    					   $( "#numtel" ).css({'background-color': 'red'});
-    					   
-    					   }else{
-    						   $( "#numtel" ).css({'background-color': 'white'});
-    					   }
-    				   
-    	        $("#nom").val(result);
-    	    },
-    	    error :  function(error){}
-    	   
-    	   
-    	   });
     
-    
-    });</script>
-
 </body>
 </html>
