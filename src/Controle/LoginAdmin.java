@@ -30,6 +30,7 @@ public class LoginAdmin extends HttpServlet {
 		if(b!=0) {
 			HttpSession s=request.getSession(true);
 			s.setAttribute("type", type);
+			s.setAttribute("id", b);
 			this.getServletContext().getRequestDispatcher("/EspaceAdmin.jsp").forward(request, response);
 		}else {
 			request.setAttribute("e", -1);

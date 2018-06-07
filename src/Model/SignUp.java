@@ -62,7 +62,7 @@ public class SignUp {
 			i=pst.executeUpdate();}
 			else{
 				
-				PreparedStatement pst=connexion.prepareStatement("insert into "+E.getType()+"(idL,nom,prenom,numtel,adresse,datenais,mail,mdpss,sexe) values(1,?,?,?,?,?,?,?,?);");
+				PreparedStatement pst=connexion.prepareStatement("insert into "+E.getType()+"(nom,prenom,numtel,adresse,datenais,mail,mdpss,sexe) values(?,?,?,?,?,?,?,?);");
 				pst.setString(1, E.getNom());
 				pst.setString(2, E.getPrenom());
 				pst.setString(3, E.getNumtel());

@@ -4,7 +4,7 @@ public class Appartement {
 private int idAppart,idBatiment,etage;
 private double prix;
 private String description;
-private String type,nomLocal,img1;
+private String type,nomLocal,nomRegion;
 public int getIdAppart() {
 	return idAppart;
 }
@@ -49,15 +49,13 @@ public void setDescription(String description) {
 }
 @Override
 public String toString() {
-	return "Appartement [idAppart=" + idAppart + ", idBatiment=" + idBatiment + ", etage=" + etage + ", prix=" + prix
+	return "Appartement [idAppart=" + idAppart + ", idBatiment=" + idBatiment + ", etage=" + etage + ", prix=" + (int)prix
 			+ ", description=" + description + ", type=" + type + ", nomLocal=" + nomLocal + "]";
 }
-
-
-public String getImg1() {
-	return img1;
+public String getNomRegion() {
+	return nomRegion;
 }
-public void setImg1(String img1) {
-	this.img1 = img1;
+public void setNomRegion(String nomRegion) {
+	this.nomRegion = nomRegion;
 }
 }

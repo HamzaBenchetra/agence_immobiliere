@@ -21,6 +21,8 @@
 					<tr>
 					<th><h1>Type d'appartement</h1></th>
 					<th><h1>Etage</h1></th>
+					<th><h1>Localite</h1></th>
+					<th><h1>region</h1></th>
 					<th><h1>Prix (En DA)</h1></th>					
 					</tr>
 				</thead>
@@ -29,6 +31,8 @@
 				<tr>
 				<td><%= allA.get(i).getType()%></td>
 				<td><%= allA.get(i).getEtage()%></td>
+				<td><%= allA.get(i).getNomLocal()%></td>
+				<td><%= allA.get(i).getNomRegion()%></td>
 				<td><%= (int)allA.get(i).getPrix()%></td>
 				<td><div align="center">
 	<form   action="/AgenceImmobiliere/ConsuListApparts"  method = "post">

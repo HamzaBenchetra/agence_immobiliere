@@ -35,7 +35,7 @@ public static ArrayList<Appartement> RecupererListeApparts(){
 		   try {
 				
 			Statement statement = connexion.createStatement();
-			String Query="select * from appartement as a, batiment as b,localite as l where a.idBat=b.idBatiment and b.idLocal=l.idLocalite and a.etat=0; ";
+			String Query="select * from appartement as a,batiment as b, secteur as s, localite as l where b.idbatiment=a.idBat and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and a.etat=0;";
 			ResultSet rs=statement.executeQuery(Query);
 			
 		//	ResultSet r = null;
@@ -43,10 +43,11 @@ public static ArrayList<Appartement> RecupererListeApparts(){
 				Appartement a=new Appartement ();
 				a.setIdAppart(rs.getInt("idAppart"));
 				a.setNomLocal(rs.getString("nomLocalite"));
-				a.setImg1(rs.getString("img1"));
+				//a.setImg1(rs.getString("img1"));
 				a.setType(rs.getString("type"));
 				a.setEtage(rs.getInt("etage"));
 				a.setPrix(rs.getDouble("prix"));
+				a.setNomRegion(rs.getString("nomsecteur"));
 				A.add(a);
 			}
 			return A ;
@@ -146,7 +147,7 @@ public static ArrayList<Appartement> RechercherAppart(String localite,String typ
 		A.setIdAppart(rs.getInt("idAppart"));
 		A.setIdBatiment(rs.getInt("idBat"));
 		A.setType(rs.getString("type"));
-		A.setImg1(rs.getString("img1"));
+		//A.setImg1(rs.getString("img1"));
 
 		A.setEtage(rs.getInt("etage"));
 		A.setPrix(rs.getDouble("prix"));
@@ -167,7 +168,7 @@ public static ArrayList<Appartement> RechercherAppart(String localite,String typ
 		Appartement A=new Appartement();
 		try {
 		Statement statement = connexion.createStatement();
-		String Query="select * from appartement as a, batiment as b,localite as l where a.idBat=b.idBatiment and b.idLocal=l.idLocalite and a.idAppart="+id+" ;";
+		String Query="select * from appartement as a,batiment as b, secteur as s, localite as l where b.idbatiment=a.idBat and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and a.etat=0 and a.idAppart="+id+";";
 		ResultSet rs=statement.executeQuery(Query);
 		
 		while(rs.next()){
@@ -176,6 +177,7 @@ public static ArrayList<Appartement> RechercherAppart(String localite,String typ
 			A.setType(rs.getString("type"));
 			A.setEtage(rs.getInt("etage"));
 			A.setPrix(rs.getDouble("prix"));
+			A.setNomLocal(rs.getString("nomSecteur"));
 			A.setNomLocal(rs.getString("nomLocalite"));
 		}
 		return A ;

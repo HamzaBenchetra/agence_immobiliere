@@ -299,8 +299,10 @@
 				<td><%= allA.get(i).getType()%></td>
 				<td><%= (int)allA.get(i).getPrix()%></td>
 				<td><div align="center">
-				<form   action="/AgenceImmobiliere/VerifierClientOperateur"  method = "get">
+				<form   action="/AgenceImmobiliere/ControleRendezVous"  method = "get">
 				<input type="hidden" name ="IDA" value="<%=allA.get(i).getIdAppart() %>" >		
+		  		<input type="hidden" name="operation" value="idApp">
+                <input type="hidden" name="what" value="add">
 		  		<input type=submit value="Fixer un RDV!"/>
 				</form>
 				</div>

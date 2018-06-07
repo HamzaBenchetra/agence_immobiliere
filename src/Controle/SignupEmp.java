@@ -26,7 +26,7 @@ public class SignupEmp extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter(); 
 		Employe e=new Employe();
-		e.setNom(request.getParameter("Nom"));
+		e.setNom(request.getParameter("nom"));
 		e.setPrenom(request.getParameter("Prenom"));
 		e.setAdresse(request.getParameter("Adresse"));
 		e.setDatenais(request.getParameter("datenais"));

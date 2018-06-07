@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 import Model.Appartement;
 import Model.Client;
 import Model.Fonctions;
+import Model.OperationsOperateur;
 
 @WebServlet("/api")
 public class api extends HttpServlet {
@@ -56,6 +57,16 @@ public class api extends HttpServlet {
 					      Appart.put("prix", a.getPrix());
 					      Appart.put("NomLoca", a.getNomLocal());
 						response.getWriter().append(Appart.toJSONString());
+					}
+				}else {
+					if(r.equalsIgnoreCase("numclient")&&val!=null) {
+						//int id=0;
+						int id=OperationsOperateur.trouverClient(val);
+						if(id==0) {
+							response.getWriter().append("ghalt");
+						}else {
+							response.getWriter().append(""+id);
+						}
 					}
 				}
 			}

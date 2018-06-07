@@ -27,7 +27,7 @@ public class SignupServle extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter(); 
 		Client c=new Client();
-		c.setNom(request.getParameter("Nom"));
+		c.setNom(request.getParameter("nom"));
 		c.setPrenom(request.getParameter("Prenom"));
 		c.setAdresse(request.getParameter("Adresse"));
 		c.setDatenais(request.getParameter("datenais"));

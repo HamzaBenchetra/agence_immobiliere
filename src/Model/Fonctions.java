@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 public class Fonctions {
 	private static Connection connexion;
 	public static boolean ValiderRDV(int id){
@@ -162,13 +165,13 @@ public class Fonctions {
 	   return k ;
 
 }
-	public static boolean Valider(int id, String t){
+	public static boolean Valider(int idA,int id, String t){
 			int statut = -5;
 			ConnecterBD();
 			try {
 			
 		//	String SQL ="update client set etat =1 where idClient="+id;
-			PreparedStatement pst=connexion.prepareStatement("update "+ t +" set etat =1 where id"+t+"="+id+";");
+			PreparedStatement pst=connexion.prepareStatement("update "+ t +" set etat =1, idAdmin="+idA+" where id"+t+"="+id+";");
 
 			statut= pst.executeUpdate();
 			} catch (SQLException e) {
@@ -532,9 +535,108 @@ public class Fonctions {
 			return null;
 		}
 		
+		public static ArrayList<date> listesdatesdispo(int idA){
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date date=new Date();
+			String dt=sdf.format(date);     //date actuelle
+			System.out.println(dt);
+			Calendar c = Calendar.getInstance();
+				try {
+					c.setTime(sdf.parse(dt));
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				
+			  // number of days to add
+			ConnecterBD();
+			ArrayList<date> dates=new ArrayList<date>();
+			
+			for(int i=0;i<=30;i++) {
+				c.add(Calendar.DATE, 1);
+				date d=new date();
+				d.setDate(sdf.format(c.getTime()));
+				d.setHeur("08:00:00.0");
+				dates.add(d);
+				date d1=new date();
+				d1.setDate(sdf.format(c.getTime()));
+				d1.setHeur("10:00:00.0");
+				dates.add(d1);
+				date d2=new date();
+				d2.setDate(sdf.format(c.getTime()));
+				d2.setHeur("12:00:00.0");
+				dates.add(d2);
+				date d3=new date();
+				d3.setDate(sdf.format(c.getTime()));
+				d3.setHeur("14:00:00.0");
+				dates.add(d3);
+				
+				
+			}
+			
+			try {
+				Statement s=connexion.createStatement();
+				ResultSet rs=s.executeQuery("select * from rdv where date>curdate() and idApp="+idA+" order by date;");
+				while(rs.next()) {
+					String da=rs.getString("date");
+					
+					for(int k=0;k<dates.size();k++) {
+					if(da.equals(dates.get(k).getDate()+" "+dates.get(k).getHeur()))
+						dates.get(k).setEtat(false);
+					}
+				}
+				return dates;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return dates;
+			}
+			
+		}
+		public static ArrayList<Appartement> ChercherAppart(int idlocalite, int idregion, String type, int etage,int prixMin, int prixMax) {
+			ConnecterBD();
+			System.out.println(idlocalite+" "+idregion+" "+type+" "+etage+" "+prixMax+" "+prixMin);
+			ArrayList<Appartement> L=new ArrayList<Appartement>();
+			try {
+				Statement s=connexion.createStatement();
+				ResultSet rs=s.executeQuery("select nomlocalite,nomsecteur,idappart,idBat,etage,prix,type,description from appartement as a,batiment as b,secteur as s,localite as l where a.idbat=b.idbatiment and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and idlocalite="+idlocalite+" and s.idsecteur="+idregion+" and type='"+type+"' and etage="+etage+" and prix between "+prixMax+" AND "+prixMin+" ;");
+				while(rs.next()) {
+					Appartement a=new Appartement();
+					a.setNomLocal(rs.getString(1));
+					a.setNomRegion(rs.getString(2));
+					a.setIdAppart(rs.getInt(3));
+					a.setIdBatiment(rs.getInt(4));
+					a.setEtage(rs.getInt(5));
+					a.setPrix(rs.getInt(6));
+					a.setType(rs.getString(7));
+					a.setDescription(rs.getString(8));
+					L.add(a);
+				}
+				return L;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return L;
+		}
 		public static void main(String[] args) {
 			/*ArrayList<Region> LR=Fonctions.ListeRegions();
 			for(Region R:LR)
-				System.out.println(R.getIdRegion()+" "+R.getNomRegion());*/
+				System.out.println(R.getIdRegion()+" "+R.getNomRegion());
+			ArrayList<date> d=listesdatesdispo(16);
+			for(int i=1;i<=d.size();i++) {
+				if(d.get(i-1).getEtat()) {
+				System.out.println(d.get(i-1).getDate()+" "+d.get(i-1).getHeur()+" Libre");
+				}else {
+				System.out.println(d.get(i-1).getDate()+" "+d.get(i-1).getHeur()+" Prise");
+				}
+				if(i%4==0)
+					System.out.println("\n");
+			}*/
+			ArrayList<Appartement> L=ChercherAppart(5 ,17, "F3" ,14 ,20000000 ,25000000);
+			System.out.println(L.size());
+			for(Appartement a:L) {
+				System.out.println(a.toString());
+			}
 		}
+		
 }

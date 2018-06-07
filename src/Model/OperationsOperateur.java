@@ -33,7 +33,7 @@ public class OperationsOperateur {
 		ArrayList<Appartement> a = new ArrayList<Appartement>();
 		try {
 		Statement statement = connexion.createStatement();
-		String Query="select * from appartement as a, batiment as b,localite as l where a.idBat=b.idBatiment and b.idLocal=l.idLocalite and l.nomLocalite='"+localite+"' and a.type='"+type+"' and a.etage="+etage+" and a.etat=0;";
+		String Query="select nomlocalite,nomsecteur,idappart,etage,prix,idBat,type,description from appartement as a,batiment as b,secteur as s,localite as l where a.idbat=b.idbatiment and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and idlocalite=5 and s.idsecteur=17 and type='F3' and etage=14 and prix between 20000000 AND 25000000 ;";
 		ResultSet rs=statement.executeQuery(Query);
 		Appartement A=new Appartement();
 		while(rs.next()){
@@ -77,15 +77,7 @@ public class OperationsOperateur {
 	public static boolean FixerRdvOperateur(int idApp, int idC, String d) {
 		ConnecterBD();
 		try {
-			Statement s=connexion.createStatement();
-			ResultSet r=s.executeQuery("SELECT * FROM RDV where idApp="+idApp+" and date="+d+";");
-			int i=0;
-			while(r.next()) {
-				i++;
-			}
 			
-			
-			if(i==0) {
 				int idA=0;
 				Statement st=connexion.createStatement();
 				ResultSet rs=st.executeQuery("select idAgent,count(idRDV) from Agent left join rdv on Agent.idAgent=rdv.idA where idAgent not in (select idA From RDV where date="+d+" ) group by idAgent order by count(idRDV) asc;");
@@ -96,16 +88,14 @@ public class OperationsOperateur {
 				
 				PreparedStatement ss=connexion.prepareStatement("insert into RDV (idApp,idA,idC,date)values("+idApp+","+idA+","+idC+","+d+");");
 				ss.executeUpdate();
-				System.out.println(i);
+				//System.out.println(i);
 				System.out.println("RDV ok");
 				return true;
-			}else {
-				return false;
-			}
 			
 			
 			
-		} catch (SQLException e) {
+			
+			} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
@@ -203,6 +193,20 @@ public static boolean insererDemande(int idAp,int idC) {
 public static void main(String[] args) {
 	//prendreRDV(1,1,"'2018-04-22 08:00:00'")
 
+}
+public static int trouverClient(String val) {
+	ConnecterBD();
+	try {
+		Statement s=connexion.createStatement();
+		ResultSet rs=s.executeQuery("select * from client where numtel='"+val+"'");
+		if(rs.next()) {
+			return rs.getInt(1);
+		}
+		return 0;
+	} catch (SQLException e) {
+		// TODO Auto-generated catch
+		return 0;
+	}
 }
 }
 

@@ -37,6 +37,8 @@ public class validation extends HttpServlet {
 		RequestDispatcher ds ;
 		String rep=request.getParameter("valid");
 		String typeVal=request.getParameter("TypeVal");
+		HttpSession s=request.getSession(true); 
+		int idAdmin=(int) s.getAttribute("id");
 		switch(rep) {
 		
 		case "oui" :{
@@ -44,21 +46,22 @@ public class validation extends HttpServlet {
 					case "Operateur":{
 							int id=Integer.parseInt(request.getParameter("IDO"));
 							String type=request.getParameter("TypeVal");
-							Fonctions.Valider(id,type);
+							
+							Fonctions.Valider(idAdmin,id,type);
 							this.getServletContext().getRequestDispatcher("/AfficherListDemandes.jsp").forward(request, response);
 							}break;
 					
 					case "Agent":{
 							int id=Integer.parseInt(request.getParameter("IDA"));
 							String type=request.getParameter("TypeVal");
-							Fonctions.Valider(id,type);
+							Fonctions.Valider(idAdmin,id,type);
 							this.getServletContext().getRequestDispatcher("/AfficherListDemandes.jsp").forward(request, response);
 							}break;
 							
 					case "Client":{
 							int id=Integer.parseInt(request.getParameter("IDC"));
 							String type=request.getParameter("TypeVal");
-							Fonctions.Valider(id,type);
+							Fonctions.Valider(idAdmin,id,type);
 							this.getServletContext().getRequestDispatcher("/AfficherListDemandes.jsp").forward(request, response);
 							}break;
 		}break;

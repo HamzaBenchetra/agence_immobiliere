@@ -277,9 +277,40 @@
 
                       </div>
                       <div class="card-body card-block">
-                        <form action="/AgenceImmobiliere/VerifierClientOperateur" method="post" class="post"><div class="form-group"><label for="nf-email" class=" form-control-label">Mobile</label><input type="text" id="nf-email" name="numtel" placeholder="Numero de telephone" class="form-control"></div>
+                        <form action="/AgenceImmobiliere/ControleRendezVous" method="post" class="post">
+                        <div class="form-group"><label for="numtel" class=" form-control-label">Mobile</label>
+                        <input type="text" id="numtel" name="numtel" placeholder="Numero de telephone" class="form-control"></div>
+                          <input type="hidden" name="operation" value="idClient">
+                		  <input type="hidden" name="what" value="add">
+                		  <input type="hidden" name="idC" id="idC" value="">
                           <button type="submit" class="btn btn-primary btn-sm">
                           <i class="fa fa-dot-circle-o"></i> Trouver</button>
+                        </form>
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+                
+                </div>
+                <div class="row" id="forminscrip" style="display : none">
+                
+                <div class="col-lg-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <strong>Cette personne n'est pas cliente</strong> 
+							<small>Créez lui un Compte</small>
+                      </div>
+                      <div class="card-body card-block">
+                        <form action="/AgenceImmobiliere/ControleRendezVous" method="post" class="post">
+                          <div class="form-group"><label for="nf-email" class=" form-control-label">Nom</label><input type="text" id="nom" name="nom" placeholder="Nom" class="form-control"></div>
+                          <div class="form-group"><label for="nf-password" class=" form-control-label">Prenom</label><input type="text" id="prenom" name="prenom" placeholder="Prenom" class="form-control"></div>
+						  <div class="form-group"><label for="nf-email" class=" form-control-label">Mobile</label><input type="text" id="numerotel" name="numerotel" placeholder="Numero de telephone" class="form-control"></div>
+                          <input type="hidden" name="what" value="add">
+                          <input type="hidden" name="operation" value="creerClient">
+                          <button type="submit" class="btn btn-primary btn-sm">
+                          <i class="fa fa-dot-circle-o"></i> Créer
+                          </button>
                         </form>
                       </div>
                       
@@ -303,6 +334,31 @@
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/lib/chart-js/Chart.bundle.js"></script>
+    <!--   <script src="assets/js/lib/chart-js/chartjs-init.js"></script>-->
+    <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
+    <script>$( "#numtel" ).change(function() {
+
+    	   $.ajax({url: "http://localhost:8080/AgenceImmobiliere/api?action=numclient&val="+$( "#numtel" ).val(),
+    			   success: function(result){
+    				   if(result ==="ghalt"){//hna tgerer lgholta
+    					   $( "#numclient" ).css({'background-color': '#ef5350'});
+    					   $( "#forminscrip" ).css({'display': 'block'});
+    					   }else{
+    						   console.log(result);
+    						   var a = parseInt(result)
+    				           console.log(a);
+    						   document.getElementById("idC").setAttribute('value',result)
+    				       }
+    	    },
+    	    error :  function(error){}
+    	   
+    	   
+    	   });
+    
+    
+    });
+    </script>
 
 
 </body>

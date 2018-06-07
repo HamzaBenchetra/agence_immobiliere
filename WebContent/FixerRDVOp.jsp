@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -263,7 +263,13 @@
                 </div>
             </div>
         </div>
-
+		<div class="sufee-alert alert with-close alert-primary alert-dismissible fade show" id="msg" style="display : none">
+            <span class="badge badge-pill badge-primary">Succès</span>
+               Rendez-Vous fixé avec succès.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">×</span>
+            </button>
+        </div>
         <div class="content mt-3">
             <div class="animated fadeIn">
 
@@ -279,16 +285,23 @@
                         <strong>Rechercher un appartement</strong> par criteres
                       </div>
                       <div class="card-body card-block">
-                        <form action="/AgenceImmobiliere/RechercherAppartOperateur" method="post" class="form-horizontal">
+                        <form action="/AgenceImmobiliere/ControleRendezVous" method="post" class="form-horizontal">
                       
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="select" class=" form-control-label">Localite</label></div>
                             <div class="col-12 col-md-9">
                               <select name="localite" id="select" class="form-control">
                                 <option value="0">Choisir une localite</option>
-                                <option value="Ali Mendjli">Ali Mendjli</option>
-                                <option value="Ain Smara">Ain Smara</option>
-                                <option value="El Khroub">El Khroub</option>
+                                <option value="5">Ali Mendjli</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row form-group">
+                            <div class="col col-md-3"><label for="select" class=" form-control-label">Region</label></div>
+                            <div class="col-12 col-md-9">
+                              <select name="region" id="select" class="form-control">
+                                <option value="0">Choisir une region</option>
+                                <option value="17">AADL</option>
                               </select>
                             </div>
                           </div>
@@ -328,8 +341,16 @@
                               </select>
                             </div>
                           </div>
-                          
-                         
+                          <div class="form-group">
+                          <label for="prixMax" class=" form-control-label">prix maximum</label>
+                          <input type="text" id="prixMax" name="prixMax" placeholder="En DA" class="form-control">
+                          </div>
+                          <div>
+                          <label for="prixMin" class=" form-control-label">prix minimum</label>
+                          <input type="text" id="prixMin" name="prixMin" placeholder="En DA" class="form-control">
+                          </div>
+                         <input type="hidden" name="operation" value="infos">
+                         <input type="hidden" name="what" value="add">
                         <button type="submit" class="btn btn-primary btn-sm">
                           <i class="fa fa-dot-circle-o"></i> Submit
                         </button>
@@ -355,11 +376,22 @@
     <!-- Right Panel -->
 
 
+    
     <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
-
+        <!--  Chart js -->
+    <script src="assets/js/lib/chart-js/Chart.bundle.js"></script>
+    <!--   <script src="assets/js/lib/chart-js/chartjs-init.js"></script>-->
+    <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
+	<script>
+	var m='<%= request.getAttribute("msg")%>';
+    console.log(m);
+    if(m=="OK"){
+    	 $( "#msg" ).css({'display': 'block'});
+    }
+	</script>
 
 </body>
 </html>
