@@ -112,4 +112,18 @@ public class OperationsAdmin {
 		
 	}
 
+	public static void BloquerClient(int i) {
+		ConnecterBD();
+		System.out.println(i);
+		PreparedStatement ps;
+		try {
+			ps = connexion.prepareStatement("UPDATE client SET Authorisation='bloque'  WHERE idClient="+i+";");
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 }

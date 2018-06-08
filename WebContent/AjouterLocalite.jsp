@@ -81,16 +81,16 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Batiments</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/AgenceImmobiliere/Controlebatiment?what=add">Ajouter un batiment</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/AgenceImmobiliere/ControleBatiment?what=add">Ajouter un batiment</a></li>
                             <li><i class="menu-icon ti-themify-logo"></i><a href="/AgenceImmobiliere/ControleBatiment?what=mod">Modifier un batiment</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Clients</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-line-chart"></i><a href="#">Bloquer</a></li>
-                            <li><i class="menu-icon fa fa-area-chart"></i><a href="#">Consulter profile</a></li>
-                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="#">Supprimer</a></li>
+                            <li><i class="menu-icon fa fa-line-chart"></i><a href="/AgenceImmobiliere/ControleClient?what=block">Bloquer</a></li>
+                            <li><i class="menu-icon fa fa-area-chart"></i><a href="/AgenceImmobiliere/ControleClient?what=cons">Consulter profile</a></li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="/AgenceImmobiliere/ControleClient?what=del">Supprimer</a></li>
                         </ul>
                     </li>
 

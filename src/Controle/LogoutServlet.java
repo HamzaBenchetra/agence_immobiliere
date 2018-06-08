@@ -19,7 +19,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 	HttpSession s=request.getSession(true);
 	if (s.isNew()) {
 		s.invalidate();
-	this.getServletContext().getRequestDispatcher("/Mustlogin.jsp").forward(request, response);
+		response.sendRedirect("/AgenceImmobiliere/LoginServlet");
 	}else {
 		String t=(String) s.getAttribute("type");
 		switch(t) {

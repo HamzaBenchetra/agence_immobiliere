@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="Model.Region"%>
-    <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -254,41 +252,39 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Gestion des Régions</h1>
+                        <h1>Acceuil</h1>
                     </div>
                 </div>
             </div>
         </div>
         <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show" id="msg" style="display : none">
             <span class="badge badge-pill badge-primary">Succès</span>
-               Région mise à jour avec succès.
+               Client Bloqué, un e-mail lui a été envoyé pour l'en informer.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                <span aria-hidden="true">×</span>
             </button>
         </div>
-        <%ArrayList<Region> l=(ArrayList<Region>)request.getAttribute("LR"); %>
 		<div class="card">
                       <div class="card-header">
-                        <strong>Modifier une Région</strong>
+                        <strong>Bloquer un client</strong>
+                        <br>
                       </div>
+                      
                       <div class="card-body card-block">
-                        <form action="" method="post" class="">
-                          <div class="row form-group">
-                            <div class="col col-md-3"><label for="idRegion" class=" form-control-label">Région</label></div>
-                            <div class="col-12 col-md-9">
-                              <select name="idRegion" id="idRegion" class="form-control">
-                                <option value="0">Selectioner une region</option>
-                                <%for(int i=0;i<l.size();i++){ %>
-                                <option value=<%=l.get(i).getIdRegion()%>><%out.print(l.get(i).getNomRegion());%></option>
-                                <%} %>
-                              </select>
-                            </div>
+                        <form action="/AgenceImmobiliere/ControleClient" method="post" class="post">
+                          <div class="form-group"><label for="numtel" class="form-control-label">Numero de telephone</label>
+                          <input type="text" id="numtel" name="numtel" placeholder="Numero de telephone du client" required class="form-control">
+                          <input type="hidden" name="what" value="block">
+                          <input type="hidden" name="idClient" id="idClient" value="">
                           </div>
-                          <div class="form-group"><label for="NVnomRegion" class=" form-control-label">Nouveau nom de la région </label><input type="text" id="NVnomRegion" name="NVnomRegion" placeholder="Nouveau nom de la region" class="form-control"></div>
-	                        <button type="submit" class="btn btn-primary btn-sm">
-	                          <i class="fa fa-dot-circle-o"></i> Modifier
-	                        </button>
+		                        <button type="submit" class="btn btn-primary btn-sm" id="bloquer">
+		                          <i class="fa fa-dot-circle-o"></i> Bloquer
+		                        </button>
+	                        
                         </form>
+                        <div id="innexistant" style="color : red;display : none;">
+                        	<h3>Client innexistant</h3>
+                        </div>
                       </div>
                       
                     </div>
@@ -305,16 +301,45 @@
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
         <!--  Chart js -->
-    <script src="assets/js/lib/chart-js/Chart.bundle.js"></script>
-    <script src="assets/js/lib/chart-js/chartjs-init.js"></script>
+   
     <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
-    <script>
-	    var m='<%= request.getAttribute("msg")%>';
-	    console.log(m);
-	    if(m=="OK"){
-	    	 $( "#msg" ).css({'display': 'block'});
-	    }
+    
+    <script>$( "#numtel" ).change(function() {
+
+    	   $.ajax({url: "http://localhost:8080/AgenceImmobiliere/api?action=numclient&val="+$( "#numtel" ).val(),
+    			   success: function(result){
+    				   if(result ==="ghalt"){//hna tgerer lgholta
+    					   $( "#numclient" ).css({'background-color': '#ef5350'});
+    					   document.getElementById("bloquer").disabled = true;
+    						document.getElementById("bloquer").setAttribute('class','btn btn-danger');
+    						$( "#innexistant" ).css({'display': 'block'});
+    					   }else{
+    						   $( "#numclient" ).css({'background-color': 'white'});
+    						   $( "#innexistant" ).css({'display': 'none'});
+        					   document.getElementById("bloquer").disabled = false;
+        						document.getElementById("bloquer").setAttribute('class','btn btn-primary')
+    						   var Client = JSON.parse(result);
+    						   console.log(Client.id);
+    						   console.log(Client.nom);
+    						   console.log(Client.prenom);
+    						   document.getElementById("idClient").setAttribute('value',Client.id);
+    						   
+    				       }
+    	    },
+    	    error :  function(error){}
+    	   
+    	   
+    	   });
+    
+    
+    });
+    var m='<%= request.getAttribute("msg")%>';
+    console.log(m);
+    if(m=="OK"){
+    	 $( "#msg" ).css({'display': 'block'});
+    }
     </script>
+    
     
 </body>
 </html>

@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 import Model.Appartement;
 import Model.Client;
 import Model.Fonctions;
+import Model.OperationsAdmin;
 import Model.OperationsOperateur;
 
 @WebServlet("/api")
@@ -65,7 +66,18 @@ public class api extends HttpServlet {
 						if(id==0) {
 							response.getWriter().append("ghalt");
 						}else {
-							response.getWriter().append(""+id);
+							Client c=Fonctions.AfficherClient(OperationsOperateur.trouverClient(val));
+							JSONObject Client = new JSONObject();
+							Client.put("id", c.getIdc());  
+							Client.put("nom", c.getNom());
+						    Client.put("prenom", c.getPrenom());
+						    Client.put("numtel",c.getNumtel()); 
+						    Client.put("adresse",c.getAdresse()); 
+						    Client.put("mail",c.getMail()); 
+						    Client.put("sexe",c.getSexe()); 
+						    Client.put("datenais",c.getDatenais()); 
+						      
+							response.getWriter().append(Client.toJSONString());
 						}
 					}
 				}

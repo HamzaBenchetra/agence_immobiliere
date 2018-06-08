@@ -29,6 +29,7 @@
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
 </head>
+
 <body>
         <!-- Left Panel -->
 
@@ -213,7 +214,7 @@
 
                                 <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                                <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                <a class="nav-link" href="/AgenceImmobiliere/LogoutServlet"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
@@ -283,6 +284,8 @@
                           <input type="hidden" name="operation" value="idClient">
                 		  <input type="hidden" name="what" value="add">
                 		  <input type="hidden" name="idC" id="idC" value="">
+                		  <input type="hidden" name="nomC" id="nomC" value="">
+                		  <input type="hidden" name="prenomC" id="prenomC" value="">
                           <button type="submit" class="btn btn-primary btn-sm">
                           <i class="fa fa-dot-circle-o"></i> Trouver</button>
                         </form>
@@ -345,10 +348,13 @@
     					   $( "#numclient" ).css({'background-color': '#ef5350'});
     					   $( "#forminscrip" ).css({'display': 'block'});
     					   }else{
-    						   console.log(result);
-    						   var a = parseInt(result)
-    				           console.log(a);
-    						   document.getElementById("idC").setAttribute('value',result)
+    						   var Client = JSON.parse(result);
+    						   console.log(Client.id);
+    						   console.log(Client.nom);
+    						   console.log(Client.prenom);
+    						   document.getElementById("idC").setAttribute('value',Client.id);
+    						   document.getElementById("nomC").setAttribute('value',Client.nom);
+    						   document.getElementById("prenomC").setAttribute('value',Client.prenom);
     				       }
     	    },
     	    error :  function(error){}

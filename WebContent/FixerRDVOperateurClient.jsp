@@ -35,6 +35,7 @@
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
 </head>
+
 <body>
         <!-- Left Panel -->
 
@@ -272,17 +273,15 @@
 
         <div class="content mt-3">
             <div class="animated fadeIn">
-
 <%
 DateFormat dt= new SimpleDateFormat("yyyy-MM-dd");
 Date date=new Date();
 ArrayList<date> calendrier=(ArrayList<date>)request.getAttribute("List");
 %>
-                
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Basic Table</strong>
+                            <strong class="card-title">Dates disponibles</strong><small>     Client : <%out.println(request.getAttribute("nomClient")); %></small>
                         </div>
                         <div class="card-body">
 		                            <table class="table">

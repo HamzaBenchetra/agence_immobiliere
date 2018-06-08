@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="Model.Localite"%>
+    <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -39,70 +41,75 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="/AgenceImmobiliere/Operateur.jsp">Espace Operateur</a>
+                <a class="navbar-brand" href="/AgenceImmobiliere/EspaceAdmin.jsp"> Espace Admin<!-- <img src="images/logo.png" alt="Logo"> --></a>
                 <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="/AgenceImmobiliere/Operateur.jsp"> <i class="menu-icon fa fa-dashboard"></i>Accueil </a>
+                    <li class="active">
+                        <a href="/AgenceImmobiliere/EspaceAdmin.jsp"> <i class="menu-icon fa fa-dashboard"></i>Accueil </a>
                     </li>
-                    <li class="menu-item-has-children active dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Rendez-vous</a>
-                        <ul class="sub-menu children  dropdown-menu">
-                            <li><i class="fa fa-puzzle-piece"></i><a href="/AgenceImmobiliere/FixerRDVOp.jsp">Fixer</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Modifier</a></li>
-                            <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Supprimer</a></li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Inscriptions</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i><a href="/AgenceImmobiliere/AfficherListDemandes.jsp">valider</a></li>
+                            <li><i class="fa fa-table"></i><a href="tables-data.html">Supprimer</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Acheter</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Logements</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/ChercherClientAchat.jsp">Demander Achat</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Basic Form</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/ControleAppartement?what=add">Ajouter un logement</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/ControleAppartement?what=mod">Modifier un logement</a></li>
                         </ul>
                     </li>
 
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Icons</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Localitées</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Font Awesome</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Themefy Icons</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/AgenceImmobiliere/ControleLocalite?what=add">Ajouter une localité</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="/AgenceImmobiliere/ControleLocalite?what=mod">Modifier une localité</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="widgets.html"> <i class="menu-icon ti-email"></i>Widgets </a>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Regions</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/AgenceImmobiliere/ControleRegion?what=add">Ajouter une region</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="/AgenceImmobiliere/ControleRegion?what=mod">Modifier une region</a></li>
+                        </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Batiments</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-line-chart"></i><a href="charts-chartjs.html">Chart JS</a></li>
-                            <li><i class="menu-icon fa fa-area-chart"></i><a href="charts-flot.html">Flot Chart</a></li>
-                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Peity Chart</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/AgenceImmobiliere/ControleBatiment?what=add">Ajouter un batiment</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="/AgenceImmobiliere/ControleBatiment?what=mod">Modifier un batiment</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Clients</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-line-chart"></i><a href="/AgenceImmobiliere/ControleClient?what=block">Bloquer</a></li>
+                            <li><i class="menu-icon fa fa-area-chart"></i><a href="/AgenceImmobiliere/ControleClient?what=cons">Consulter profile</a></li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="/AgenceImmobiliere/ControleClient?what=del">Supprimer</a></li>
                         </ul>
                     </li>
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Employés</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Google Maps</a></li>
-                            <li><i class="menu-icon fa fa-street-view"></i><a href="maps-vector.html">Vector Maps</a></li>
+                            <li><i class="menu-icon fa fa-map-o"></i><a href="#">Approuver</a></li>
+                            <li><i class="menu-icon fa fa-street-view"></i><a href="#">Affecter des agents</a></li>
+                            <li><i class="menu-icon fa fa-street-view"></i><a href="#">Licensier</a></li>
+                            <li><i class="menu-icon fa fa-street-view"></i><a href="#">Avertir</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Statistiques</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Login</a></li>
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Register</a></li>
-                            <li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="#">Statistiques des visites</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="#">statistiques des inscriptions</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -247,67 +254,69 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Fixer un Rendez-vous</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li><a href="/AgenceImmobiliere/Operateur.jsp">Accueil</a></li>
-                            <li><a href="#">Rendez-vous</a></li>
-                            <li class="active">Fixer</li>
-                        </ol>
+                        <h1>Gestion des batiments</h1>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="content mt-3">
-            <div class="animated fadeIn">
-
-
-                <div class="row">
-                
-                <div class="col-lg-12">
-                    <div class="card">
+        <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show" id="msg" style="display : none">
+            <span class="badge badge-pill badge-primary">Succès</span>
+               Batiment ajouté avec succès.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">×</span>
+            </button>
+        </div>
+		<div class="card">
                       <div class="card-header">
-                        <strong>Cette personne n'est pas cliente</strong> 
-							<small>Créez lui un Compte</small>
+                        <strong>Ajouter une region</strong>
                       </div>
                       <div class="card-body card-block">
-                        <form action="/AgenceImmobiliere/CreereCompteClientOperateur" method="post" class="post">
-                          <div class="form-group"><label for="nf-email" class=" form-control-label">Nom</label><input type="text" id="nf-email" name="nom" placeholder="Nom" class="form-control"></div>
-                          <div class="form-group"><label for="nf-password" class=" form-control-label">Prenom</label><input type="text" id="nf-password" name="prenom" placeholder="Prenom" class="form-control"></div>
-						  <div class="form-group"><label for="nf-email" class=" form-control-label">Mobile</label><input type="text" id="nf-email" name="numtel" placeholder="Numero de telephone" class="form-control"></div>
-                          <button type="submit" class="btn btn-primary btn-sm">
-                          <i class="fa fa-dot-circle-o"></i> Créer
-                          </button>
+                        <form action="" method="post" class="">
+                          <div class="row form-group">
+                            <div class="col col-md-3"><label for="idRegion" class=" form-control-label">Id de la region</label></div>
+                            <div class="col-12 col-md-9">
+                              <select name="idRegion" id="idRegion" class="form-control">
+                                <option value="0">Selectionner une localité</option>
+                                
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group"><label for="nbrEtages" class=" form-control-label">Nombre d'étages</label>
+                          <input type="text" id="nbrEtages" name="nbrEtages" placeholder="1 2 3 4 ..." class="form-control">
+                          </div>
+                          <div class="form-group"><label for="nbrApparts" class=" form-control-label">Nombre d'appartements</label>
+                          <input type="text" id="nbrApparts" name="nbrApparts" placeholder="56 60 64 ..." class="form-control">
+                          </div>
+	                        <button type="submit" class="btn btn-primary btn-sm">
+	                          <i class="fa fa-dot-circle-o"></i> Ajouter
+	                        </button>
                         </form>
                       </div>
                       
                     </div>
-                    
-                  </div>
-                
-                </div>
-
-
-            </div><!-- .animated -->
-        </div><!-- .content -->
+        
 
 
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
-
+	
 
     <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
-
-
+        <!--  Chart js -->
+    <script src="assets/js/lib/chart-js/Chart.bundle.js"></script>
+    <script src="assets/js/lib/chart-js/chartjs-init.js"></script>
+    <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
+    <script>
+	    var m='<%= request.getAttribute("msg")%>';
+	    console.log(m);
+	    if(m=="OK"){
+	    	 $( "#msg" ).css({'display': 'block'});
+	    }
+    </script>
+    
 </body>
 </html>

@@ -20,10 +20,18 @@ public class ControleRendezVous extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession s=request.getSession(true);
+		System.out.println(s.isNew());
+		if(s.isNew()) {
+			s.invalidate();
+			response.sendRedirect("/AgenceImmobiliere/LoginServlet");
+			
+		}else {
+		String who=(String)s.getAttribute("type");
 		String what=request.getParameter("what");
 		String op=request.getParameter("operation");
-		HttpSession s=request.getSession(true);
-		String who=(String)s.getAttribute("type");
+		
+		
 		switch (what) {
 		case "add":{switch (who) {
 					case "Operateur":{
@@ -48,6 +56,8 @@ public class ControleRendezVous extends HttpServlet {
 						if(op.equalsIgnoreCase("idClient")) {
 							s.setAttribute("idClient",request.getParameter("idC"));
 							request.setAttribute("List", Fonctions.listesdatesdispo(Integer.parseInt((String)s.getAttribute("idApp"))));
+							request.setAttribute("nomClient", request.getParameter("nomC")+" "+request.getParameter("prenomC"));
+							
 							this.getServletContext().getRequestDispatcher("/FixerRDVOperateurClient.jsp").forward(request, response);
 						}
 						if(op.equalsIgnoreCase("creerClient")) {
@@ -93,6 +103,7 @@ public class ControleRendezVous extends HttpServlet {
 
 		default:
 			break;
+		}
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
