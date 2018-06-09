@@ -22,7 +22,7 @@
 
   
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Internaute</title>
 </head>
 <body>
 
@@ -34,10 +34,12 @@
       <a href="#" class="brand-logo white-text">IMOOBB  </a>
       
       <ul id="nav-mobile" class="right hide-on-med-and-down white-text">
-        <li><a href="http://localhost:8080/AgenceImmobiliere/SignupServlet" class="white-text"><h5>s'inscire</h5></a></li>
+        <li><a href="http://localhost:8080/AgenceImmobiliere/SignupServlet" class="white-text"><h5>s'inscrire</h5></a></li>
         <li><a href=""class="white-text"><h5>Contacter nous</h5></a></li>
         <li><a href=""class="white-text"><h5>Aide</h5></a></li>
-        <li><a href=""class="white-text"><h5>Travailler avce nous</h5></a></li>
+        <li><a href="http://localhost:8080/AgenceImmobiliere/SignupEmp"class="white-text"><h5>Travailler avec nous</h5></a></li>
+        <li><a href="http://localhost:8080/AgenceImmobiliere/LoginServlet"class="white-text"><h5>Se connecter </h5></a></li>
+        
     
       </ul>
    
@@ -71,47 +73,8 @@
 
 <div class="row">
 
-      <div class="col s3 indigo lighten-4" >
-        <!-- Grey navigation panel -->
-        </br>
-        </br>
-       
-       <strong><h4 align="center" >Authentification Client</h4></strong> 
-        
-        </br>
-        </br>
-                      <div class="login-form">
-                    <form action="http://localhost:8080/AgenceImmobiliere/LoginServlet" method="post">
-                        <div class="form-group">
-                         <i class="material-icons">mail</i>
-                            Email ou mobile
-                            <input name="mail" type="text" class="form-control" placeholder="Email ou Mobile">
-                        </div>
-                        <div class="form-group">
-                         <i class="material-icons">vpn_key</i>
-                         Mot de pass
-                            <input name="pass" type="password" class="form-control" placeholder="Password">
-                        </div>
-                        <div class="checkbox">
-                        </br>
-                            
-                            <label class="pull-right">
-                            </br>
-                                <a href="#" align= right   >   Mot de pass oublié</a>
-                            </label>
- <button class="btn waves-effect waves-light col s6" type="submit" name="action">Connexion
-                                    
-                                   </button>
-                                   </br>
-                        </div>
-                       </br>
-                        <div class="register-link m-t-15 text-center">
-                            <p>Pas encore membre ? <a href="http://localhost:8080/AgenceImmobiliere/SignupServlet"> Créez un compte</a></p>
-                        </div>
-                    </form>
-                </div>
-      </div>
-	<div class="col s9   blue-grey lighten-4">
+     
+	<div class="col s12   blue-grey lighten-4">
 </br>
 </br>
 </br>
@@ -122,7 +85,7 @@
  <div class="container row">
  
  <B><h5>Rechercher un Appartement</h5></B>
-                                <form action="/z/Search" method="POST">
+                                <form action="http://localhost:8080/AgenceImmobiliere/ListAppartRech" method="POST">
                            
                                     <ul class="collapsible" data-collapsible="accordion">
                                       <li>
@@ -169,6 +132,27 @@
                                         
                                         <li>
                                         <div class="collapsible-header">
+                                          <i class="material-icons">location_on</i>
+                                         Choisir Secteur
+                                          </div>
+                                        <div class="collapsible-body">
+                                               <p>
+                                               <c:forEach items="${Secteur}" var="s"   >
+					    
+					    	<input name="Secteur" value=${s} type="radio" id=${s} required />
+                                          <label for=${s}>${s}</label>
+					    
+					    			</br>
+					     				 </c:forEach>
+                                          
+                                        </p>
+                                        
+                                       
+                                          </div>     
+                                       
+                                      </li>
+                                        <li>
+                                        <div class="collapsible-header">
                                           <i class="material-icons">format_list_numbered</i>
                                          Choisir Etage
                                           </div>
@@ -193,17 +177,17 @@
                                        <li>
                                         <div class="collapsible-header">
                                           <i class="material-icons">monetization_on</i>
-                                          Budget
+                                          Budget (En Million)
                                           </div>
                                         <div class="collapsible-body">  
                                                    <div class="row">
                                     <div class="input-field col s6 ">
                                       <input placeholder="Min price"  name="minPrix" id="min_price" type="number" class="validate" required>
-                                      <label for="min_price">Min price</label>
+                                      <label for="min_price">Min price (En Million)</label>
                                     </div>
                                     <div class="input-field col s6 ">
                                       <input placeholder="Max price" name="maxPrix" id="max_price" type="number" class="validate" required>
-                                      <label for="max_price">Max price</label>
+                                      <label for="max_price">Max price (En Million)</label>
                                     </div>
                                   </div>
                                                  
@@ -231,9 +215,9 @@
    										<c:forEach items="${ListAppart}" var="Appart"   >
 					      <div class="card">
 					        <div class="card-image">
-					          <img src=${Appart.getImg1()}>
+					          <img src=${Appart.getImages().get(0)}>
 					          <span class="card-title">le Type D'appartement ${Appart.getType()}</span>
-					          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+					          <a href="http://localhost:8080/AgenceImmobiliere/DetailsAppart?id=${Appart.getIdAppart()}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
 					        </div>
 					        <div class="card-content">
 					          <p> le Prix est: ${Appart.getPrix()}</p>
@@ -254,6 +238,7 @@
   </div>
 </div>
 </div>
+
         <footer class="page-footer  blue ">
           <div class="container">
             <div class="row">

@@ -8,9 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
   <!-- CSS  -->
+  <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="Matrelize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   
   <!-- Start WOWSlider.com HEAD section -->
 <link rel="stylesheet" type="text/css" href="engine1/style.css" />
@@ -62,7 +63,7 @@
    										<c:forEach items="${ListAppart}" var="Appart"   >
 					      <div class="card">
 					        <div class="card-image">
-					           <img src=${Appart.getImg1()}>
+					           <img src=${Appart.getImages().get(0)}>
 					          <span class="card-title">le Type D'appartement ${Appart.getType()}</span>
 					          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
 					        </div>

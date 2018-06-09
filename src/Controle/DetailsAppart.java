@@ -1,8 +1,6 @@
 package Controle;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +11,16 @@ import Model.Appartement;
 import Model.OperationsClient;
 
 /**
- * Servlet implementation class ListAppartGlobale
+ * Servlet implementation class DetailsAppart
  */
-@WebServlet("/ListAppartGlobale")
-public class ListAppartGlobale extends HttpServlet {
+@WebServlet("/DetailsAppart")
+public class DetailsAppart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListAppartGlobale() {
+    public DetailsAppart() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,19 +30,13 @@ public class ListAppartGlobale extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		   ArrayList<Integer> Etage =OperationsClient.RecupererEtage();
-		   ArrayList<String> Localite =OperationsClient.RecupererLocalite();
-		   ArrayList<String> type =OperationsClient.RecupererTypeAppart();
-		   ArrayList<String> secteur =OperationsClient.RecupererSecteur();
-
-		   ArrayList<Appartement> A =OperationsClient.RecupererListeApparts();
-		   request.setAttribute("ListAppart",A);
-		   request.setAttribute("ListEtage",Etage);
-		   request.setAttribute("ListLocalite",Localite);
-		   request.setAttribute("ListType",type);
-		   request.setAttribute("Secteur",secteur);
-		   this.getServletContext().getRequestDispatcher("/Internaute.jsp").forward(request, response);
+		
+		
+		int id=Integer.parseInt(request.getParameter("id"));
+//System.out.println(id);
+		Appartement t=OperationsClient.AfficherAppart(id);
+		request.setAttribute("Appart",t);
+		   this.getServletContext().getRequestDispatcher("/detailsAp.jsp").forward(request, response);
 	}
 
 	/**

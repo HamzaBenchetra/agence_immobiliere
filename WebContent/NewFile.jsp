@@ -12,6 +12,7 @@
 <h1>Rendez-Vous fixé avec succès</h1>
 <button><a href="/AgenceImmobiliere/Operateur.jsp"> Retour a l'accueil</a></button>
 </div>
-
+						
+						
 </body>
 </html>

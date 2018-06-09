@@ -37,8 +37,7 @@
         <li><a href="" class="white-text"><h5>MonCompte</h5></a></li>
         <li><a href=""class="white-text"><h5>Contacter nous</h5></a></li>
         <li><a href=""class="white-text"><h5>Aide</h5></a></li>
-        <li><a href=""class="white-text"><h5>Travailler avce nous</h5></a></li>
-    
+        <li><a href="http://localhost:8080/AgenceImmobiliere/SignupEmp"class="white-text"><h5>Travailler avec nous</h5></a></li>
       </ul>
    
     
