@@ -2,13 +2,19 @@ package Model;
 
 
 public class Client {
-	private String nom,prenom,numtel,adresse,mail,mdpss,sexe,datenais;
+	private String nom,prenom,numtel,adresse,mail,mdpss,sexe,datenais,Authorisation;
+	public void setAuthorisation(String Authorisation) {
+		this.Authorisation = Authorisation;
+	}
 	private int Idc;
 	public String getNom() {
 		return nom;
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	public String getAuthorisation() {
+		return Authorisation;
 	}
 	public String getPrenom() {
 		return prenom;
@@ -58,6 +64,7 @@ public class Client {
 	}
 	public void setIdc(int idc) {
 		Idc = idc;
-	};
+	}
+	
 
 }

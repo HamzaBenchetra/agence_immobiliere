@@ -97,10 +97,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Employés</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-map-o"></i><a href="#">Approuver</a></li>
-                            <li><i class="menu-icon fa fa-street-view"></i><a href="#">Affecter des agents</a></li>
-                            <li><i class="menu-icon fa fa-street-view"></i><a href="#">Licensier</a></li>
-                            <li><i class="menu-icon fa fa-street-view"></i><a href="#">Avertir</a></li>
+                            <li><i class="menu-icon fa fa-street-view"></i><a href="/AgenceImmobiliere/ControleAgent">Affecter des agents</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">

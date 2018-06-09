@@ -20,8 +20,12 @@ public class ControleAppartement extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession s=request.getSession(true);
 		
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginAdmin").forward(request, response);;
+		}else {
+			HttpSession s=request.getSession(true);
 		String r=request.getParameter("what");
 		String q=(String)s.getAttribute("type");
 		request.setAttribute("msg", " ");
@@ -37,9 +41,13 @@ public class ControleAppartement extends HttpServlet {
 							break;
 						}
 		}
-			
+		}	
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginAdmin").forward(request, response);;
+		}else {
 		String r=request.getParameter("what");
 		Appartement a=new Appartement();
 		switch (r) {
@@ -71,5 +79,5 @@ public class ControleAppartement extends HttpServlet {
 			break;
 		}
 	}
-
+	}
 }
