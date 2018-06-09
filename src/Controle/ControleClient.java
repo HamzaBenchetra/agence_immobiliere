@@ -23,7 +23,7 @@ public class ControleClient extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/BloquerClient.jsp").forward(request, response);		
 			break;
 		case "cons":
-			this.getServletContext().getRequestDispatcher("/ConulterClient.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/ConsulterClient.jsp").forward(request, response);
 			break;
 		case "del":
 			this.getServletContext().getRequestDispatcher("/SupprimerClient.jsp").forward(request, response);

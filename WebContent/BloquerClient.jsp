@@ -282,8 +282,8 @@
 		                        </button>
 	                        
                         </form>
-                        <div id="innexistant" style="color : red;display : none;">
-                        	<h3>Client innexistant</h3>
+                        <div id="messsage" style="color : red;display : none;">
+                        	
                         </div>
                       </div>
                       
@@ -309,21 +309,31 @@
     	   $.ajax({url: "http://localhost:8080/AgenceImmobiliere/api?action=numclient&val="+$( "#numtel" ).val(),
     			   success: function(result){
     				   if(result ==="ghalt"){//hna tgerer lgholta
+    					   $("#messsage").html(" ")
     					   $( "#numclient" ).css({'background-color': '#ef5350'});
     					   document.getElementById("bloquer").disabled = true;
     						document.getElementById("bloquer").setAttribute('class','btn btn-danger');
-    						$( "#innexistant" ).css({'display': 'block'});
+    						$( "#messsage").css({'display': 'block'});
+    						$("#messsage").append("<h2>Ce client n'existe pas.</h2>");
     					   }else{
+    						   if(result==="bloque"){
+    							   $("#messsage").html(" ")
+    							   document.getElementById("bloquer").disabled = true;
+    	    					   document.getElementById("bloquer").setAttribute('class','btn btn-danger');
+    							   $( "#messsage" ).css({'display': 'block'});
+    							   $("#messsage").append("<h2>Ce client est déjà bloqué.</h2>");
+    						   }else{
+    							   $("#messsage").html(" ")
     						   $( "#numclient" ).css({'background-color': 'white'});
-    						   $( "#innexistant" ).css({'display': 'none'});
+    						   $( "#messsage" ).css({'display': 'none'});
         					   document.getElementById("bloquer").disabled = false;
-        						document.getElementById("bloquer").setAttribute('class','btn btn-primary')
+        					   document.getElementById("bloquer").setAttribute('class','btn btn-primary')
     						   var Client = JSON.parse(result);
     						   console.log(Client.id);
     						   console.log(Client.nom);
     						   console.log(Client.prenom);
     						   document.getElementById("idClient").setAttribute('value',Client.id);
-    						   
+    						   }
     				       }
     	    },
     	    error :  function(error){}

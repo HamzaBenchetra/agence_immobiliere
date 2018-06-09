@@ -165,25 +165,7 @@ public class Fonctions {
 	   return k ;
 
 }
-	public static boolean Valider(int idA,int id, String t){
-			int statut = -5;
-			ConnecterBD();
-			try {
-			
-		//	String SQL ="update client set etat =1 where idClient="+id;
-			PreparedStatement pst=connexion.prepareStatement("update "+ t +" set etat =1, idAdmin="+idA+" where id"+t+"="+id+";");
-
-			statut= pst.executeUpdate();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if(statut != -5){
-				return true;
-			}else{
-				return false;
-			}
-			}
+	
 	public static boolean SupprimerClient(int id){
 			int statut = -5;
 			ConnecterBD();
@@ -312,6 +294,7 @@ public class Fonctions {
 						ca.setDatenais(rs.getString("datenais"));
 						ca.setMail(rs.getString("mail"));
 						ca.setSexe(rs.getString("sexe"));
+						ca.setAuthorisation(rs.getString("Authorisation"));
 					}
 					return ca;
 				} catch (SQLException e) {

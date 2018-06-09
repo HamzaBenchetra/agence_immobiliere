@@ -3,7 +3,10 @@ package Model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.mysql.jdbc.Statement;
 
 public class OperationsAdmin {
 	private static Connection connexion;
@@ -23,7 +26,32 @@ public class OperationsAdmin {
 			e.printStackTrace();
 		}                   
   }
-	
+	public static boolean Valider(int idA,int id, String t){
+		int statut = -5;
+		ConnecterBD();
+		try {
+		PreparedStatement pst=connexion.prepareStatement("update "+ t +" set etat =1, idAdmin="+idA+" where id"+t+"="+id+";");
+
+		statut= pst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if(statut != -5){
+			return true;
+		}else{
+			return false;
+		}
+		}
+	public static void SupprimerDemande(int id, String type) {
+		ConnecterBD();
+		PreparedStatement ps;
+		try {
+			ps = connexion.prepareStatement("delete from "+type+" where id"+type+"="+id+";");
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	public static void AjouterAppart(Appartement a) {
 		ConnecterBD();
 		PreparedStatement ps;
@@ -125,5 +153,31 @@ public class OperationsAdmin {
 		}
 		
 	}
+	public static void ReaffecterAgent(int idAgent, int idLocalite) {
+		ConnecterBD();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("update agent set idL="+idLocalite+" where idagent="+idAgent+";");
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	public static int RecupererAgent(String val) {
+		ConnecterBD();
+		try {
+		Statement s=(Statement) connexion.createStatement();
+		ResultSet rs=s.executeQuery("select idL from agent where idAgent="+Integer.parseInt(val)+";");
+		if(rs.next()) {
+			System.out.println(rs.getInt(1));
+			return(rs.getInt(1));
+		}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+		return 0;
+	}
+	
 
 }

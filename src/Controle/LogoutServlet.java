@@ -1,12 +1,12 @@
  package Controle;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
@@ -16,22 +16,21 @@ public class LogoutServlet extends HttpServlet {
         super();
     }
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	HttpSession s=request.getSession(true);
-	if (s.isNew()) {
-		s.invalidate();
-		response.sendRedirect("/AgenceImmobiliere/LoginServlet");
+	
+	if (request.getSession()==null||request.getSession().getAttribute("type")==null) {
+		this.getServletContext().getRequestDispatcher("/LoginServlet").forward(request, response);;
 	}else {
-		String t=(String) s.getAttribute("type");
+		String t=(String) request.getSession().getAttribute("type");
 		switch(t) {
-		case("Admin") : s.invalidate();
+		case("Admin") : request.getSession().invalidate();
 		response.sendRedirect("/AgenceImmobiliere/LoginAdmin");break;
-		case("Operateur") : s.invalidate();
+		case("Operateur") : request.getSession().invalidate();
 		response.sendRedirect("/AgenceImmobiliere/LoginEmploye");break;
-		case("Agent") : s.invalidate();
+		case("Agent") : request.getSession().invalidate();
 		response.sendRedirect("/AgenceImmobiliere/LoginEmploye");break;
-		case("Client") : s.invalidate();
+		case("Client") : request.getSession().invalidate();
 		response.sendRedirect("/AgenceImmobiliere/LoginServlet");break;
-		case("respventes") : s.invalidate();
+		case("respventes") : request.getSession().invalidate();
 		response.sendRedirect("/AgenceImmobiliere/LoginEmploye");break;
 		}
 		

@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="Model.Client"%>
-    <%@page import="Model.Employe"%>
-    <%@page import="java.util.ArrayList"%>
-	<%@page import="Model.Fonctions" %>
+    <%@page import="java.util.ArrayList" %>
+    <%@page import="Model.Localite" %>
+    <%@page import="Model.Fonctions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -101,10 +100,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Employés</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-map-o"></i><a href="#">Approuver</a></li>
-                            <li><i class="menu-icon fa fa-street-view"></i><a href="#">Affecter des agents</a></li>
-                            <li><i class="menu-icon fa fa-street-view"></i><a href="#">Licensier</a></li>
-                            <li><i class="menu-icon fa fa-street-view"></i><a href="#">Avertir</a></li>
+                            <li><i class="menu-icon fa fa-street-view"></i><a href="/AgenceImmobiliere/ControleAgent">Affecter des agents</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -256,224 +252,104 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Valider les inscriptions</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li><a href="/AgenceImmobiliere/EspaceAdmin.jsp">Accueil</a></li>
-                            <li><a href="#">Inscriptions</a></li>
-                            <li class="active">Valider</li>
-                        </ol>
+                        <h1>Acceuil</h1>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="content mt-3">
-            <div class="animated">
-				<div class="row">
-		<%
-			ArrayList<Client> allC = Fonctions.RecupererListClient();
-			ArrayList<Employe> allO = Fonctions.RecupererListOperateur();
-			ArrayList<Employe> allA= Fonctions.RecupererListAgent();
-		%>
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <strong class="card-title">Postulants pour le poste d'Operateur</strong>
+		<div class="sufee-alert alert with-close alert-primary alert-dismissible fade show" id="msg" style="display : none">
+            <span class="badge badge-pill badge-primary">Succès</span>
+               Agent réaffecté.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="card">
+                      <div class="card-header">
+                        <strong>Affecter un agent</strong>
+                        <br>
+                      </div>
+                      <%
+                      ArrayList<Localite> ListL=Fonctions.ListeLocalitees();
+                      %>
+                      <div class="card-body card-block">
+                        <form action="/AgenceImmobiliere/ControleAgent" method="post" class="post">
+                          <div class="form-group"><label for="idAgent" class="form-control-label">Id de l'agent :</label>
+                          <input type="text" id="idAgent" name="idAgent" placeholder="identifiant de l'agent" required class="form-control">
+                          </div>
+                          <div class="row form-group">
+                          <div class="col col-md-3"><label for="AncienneL" class=" form-control-label">Ancienne Localite</label></div>
+                          <input type="text" disabled name="AncienneL" id="AncienneL" value="">
+                          </div>
+                          <div class="row form-group">
+                            <div class="col col-md-3"><label for="Localite" class=" form-control-label">Nouvelle localite</label></div>
+                            <div class="col-12 col-md-9">
+                              <select name="Localite" id="Localite" class="form-control">
+                                <option value="0">Selectionner le type</option>
+                                <%for(Localite l:ListL){ %>
+                                	<option value="<%=l.getIdLocalite()%>"><%out.println(l.getNomLocalite());%></option>
+                                <%} %>
+                              </select>
+                            </div>
+                          </div>
+                          
+		                        <button type="submit" class="btn btn-primary btn-sm" id="bloquer">
+		                          <i class="fa fa-dot-circle-o"></i> Réaffecter
+		                        </button>
+	                        
+                        </form>
+                        <div id="messsage" style="color : red;display : none;">
+                        	
                         </div>
-                        	<div class="card-body">
-			                <table id="bootstrap-data-table" class="table table-striped table-bordered">
-			                <thead>
-									<tr>
-										<th>Nom</th>
-										<th>Prenom</th>
-										<th>Email</th>
-									</tr>
-							</thead>
-			                <%for(int i=0 ; i<allO.size() ; i++){ %>
-							<tbody>
-							<tr>
-							<td><%= allO.get(i).getNom()%></td>
-							<td><%= allO.get(i).getPrenom()%></td>
-							<td><%= allO.get(i).getMail()%></td>
-							<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#O<%=i%>">click here</button></td>
-							</tr>
-								<div class="modal fade" id="O<%=i%>" >
-							      <div class="modal-dialog">
-							        <div class="modal-content" style="z-index:1;">
-							          <div class="modal-header">
-							
-							          </div>
-							          <div class="modal-body">
-							            <h3>Nom :<%=allO.get(i).getNom()%> </h3>
-							            <h3>Prenom :<%=allO.get(i).getPrenom()%></h3>
-							            <h3>Mobile :<%=allO.get(i).getNumtel()%></h3>
-							            <h3>Email :<%=allO.get(i).getMail()%></h3>
-							            <h3>Adresse :<%=allO.get(i).getAdresse()%></h3>
-							            <h3>Sexe :<%=allO.get(i).getSexe()%></h3>
-							            <h3>Date de naissance :<%=allO.get(i).getDatenais()%></h3>
-							          </div>
-							          <div class="modal-footer">
-							             <button class="btn btn-default" data-dismiss="modal">Fermer</button>
-							             <form action="/AgenceImmobiliere/validation" method="post">
-							             <input type="hidden" name="TypeVal" value="Operateur">
-							             <input type="hidden" name="IDO" value="<%=allO.get(i).getIdemp()%>">
-							             <button class="btn btn-secondary" type="submit" name="valid" value="oui">Accepter</button>
-							             <button class="btn btn-secondary" type="submit" name="valid" value="non">Décliner</button>
-							             </form>
-							          </div>
-							        </div>
-							      </div>
-							    </div>
-							<%
-								}
-							%>
-							</tbody>
-							</table>
-
-       						</div>
-     			 	</div>
-				</div>
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <strong class="card-title">Postulants pour le poste d'Agent</strong>
-                        </div>
-                        	<div class="card-body">
-			                <table id="bootstrap-data-table" class="table table-striped table-bordered">
-			                <thead>
-									<tr>
-										<th>Nom</th>
-										<th>Prenom</th>
-										<th>Email</th>
-									</tr>
-							</thead>
-			                <%for(int i=0 ; i<allA.size() ; i++){ %>
-							<tbody>
-							<tr>
-							<td><%= allA.get(i).getNom()%></td>
-							<td><%= allA.get(i).getPrenom()%></td>
-							<td><%= allA.get(i).getMail()%></td>
-							<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#A<%=i%>">click here</button></td>
-							</tr>
-							<div class="modal fade" id="A<%=i%>" >
-							      <div class="modal-dialog">
-							        <div class="modal-content" style="z-index:1;">
-							          <div class="modal-header">
-							
-							          </div>
-							          <div class="modal-body">
-							            <h3>Nom :<%=allA.get(i).getNom()%> </h3>
-							            <h3>Prenom :<%=allA.get(i).getPrenom()%></h3>
-							            <h3>Mobile :<%=allA.get(i).getNumtel()%></h3>
-							            <h3>Email :<%=allA.get(i).getMail()%></h3>
-							            <h3>Adresse :<%=allA.get(i).getAdresse()%></h3>
-							            <h3>Sexe :<%=allA.get(i).getSexe()%></h3>
-							            <h3>Date de naissance :<%=allA.get(i).getDatenais()%></h3>
-							          </div>
-							          <div class="modal-footer">
-							             <button class="btn btn-default" data-dismiss="modal">Fermer</button>
-							             <form action="/AgenceImmobiliere/validation" method="post">
-							             <input type="hidden" name="TypeVal" value="Agent">
-							             <input type="hidden" name="IDA" value="<%=allA.get(i).getIdemp()%>">
-							             <button class="btn btn-secondary" type="submit" name="valid" value="oui">Accepter</button>
-							             <button class="btn btn-secondary" type="submit" name="valid" value="non">Décliner</button>
-							             </form>
-							          </div>
-							        </div>
-							      </div>
-							    </div>
-							<%
-								}
-							%>
-							</tbody>
-							</table>
-       						</div>
-     			 </div>
-			</div>
-			<div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <strong class="card-title">Demandes d'inscription en tant que client</strong>
-                        </div>
-                        	<div class="card-body">
-			                <table id="bootstrap-data-table" class="table table-striped table-bordered">
-			                <thead>
-									<tr>
-										<th>Nom</th>
-										<th>Prenom</th>
-										<th>Email</th>
-									</tr>
-							</thead>
-			                <%for(int i=0 ; i<allC.size() ; i++){ %>
-							<tbody>
-							<tr>
-							<td><%= allC.get(i).getNom()%></td>
-							<td><%= allC.get(i).getPrenom()%></td>
-							<td><%= allC.get(i).getMail()%></td>
-							<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#C<%=i%>">click here</button></td>
-							</tr>
-							<div class="modal fade" id="C<%=i%>" >
-							      <div class="modal-dialog">
-							        <div class="modal-content" >
-							          <div class="modal-header">
-							
-							          </div>
-							          <div class="modal-body">
-							            <h3>Nom :<%=allC.get(i).getNom()%> </h3>
-							            <h3>Prenom :<%=allC.get(i).getPrenom()%></h3>
-							            <h3>Mobile :<%=allC.get(i).getNumtel()%></h3>
-							            <h3>Email :<%=allC.get(i).getMail()%></h3>
-							            <h3>Adresse :<%=allC.get(i).getAdresse()%></h3>
-							            <h3>Sexe :<%=allC.get(i).getSexe()%></h3>
-							            <h3>Date de naissance :<%=allC.get(i).getDatenais()%></h3>
-							          </div>
-							          <div class="modal-footer">
-							             <button class="btn btn-default" data-dismiss="modal">Fermer</button>
-							             <form action="/AgenceImmobiliere/validation" method="post">
-							             <input type="hidden" name="TypeVal" value="Client">
-							             <input type="hidden" name="IDC" value="<%=allC.get(i).getIdc()%>">
-							             <button class="btn btn-secondary" type="submit" name="valid" value="oui">Accepter</button>
-							             <button class="btn btn-secondary" type="submit" name="valid" value="non">Décliner</button>
-							             </form>
-							          </div>
-							        </div>
-							      </div>
-							    </div>
-							<%
-								}
-							%>
-							</tbody>
-							</table>
-       						</div>
-     			 </div>
-			</div>
-
-
-
-            </div>
-
-
-
-            </div><!-- .animated -->
-        </div><!-- .content -->
+                      </div>
+                      
+                    </div>
 
 
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
-
+	
 
     <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
+        <!--  Chart js -->
+    
+    <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
+    <script>$( "#idAgent" ).change(function() {
 
-
+ 	   $.ajax({url: "http://localhost:8080/AgenceImmobiliere/api?action=idagent&val="+$( "#idAgent" ).val(),
+ 			   success: function(result){
+ 				   if(result ==="ghalt"){//hna tgerer lgholta
+ 					   $("#messsage").html(" ");
+ 					   $( "#idAgent" ).css({'background-color': '#ef5350'});
+ 					   $("#messsage").css({'display':'block'})
+ 					   $("#messsage").append("Cet agent n'existe pas.")
+ 					   }else{
+ 						  
+ 						  $("#idAgent").css({'background-color': 'white'});
+ 						  $("#messsage").css({'display':'none'})
+			 		      var a = parseInt(result)
+			 			  console.log(a);
+ 						  document.getElementById("AncienneL").setAttribute('value',a);
+			 				}
+			 	    },
+ 	    error :  function(error){}
+ 	   
+ 	   
+ 	   });
+ 
+ 
+ });
+    
+    var m='<%= request.getAttribute("msg")%>';
+    console.log(m);
+    if(m=="OK"){
+    	 $( "#msg" ).css({'display': 'block'});
+    }
+    </script>
+    
 </body>
 </html>

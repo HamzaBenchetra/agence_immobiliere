@@ -2,7 +2,6 @@ package Controle;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Model.Fonctions;
+import Model.OperationsAdmin;
 
 @WebServlet("/validation")
 public class validation extends HttpServlet {
@@ -34,7 +33,6 @@ public class validation extends HttpServlet {
 			}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher ds ;
 		String rep=request.getParameter("valid");
 		String typeVal=request.getParameter("TypeVal");
 		HttpSession s=request.getSession(true); 
@@ -47,27 +45,42 @@ public class validation extends HttpServlet {
 							int id=Integer.parseInt(request.getParameter("IDO"));
 							String type=request.getParameter("TypeVal");
 							
-							Fonctions.Valider(idAdmin,id,type);
+							OperationsAdmin.Valider(idAdmin,id,type);
 							this.getServletContext().getRequestDispatcher("/AfficherListDemandes.jsp").forward(request, response);
 							}break;
 					
 					case "Agent":{
 							int id=Integer.parseInt(request.getParameter("IDA"));
 							String type=request.getParameter("TypeVal");
-							Fonctions.Valider(idAdmin,id,type);
+							OperationsAdmin.Valider(idAdmin,id,type);
 							this.getServletContext().getRequestDispatcher("/AfficherListDemandes.jsp").forward(request, response);
 							}break;
 							
 					case "Client":{
 							int id=Integer.parseInt(request.getParameter("IDC"));
 							String type=request.getParameter("TypeVal");
-							Fonctions.Valider(idAdmin,id,type);
+							OperationsAdmin.Valider(idAdmin,id,type);
 							this.getServletContext().getRequestDispatcher("/AfficherListDemandes.jsp").forward(request, response);
 							}break;
-		}break;
+					}break;
 		}case "non" :{ 
-			ds =request.getRequestDispatcher("/AfficherListDemandes.jsp");	
-			ds.forward(request, response);
+			switch (typeVal) {
+			case "Operateur":{int id=Integer.parseInt(request.getParameter("IDO"));
+					OperationsAdmin.SupprimerDemande(id,"Operateur");
+					this.getServletContext().getRequestDispatcher("/AfficherListDemandes.jsp").forward(request, response);
+			}break;
+			case "Agent":{int id=Integer.parseInt(request.getParameter("IDA"));
+					OperationsAdmin.SupprimerDemande(id,"Agent");
+					this.getServletContext().getRequestDispatcher("/AfficherListDemandes.jsp").forward(request, response);
+			}break;
+			case "Client":{int id=Integer.parseInt(request.getParameter("IDC"));
+					OperationsAdmin.SupprimerDemande(id,"Client");
+					this.getServletContext().getRequestDispatcher("/AfficherListDemandes.jsp").forward(request, response);
+			}break;
+
+			default:
+				break;
+			}
 		}break;
 
 		}

@@ -22,11 +22,11 @@ public class api extends HttpServlet {
     public api() {
         super();
     }
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings({ "unchecked" })
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String r=request.getParameter("action");
 		String val=request.getParameter("val");
-		if(r.equalsIgnoreCase("complete")&&val!=null) {
+		/*if(r.equalsIgnoreCase("complete")&&val!=null) {
 			Client c=Fonctions.getClient(val);
 			if(c.getNom()==null) {
 				response.getWriter().append("ghalt");
@@ -67,23 +67,98 @@ public class api extends HttpServlet {
 							response.getWriter().append("ghalt");
 						}else {
 							Client c=Fonctions.AfficherClient(OperationsOperateur.trouverClient(val));
-							JSONObject Client = new JSONObject();
-							Client.put("id", c.getIdc());  
-							Client.put("nom", c.getNom());
-						    Client.put("prenom", c.getPrenom());
-						    Client.put("numtel",c.getNumtel()); 
-						    Client.put("adresse",c.getAdresse()); 
-						    Client.put("mail",c.getMail()); 
-						    Client.put("sexe",c.getSexe()); 
-						    Client.put("datenais",c.getDatenais()); 
-						      
-							response.getWriter().append(Client.toJSONString());
+							String s=c.getAuthorisation();
+							System.out.println(s);
+						    if(s.equalsIgnoreCase("bloque")) {
+						    	response.getWriter().append("bloque");
+						    }else {
+						    	JSONObject Client = new JSONObject();
+								Client.put("id", c.getIdc());  
+								Client.put("nom", c.getNom());
+							    Client.put("prenom", c.getPrenom());
+							    Client.put("numtel",c.getNumtel()); 
+							    Client.put("adresse",c.getAdresse()); 
+							    Client.put("mail",c.getMail()); 
+							    Client.put("sexe",c.getSexe()); 
+							    Client.put("datenais",c.getDatenais()); 
+						    	response.getWriter().append(Client.toJSONString());
+						    }
 						}
 					}
 				}
 			}
+		}*/
+		switch (r) {
+		case "complete":{
+			Client c=Fonctions.getClient(val);
+			if(c.getNom()==null) {
+				response.getWriter().append("ghalt");
+
+			}else {
+				response.getWriter().append(c.getNom());
+			}
+		}break;
+		case "idbat":{
+			int c=Fonctions.getNbE(val);
+			if(c==0) {
+				response.getWriter().append("ghalt");
+				
+			}else {
+				response.getWriter().append(""+c);
+			}
+		}break;
+		case "idApp":{
+			Appartement a=Fonctions.getAppart(Integer.parseInt(val));
+			
+			if(a==null) {
+				response.getWriter().append("ghalt");
+				
+			}else {
+				JSONObject Appart = new JSONObject();
+			      Appart.put("type", a.getType());
+			      Appart.put("idBat", a.getIdBatiment());
+			      Appart.put("etage", a.getEtage());
+			      Appart.put("prix", a.getPrix());
+			      Appart.put("NomLoca", a.getNomLocal());
+				response.getWriter().append(Appart.toJSONString());
+			}
+		}break;
+		case "numclient":{
+			int id=OperationsOperateur.trouverClient(val);
+			if(id==0) {
+				response.getWriter().append("ghalt");
+			}else {
+				Client c=Fonctions.AfficherClient(id);
+				String s=c.getAuthorisation();
+				System.out.println(s);
+			    if(s.equalsIgnoreCase("bloque")) {
+			    	response.getWriter().append("bloque");
+			    }else {
+			    	JSONObject Client = new JSONObject();
+					Client.put("id", c.getIdc());  
+					Client.put("nom", c.getNom());
+				    Client.put("prenom", c.getPrenom());
+				    Client.put("numtel",c.getNumtel()); 
+				    Client.put("adresse",c.getAdresse()); 
+				    Client.put("mail",c.getMail()); 
+				    Client.put("sexe",c.getSexe()); 
+				    Client.put("datenais",c.getDatenais()); 
+			    	response.getWriter().append(Client.toJSONString());
+			    }
+			}
+		}break;
+		case "idagent":{
+			int idL=OperationsAdmin.RecupererAgent(val);
+			if(idL==0) {
+				response.getWriter().append("ghalt");
+			}else {
+				response.getWriter().append(""+idL);
+			}
+		}break;
+
+		default:
+			break;
 		}
-		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

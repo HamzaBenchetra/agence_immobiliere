@@ -105,7 +105,7 @@ public class OperationsOperateur {
 		ConnecterBD();
 		int id=0;
 		try {
-			PreparedStatement ps=connexion.prepareStatement("insert into client (nom,prenom,numtel) values('"+nom+"','"+prenom+"','"+tel+"');");
+			PreparedStatement ps=connexion.prepareStatement("insert into client (nom,prenom,numtel,etat) values('"+nom+"','"+prenom+"','"+tel+"',1);");
 			ps.executeUpdate();
 			Statement s = connexion.createStatement();
 			ResultSet rs=s.executeQuery("select idclient from client where numtel='"+tel+"';");
