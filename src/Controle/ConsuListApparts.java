@@ -17,6 +17,7 @@ public class ConsuListApparts extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		ArrayList<Appartement> allA = OperationsClient.RecupererListeApparts();
 		request.setAttribute("Apparts", allA);
 		this.getServletContext().getRequestDispatcher("/AfficherListeAppartements.jsp").forward(request, response);

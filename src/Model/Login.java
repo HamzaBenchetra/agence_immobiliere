@@ -80,7 +80,7 @@ public class Login {
 		 ConnecterBD();
 		 try {
 			 
-					PreparedStatement ps=connexion.prepareStatement("update client set log=0");	
+					PreparedStatement ps=connexion.prepareStatement("update client set log=0 where idclient="+id+";");	
 					ps.executeUpdate();
 					
 					

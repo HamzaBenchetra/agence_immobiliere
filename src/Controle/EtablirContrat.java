@@ -21,6 +21,11 @@ public class EtablirContrat extends HttpServlet {
 
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);;
+		}else {
 		HttpSession s=request.getSession(true);
 		int idc=Integer.parseInt(request.getParameter("IDC"));
 		int idA=Integer.parseInt(request.getParameter("IDA"));
@@ -30,6 +35,6 @@ public class EtablirContrat extends HttpServlet {
 		s.setAttribute("lien", l);
 		this.getServletContext().getRequestDispatcher("/ContratOK.jsp").forward(request, response);
 		
-	}
+	}}
 
 }

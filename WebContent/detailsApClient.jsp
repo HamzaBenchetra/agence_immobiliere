@@ -45,6 +45,8 @@
         <li><a href=""class="white-text"><h5>Contacter nous</h5></a></li>
         <li><a href=""class="white-text"><h5>Aide</h5></a></li>
         <li><a href="http://localhost:8080/AgenceImmobiliere/SignupEmp"class="white-text"><h5>Travailler avec nous</h5></a></li>
+                                    <li><a href="/AgenceImmobiliere/ListeRDV" class="white-text"><h5>Mes Rendez vous</h5></a></li>
+        
                     <li><a href="/AgenceImmobiliere/LogoutServlet" class="white-text"><h5>Se deconnecter</h5></a></li>
         
     

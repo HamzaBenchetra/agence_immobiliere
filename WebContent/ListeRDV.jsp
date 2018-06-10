@@ -64,11 +64,17 @@
 				<td><%= allapp.get(i).getPrix()%></td>
 		 <form action="/AgenceImmobiliere/AnnulerRDV" method="POST">
  <input type="hidden" name="idRDV" id="what" value="<%=allR.get(i).getIdRDV()%>">
-				
-				
+	
 				<td> <input  value="Annuler Rendez vous" type="submit" id=/></td>
 				
-		</form>		
+		</form>	
+		 <form action="/AgenceImmobiliere/ModifierRDV" method="get">
+ <input type="hidden" name="idRDV" id="what" value="<%=allR.get(i).getIdRDV()%>">
+	 <input type="hidden" name="idAppart" id="what" value="<%= allapp.get(i).getIdAppart()%>">
+	
+				<td> <input  value="Modifier Rendez vous" type="submit" id=/></td>
+				
+		</form>	
 				</tr>
 				
 			<%
@@ -79,7 +85,7 @@
 		
 			</table>
 	
-	<button><a href="/AgenceImmobiliere/EspaceClient.jsp">Retour a l'accueil</a></button>
+	<button><a href="/AgenceImmobiliere/ListAppartGlobale">Retour a l'accueil</a></button>
 	
 </body>
 </body>

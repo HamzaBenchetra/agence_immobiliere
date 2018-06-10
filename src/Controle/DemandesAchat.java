@@ -20,18 +20,27 @@ public class DemandesAchat extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);;
+		}else {
 		HttpSession session = request.getSession(true);
 		session.setAttribute("L", Fonctions.RecupererListeDemandesA());
 		this.getServletContext().getRequestDispatcher("/AfficherDemandes.jsp").forward(request, response);
+		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);;
+		}else {
 		HttpSession s=request.getSession(true);
 		Appartement A=OperationsClient.AfficherAppart(Integer.parseInt(request.getParameter("IDAppart")));
 		Client C=Fonctions.AfficherClient(Integer.parseInt(request.getParameter("IDClient")));
 		request.setAttribute("A", A);
 		s.setAttribute("C", C);
 		this.getServletContext().getRequestDispatcher("/AfficherDetailsDemandes.jsp").forward(request, response);
-
+		}
 	}
 
 }

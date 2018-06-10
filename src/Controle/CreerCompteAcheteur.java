@@ -20,6 +20,10 @@ public class CreerCompteAcheteur extends HttpServlet {
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);;
+		}else {
 		String nom=request.getParameter("nom");
 		String prenom=request.getParameter("prenom");
 		String tel=request.getParameter("numtel");
@@ -28,5 +32,5 @@ public class CreerCompteAcheteur extends HttpServlet {
 		s.setAttribute("idAch",ach);
 		this.getServletContext().getRequestDispatcher("/RechercherAppartAchat.jsp").forward(request, response);
 	}
-
+	}
 }

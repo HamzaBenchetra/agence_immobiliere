@@ -39,7 +39,11 @@ public class RechercherAppartOperateurAchat extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);;
+		}else {// TODO Auto-generated method stub
 		String localite=request.getParameter("localite");
 		String type=request.getParameter("type");
 		int etage = Integer.parseInt(request.getParameter("etage"));
@@ -49,5 +53,5 @@ public class RechercherAppartOperateurAchat extends HttpServlet {
 		this.getServletContext().getRequestDispatcher("/ListAppartAchat.jsp").forward(request, response);
 		
 	}
-
+	}
 }

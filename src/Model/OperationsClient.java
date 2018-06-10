@@ -166,6 +166,21 @@ public static void AnnulerRDV(int idRDV) {
 
 	
 }
+public static void ModifierRDV(int idRDV,String date){
+	ConnecterBD();
+	System.out.println(date);
+	try {
+		PreparedStatement ps=connexion.prepareStatement("update rdv set date ='"+date+"' where idRDV = "+idRDV+" ;");
+		ps.executeUpdate();
+		
+		 
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+
+	
+}
+
 public static ArrayList<String>  RecupererSecteur(){
 	
 	ConnecterBD();

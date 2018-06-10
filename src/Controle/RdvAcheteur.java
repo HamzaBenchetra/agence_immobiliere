@@ -23,6 +23,10 @@ public class RdvAcheteur extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);;
+		}else {
 		String tel=request.getParameter("numtel");
 		System.out.println(tel);
 		int i=OperationsOperateur.verifierClient(tel);
@@ -40,8 +44,12 @@ public class RdvAcheteur extends HttpServlet {
 		
 	
 		
-	}
+	}}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);;
+		}else {
 		int id=Integer.parseInt(request.getParameter("IDR"));
 		System.out.print(id);
 		RDV R=OperationsOperateur.RecupererRDVAcheteur(id);
@@ -51,5 +59,5 @@ public class RdvAcheteur extends HttpServlet {
 		this.getServletContext().getRequestDispatcher("/AfficherRDVAcheteur.jsp").forward(request, response);
 
 	}
-
+	}
 }

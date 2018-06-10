@@ -19,9 +19,9 @@ public class validation extends HttpServlet {
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			HttpSession s=request.getSession(true);
-			if(s.isNew()) {
-				s.invalidate();
-				this.getServletContext().getRequestDispatcher("/Mustlogin.jsp").forward(request, response);
+			if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+				System.out.println(request.getSession().getAttribute("type"));
+				this.getServletContext().getRequestDispatcher("/LoginAdmin").forward(request, response);;
 			}else {
 				if(((String) s.getAttribute("type")).equalsIgnoreCase("Admin")) {
 					request.setAttribute("TypeVal", null);

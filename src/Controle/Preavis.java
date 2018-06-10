@@ -22,7 +22,11 @@ public class Preavis extends HttpServlet {
         super();
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher d;
+    	if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);;
+		}else {
+    	RequestDispatcher d;
 		
 		int idAG=Integer.parseInt(request.getParameter("IDAG"));
 		int idRDV=Integer.parseInt(request.getParameter("IDRDV"));
@@ -32,8 +36,12 @@ public class Preavis extends HttpServlet {
 		 d = request.getRequestDispatcher("/detailpreavis.jsp");	
 		d.forward(request, response);
 
-	}
+	}}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);;
+		}else {
 		response.setContentType("text/html");
 		PrintWriter out =response.getWriter();
 		int avis=Integer.parseInt(request.getParameter("avis"));
@@ -50,7 +58,7 @@ public class Preavis extends HttpServlet {
 			out.print("preavis enregistrer");
 			
 		}
-		
+		}
 		
 	}
 }

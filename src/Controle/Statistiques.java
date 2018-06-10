@@ -16,6 +16,7 @@ public class Statistiques extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setAttribute("ListA", OperationsRESP.StatAgent());
 		request.setAttribute("ListL", OperationsRESP.StatLocalite());
 		request.setAttribute("ListT", OperationsRESP.StatType());
