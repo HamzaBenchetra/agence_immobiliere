@@ -1,9 +1,13 @@
 package Model;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Login {
 	private static Connection connexion;
@@ -36,7 +40,12 @@ public class Login {
 			 while(rs.next()){
 				if((mail.equals(rs.getString("mail"))&&mdpss.equals(rs.getString("mdpss")))) {
 					id=rs.getInt("idClient");
-						return id;
+					DateFormat dt= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					Date date=new Date();
+					PreparedStatement ps=connexion.prepareStatement("update client set lastlogin='"+dt.format(date)+"' ,log=1 where idclient="+id+";");	
+					ps.executeUpdate();
+					
+					return id;
 				}
 			 }
 		 }catch(Exception e){
@@ -67,6 +76,19 @@ public class Login {
 		 
 		 return i;
 	 }
-	 
+	 public static void logout(int id) {
+		 ConnecterBD();
+		 try {
+			 
+					PreparedStatement ps=connexion.prepareStatement("update client set log=0");	
+					ps.executeUpdate();
+					
+					
+				
+			 
+		 }catch(Exception e){
+			 e.printStackTrace();
+		 }
+	 }
 	 
 }

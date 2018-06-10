@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="Model.Localite"%>
+    <%@page import="Model.Region"%>
     <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -254,39 +254,39 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Gestion des regions</h1>
+                        <h1>Gestion des Régions</h1>
                     </div>
                 </div>
             </div>
         </div>
         <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show" id="msg" style="display : none">
             <span class="badge badge-pill badge-primary">Succès</span>
-               Region ajoutée avec succès.
+               Région mise à jour avec succès.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                <span aria-hidden="true">×</span>
             </button>
         </div>
-        <%ArrayList<Localite> l=(ArrayList<Localite>)request.getAttribute("LL"); %>
+        <%ArrayList<Region> l=(ArrayList<Region>)request.getAttribute("LR"); %>
 		<div class="card">
                       <div class="card-header">
-                        <strong>Ajouter une region</strong>
+                        <strong>Modifier une Région</strong>
                       </div>
                       <div class="card-body card-block">
                         <form action="" method="post" class="">
                           <div class="row form-group">
-                            <div class="col col-md-3"><label for="idLocalite" class=" form-control-label">Nom de la localite</label></div>
+                            <div class="col col-md-3"><label for="idRegion" class=" form-control-label">Région</label></div>
                             <div class="col-12 col-md-9">
-                              <select name="idLocalite" id="idLocalite" class="form-control">
-                                <option value="0">Selectionner une localité</option>
+                              <select name="idRegion" id="idRegion" class="form-control">
+                                <option value="0">Selectioner une region</option>
                                 <%for(int i=0;i<l.size();i++){ %>
-                                <option value=<%=l.get(i).getIdLocalite()%>><%out.print(l.get(i).getNomLocalite());%></option>
+                                <option value=<%=l.get(i).getIdRegion()%>><%out.print(l.get(i).getNomRegion());%></option>
                                 <%} %>
                               </select>
                             </div>
                           </div>
-                          <div class="form-group"><label for="nomRegion" class=" form-control-label">Nom de la region</label><input type="text" id="nomRegion" name="nomRegion" placeholder="Nom de la region" class="form-control"></div>
+                          <div class="form-group"><label for="NVnomRegion" class=" form-control-label">Nouveau nom de la région </label><input type="text" id="NVnomRegion" name="NVnomRegion" placeholder="Nouveau nom de la region" class="form-control"></div>
 	                        <button type="submit" class="btn btn-primary btn-sm">
-	                          <i class="fa fa-dot-circle-o"></i> Ajouter
+	                          <i class="fa fa-dot-circle-o"></i> Modifier
 	                        </button>
                         </form>
                       </div>

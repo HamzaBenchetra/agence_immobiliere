@@ -7,6 +7,12 @@ public class Employe {
 	public String getNom() {
 		return nom;
 	}
+	@Override
+	public String toString() {
+		return "Employe [nom=" + nom + ", prenom=" + prenom + ", numtel=" + numtel + ", adresse=" + adresse + ", mail="
+				+ mail + ", mdpss=" + mdpss + ", sexe=" + sexe + ", datenais=" + datenais + ", type=" + type
+				+ ", idemp=" + idemp + "]";
+	}
 	public void setNom(String nom) {
 		this.nom = nom;
 	}

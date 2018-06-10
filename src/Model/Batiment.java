@@ -1,29 +1,39 @@
 package Model;
 
 public class Batiment {
-private String idRegion,nbrEtages,nbrApparts;
+private int idRegion,nbrEtages,nbrApparts,idBatiment;
 
-public String getIdRegion() {
+public int getIdRegion() {
 	return idRegion;
 }
 
-public void setIdRegion(String idRegion) {
+public void setIdRegion(int idRegion) {
 	this.idRegion = idRegion;
 }
 
-public String getNbrEtages() {
+public int getNbrEtages() {
 	return nbrEtages;
 }
 
-public void setNbrEtages(String nbrEtages) {
+public void setNbrEtages(int nbrEtages) {
 	this.nbrEtages = nbrEtages;
 }
 
-public String getNbrApparts() {
+public int getNbrApparts() {
 	return nbrApparts;
 }
 
-public void setNbrApparts(String nbrApparts) {
+public void setNbrApparts(int nbrApparts) {
 	this.nbrApparts = nbrApparts;
 }
+
+public int getIdBatiment() {
+	return idBatiment;
+}
+
+public void setIdBatiment(int idBatiment) {
+	this.idBatiment = idBatiment;
+}
+
+
 }

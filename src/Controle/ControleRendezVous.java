@@ -1,6 +1,7 @@
 package Controle;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Model.Appartement;
 import Model.Fonctions;
 import Model.OperationsOperateur;
 
@@ -20,13 +22,11 @@ public class ControleRendezVous extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession s=request.getSession(true);
-		System.out.println(s.isNew());
-		if(s.isNew()) {
-			s.invalidate();
-			response.sendRedirect("/AgenceImmobiliere/LoginServlet");
-			
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginAdmin").forward(request, response);;
 		}else {
+		HttpSession s=request.getSession(true);
 		String who=(String)s.getAttribute("type");
 		String what=request.getParameter("what");
 		String op=request.getParameter("operation");
@@ -46,7 +46,13 @@ public class ControleRendezVous extends HttpServlet {
 							int etage=Integer.parseInt(request.getParameter("etage"));
 							int prixMin=Integer.parseInt(request.getParameter("prixMin"));
 							int prixMax=Integer.parseInt(request.getParameter("prixMax"));
-							request.setAttribute("Apparts", Fonctions.ChercherAppart(localite,region,type,etage,prixMax,prixMin));
+							ArrayList<Appartement> l=Fonctions.ChercherAppart(localite,region,type,etage,prixMax,prixMin);
+							System.out.println("list apparts");
+							for(Appartement a:l) {
+								
+								System.out.println(a.toString());
+							}
+							request.setAttribute("Apparts",l);
 							this.getServletContext().getRequestDispatcher("/ListeAppartsOperateur.jsp").forward(request, response);
 						}
 						if(op.equalsIgnoreCase("idApp")) {

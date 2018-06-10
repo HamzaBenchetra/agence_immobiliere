@@ -30,8 +30,9 @@ public class OperationsAdmin {
 		int statut = -5;
 		ConnecterBD();
 		try {
+			System.out.println("validiiii");
 		PreparedStatement pst=connexion.prepareStatement("update "+ t +" set etat =1, idAdmin="+idA+" where id"+t+"="+id+";");
-
+		
 		statut= pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -177,6 +178,18 @@ public class OperationsAdmin {
 			return 0;
 		}
 		return 0;
+	}
+	public static void AjouterBatiment(int idRegion, int nbrEtages, int nbrApparts) {
+		ConnecterBD();
+		PreparedStatement ps;
+		System.out.print(idRegion+" "+nbrEtages+" "+nbrApparts);
+		try {
+			ps = connexion.prepareStatement("insert into Batiment(idSecteur,nbrEtages,nbrAppart)values("+idRegion+","+nbrEtages+","+nbrApparts+");");
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 

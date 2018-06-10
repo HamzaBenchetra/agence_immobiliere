@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -267,6 +268,7 @@ public class Fonctions {
 						d.setIdClient(rs.getInt("idc"));
 						d.setIdApp(rs.getInt("idApp"));
 						d.setIdDemande(rs.getInt("idDemande"));
+						System.out.print("IdAppart= "+d.getIdApp()+"\nIdClient= "+d.getIdClient()+"\nIdDemande= "+d.getIdDemande());
 						D.add(d);
 					}
 					return D ;
@@ -303,10 +305,17 @@ public class Fonctions {
 				}
 			return ca;
 		}
-		public static boolean EtablirC(int idc, int idA) {
+		public static String EtablirC(int idc,int idO, int idA) {
 			ConnecterBD();
+			Client c=Fonctions.AfficherClient(idc);
+			Employe e=Fonctions.RecupererEmploye(idO,"respventes");
+			Appartement a=Fonctions.getAppart(idA);
+			String lien=Impression.imprimerContrat(c,e,a);
+			DateFormat dt= new SimpleDateFormat("yyyy-MM-dd");
+			Date datee=new Date();
+			
 			try {
-				PreparedStatement ps=connexion.prepareStatement("insert into Contrat(idCL,IdApp) values ("+idc+","+idA+");");
+				PreparedStatement ps=connexion.prepareStatement("insert into Contrat(idCL,IdApp,idResp,lienContrat,date) values ("+idc+","+idA+","+idO+",'"+lien+"','"+dt.format(datee)+"');");
 				ps.executeUpdate();
 				PreparedStatement pstt=connexion.prepareStatement("update appartement set etat =1 where idAppart="+idA+";");
 				pstt.executeUpdate();
@@ -340,10 +349,10 @@ public class Fonctions {
 				 * ensuite je le passe en parametre
 				 * */
 				
-				return true;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return false;
+				return lien;
+			} catch (SQLException ee) {
+				ee.printStackTrace();
+				return " ";
 			}
 			
 		}
@@ -601,6 +610,48 @@ public class Fonctions {
 			
 			return L;
 		}
+		public static Employe RecupererEmploye(int id, String type) {
+			ConnecterBD();
+			try {
+				Statement s=connexion.createStatement();
+				ResultSet rs=s.executeQuery("Select * from "+type+" where id"+type+"="+id+";");
+				if(rs.next()) {
+					Employe e=new Employe();
+					e.setNom(rs.getString("nom"));
+					e.setPrenom(rs.getString("prenom"));
+					e.setAdresse(rs.getString("Adresse"));
+					e.setDatenais(rs.getString("datenais"));
+					e.setMail(rs.getString("mail"));
+					e.setSexe(rs.getString("sexe"));
+					e.setNumtel(rs.getString("numtel"));
+					return e;
+				}
+				return null;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+		public static ArrayList<Batiment> ListeBatiments() {
+			ConnecterBD();
+			try {
+				ArrayList<Batiment> L=new ArrayList<Batiment>();
+				Statement s=connexion.createStatement();
+				ResultSet rs=s.executeQuery("select * from batiment");
+				while(rs.next()) {
+					Batiment b=new Batiment();
+					b.setIdBatiment(rs.getInt(1));
+					b.setIdRegion(rs.getInt(2));
+					b.setNbrEtages(rs.getInt(3));
+					b.setNbrApparts(rs.getInt(4));
+					L.add(b);
+				}
+				return L;
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			return null;
+		}
 		public static void main(String[] args) {
 			/*ArrayList<Region> LR=Fonctions.ListeRegions();
 			for(Region R:LR)
@@ -614,12 +665,15 @@ public class Fonctions {
 				}
 				if(i%4==0)
 					System.out.println("\n");
-			}*/
+			}
 			ArrayList<Appartement> L=ChercherAppart(5 ,17, "F3" ,14 ,20000000 ,25000000);
 			System.out.println(L.size());
 			for(Appartement a:L) {
 				System.out.println(a.toString());
-			}
+			}*/
+			
 		}
+		
+		
 		
 }

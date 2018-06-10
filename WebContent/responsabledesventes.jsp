@@ -5,6 +5,11 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<%
+if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+	this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);;
+}
+%>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,7 +64,6 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Achat</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/DemandesAchat">Demandes d'achat</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="">Achat directe</a></li>
                         </ul>
                     </li>
 				<li class="menu-item-has-children dropdown">

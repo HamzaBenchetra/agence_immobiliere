@@ -293,7 +293,7 @@
                             <div class="col-12 col-md-9">
                               <select name="localite" id="select" class="form-control">
                                 <option value="0">Choisir une localite</option>
-                                <option value="5">Ali Mendjli</option>
+                                <option value="1">Ali Mendjli</option>
                               </select>
                             </div>
                           </div>
@@ -302,7 +302,7 @@
                             <div class="col-12 col-md-9">
                               <select name="region" id="select" class="form-control">
                                 <option value="0">Choisir une region</option>
-                                <option value="17">AADL</option>
+                                <option value="1">AADL</option>
                               </select>
                             </div>
                           </div>
