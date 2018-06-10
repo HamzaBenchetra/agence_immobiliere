@@ -29,7 +29,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		case("Agent") : request.getSession().invalidate();
 		response.sendRedirect("/AgenceImmobiliere/LoginEmploye");break;
 		case("Client") : request.getSession().invalidate();
-		response.sendRedirect("/AgenceImmobiliere/LoginServlet");break;
+		response.sendRedirect("/AgenceImmobiliere/ListAppartGlobale");break;
 		case("respventes") : request.getSession().invalidate();
 		response.sendRedirect("/AgenceImmobiliere/LoginEmploye");break;
 		}

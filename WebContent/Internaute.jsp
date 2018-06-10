@@ -85,7 +85,7 @@
  <div class="container row">
  
  <B><h5>Rechercher un Appartement</h5></B>
-                                <form action="http://localhost:8080/AgenceImmobiliere/ListAppartRech" method="POST">
+                                <form action="/AgenceImmobiliere/ListAppartRech" method="POST">
                            
                                     <ul class="collapsible" data-collapsible="accordion">
                                       <li>
@@ -117,7 +117,7 @@
                                                <p>
                                                <c:forEach items="${ListLocalite}" var="localite"   >
 					    
-					    	<input name="localite" value=${localite} type="radio" id=${localite} required />
+					    	<input name="localite" value="${localite}" type="radio" id=${localite} required />
                                           <label for=${localite}>${localite}</label>
 					    
 					    			</br>

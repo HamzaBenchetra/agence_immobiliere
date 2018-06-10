@@ -40,12 +40,13 @@
     
       <a href="#" class="brand-logo white-text">IMOOBB  </a>
       
-      <ul id="nav-mobile" class="right hide-on-med-and-down white-text">
-       <li><a href="http://localhost:8080/AgenceImmobiliere/SignupServlet" class="white-text"><h5>s'inscrire</h5></a></li>
+       <ul id="nav-mobile" class="right hide-on-med-and-down white-text">
+        <li><a href="" class="white-text"><h5>MonCompte</h5></a></li>
         <li><a href=""class="white-text"><h5>Contacter nous</h5></a></li>
         <li><a href=""class="white-text"><h5>Aide</h5></a></li>
         <li><a href="http://localhost:8080/AgenceImmobiliere/SignupEmp"class="white-text"><h5>Travailler avec nous</h5></a></li>
-        <li><a href="http://localhost:8080/AgenceImmobiliere/LoginServlet"class="white-text"><h5>Se connecter </h5></a></li>
+                    <li><a href="/AgenceImmobiliere/LogoutServlet" class="white-text"><h5>Se deconnecter</h5></a></li>
+        
     
       </ul>
    
@@ -78,14 +79,15 @@
   		<h4>Localité  : <%=Ap.getNomLocal()%> </h4>
    		<h4>Prix :<%=Ap.getPrix()%> </h4>
   		<h4>Description  : <%=Ap.getDescription()%> </h4>
+  		
   	 </div>
   	 <form action="/AgenceImmobiliere/FixerRDVClient" Class="fixed" method="get"  >
                         <div class="form-group">
 
                                    <button class="btn waves-effect waves-light" type="submit" name="action">Fixer un rendez vous
                                     <i class="material-icons right"></i>
-                              <input type="hidden" name="idAppart" id="what" value="<%=Ap.getIdAppart()%>">
-                                    
+                                    <input type="hidden" name="idAppart" id="what" value="<%=Ap.getIdAppart()%>">
+
                                    </button>
   </div>
   </div>
