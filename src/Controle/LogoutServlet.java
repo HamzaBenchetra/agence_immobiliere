@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Model.Login;
+
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,8 +30,11 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		response.sendRedirect("/AgenceImmobiliere/LoginEmploye");break;
 		case("Agent") : request.getSession().invalidate();
 		response.sendRedirect("/AgenceImmobiliere/LoginEmploye");break;
-		case("Client") : request.getSession().invalidate();
-		response.sendRedirect("/AgenceImmobiliere/ListAppartGlobale");break;
+
+		case("Client") : 
+			Login.logout((int)request.getSession().getAttribute("id"));
+			request.getSession().invalidate();
+		response.sendRedirect("/AgenceImmobiliere/LoginServlet");break;
 		case("respventes") : request.getSession().invalidate();
 		response.sendRedirect("/AgenceImmobiliere/LoginEmploye");break;
 		}

@@ -22,6 +22,10 @@ public class ControleRegion extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginAdmin").forward(request, response);;
+		}else {
 		String r=request.getParameter("what");
 		request.setAttribute("msg", " ");
 		switch (r) {
@@ -38,8 +42,13 @@ public class ControleRegion extends HttpServlet {
 		default:
 			break;
 		}
+		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginAdmin").forward(request, response);;
+		}else {
 		String r=request.getParameter("what");
 		
 		switch (r) {
@@ -63,5 +72,5 @@ public class ControleRegion extends HttpServlet {
 			break;
 		}
 	}
-
+	}
 }

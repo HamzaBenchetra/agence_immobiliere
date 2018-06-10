@@ -5,6 +5,11 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<%
+if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+	this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);;
+}
+%>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

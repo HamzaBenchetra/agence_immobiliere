@@ -260,7 +260,9 @@
                                         <div class="alert alert-success" role="alert">
                                             <h4 class="alert-heading">Informations du contrat enregistrer avec succès</h4>
                                             <hr>
-                                            <form action="Contrats\Contrat.pdf" >
+                                            <%String s=(String)request.getSession().getAttribute("lien");
+                        		System.out.println(s);%>
+                                            <form action="Contrats\<%=s%>" >
 					                        	<button type="submit" class="btn btn-primary" >Afficher les détails du contrat</button>
 					                        </form> 
                                         </div>

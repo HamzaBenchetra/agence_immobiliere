@@ -17,6 +17,10 @@ public class ControleClient extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginAdmin").forward(request, response);;
+		}else {
 		String what=request.getParameter("what");
 		switch (what) {
 		case "block":
@@ -33,7 +37,12 @@ public class ControleClient extends HttpServlet {
 			break;
 		}
 	}
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginAdmin").forward(request, response);;
+		}else {
 		String what=request.getParameter("what");
 		switch (what) {
 		case "block":
@@ -53,5 +62,5 @@ public class ControleClient extends HttpServlet {
 			break;
 		}
 	}
-
+	}
 }

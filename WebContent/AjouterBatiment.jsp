@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="Model.Localite"%>
+    <%@page import="Model.Region"%>
     <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -254,7 +254,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Gestion des batiments</h1>
+                        <h1>Gestion des Batiment</h1>
                     </div>
                 </div>
             </div>
@@ -266,6 +266,7 @@
                <span aria-hidden="true">×</span>
             </button>
         </div>
+        <%ArrayList<Region> l=(ArrayList<Region>)request.getAttribute("LR"); %>
 		<div class="card">
                       <div class="card-header">
                         <strong>Ajouter une region</strong>
@@ -273,19 +274,21 @@
                       <div class="card-body card-block">
                         <form action="" method="post" class="">
                           <div class="row form-group">
-                            <div class="col col-md-3"><label for="idRegion" class=" form-control-label">Id de la region</label></div>
+                            <div class="col col-md-3"><label for="idRegion" class=" form-control-label">Nom de la Region</label></div>
                             <div class="col-12 col-md-9">
                               <select name="idRegion" id="idRegion" class="form-control">
                                 <option value="0">Selectionner une localité</option>
-                                
+                                <%for(int i=0;i<l.size();i++){ %>
+                                <option value=<%=l.get(i).getIdRegion()%>><%out.print(l.get(i).getNomRegion());%></option>
+                                <%} %>
                               </select>
                             </div>
                           </div>
-                          <div class="form-group"><label for="nbrEtages" class=" form-control-label">Nombre d'étages</label>
-                          <input type="text" id="nbrEtages" name="nbrEtages" placeholder="1 2 3 4 ..." class="form-control">
+                          <div class="form-group"><label for="nbrEtages" class=" form-control-label">Nombre d'étages :</label>
+                          <input type="text" id="nbrEtages" name="nbrEtages" placeholder="Nom de la region" class="form-control">
                           </div>
-                          <div class="form-group"><label for="nbrApparts" class=" form-control-label">Nombre d'appartements</label>
-                          <input type="text" id="nbrApparts" name="nbrApparts" placeholder="56 60 64 ..." class="form-control">
+                          <div class="form-group"><label for="nbrApparts" class=" form-control-label">Nombre d'appartements :</label>
+                          <input type="text" id="nbrApparts" name="nbrApparts" placeholder="Nom de la region" class="form-control">
                           </div>
 	                        <button type="submit" class="btn btn-primary btn-sm">
 	                          <i class="fa fa-dot-circle-o"></i> Ajouter
