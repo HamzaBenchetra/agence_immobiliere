@@ -37,12 +37,12 @@
     
       <a href="#" class="brand-logo white-text">IMOOBB  </a>
       
-      <ul id="nav-mobile" class="right hide-on-med-and-down white-text">
-        <li><a href="http://localhost:8080/AgenceImmobiliere/SignupServlet" class="white-text"><h5>s'inscrire</h5></a></li>
+       <ul id="nav-mobile" class="right hide-on-med-and-down white-text">
+        <li><a href="" class="white-text"><h5>MonCompte</h5></a></li>
         <li><a href=""class="white-text"><h5>Contacter nous</h5></a></li>
         <li><a href=""class="white-text"><h5>Aide</h5></a></li>
-        <li><a href="http://localhost:8080/AgenceImmobiliere/SignupEmp"class="white-text"><h5>Travailler avec nous</h5></a></li>
-        <li><a href="http://localhost:8080/AgenceImmobiliere/LoginServlet"class="white-text"><h5>Se connecter </h5></a></li>
+        <li><a href="/AgenceImmobiliere/SignupEmp"class="white-text"><h5>Travailler avec nous</h5></a></li>
+                    <li><a href="/AgenceImmobiliere/LogoutServlet" class="white-text"><h5>Se deconnecter</h5></a></li>
         
     
       </ul>
@@ -61,7 +61,7 @@ ArrayList<date> calendrier=(ArrayList<date>)request.getAttribute("List");
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Dates disponibles</strong><small>     Client : <%out.println(request.getAttribute("nomClient")); %></small>
+                            <strong class="card-title">Dates disponibles</strong><small>   
                         </div>
                         <div class="card-body">
 		                            <table class="table">
@@ -139,7 +139,96 @@ ArrayList<date> calendrier=(ArrayList<date>)request.getAttribute("List");
 		}
 	<%}%>
 	</script>
-
+</div>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br></br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 </body>
 <footer class="page-footer  blue ">
           <div class="container">

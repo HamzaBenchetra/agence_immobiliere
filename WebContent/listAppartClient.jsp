@@ -33,10 +33,11 @@
       <a href="#" class="brand-logo white-text">IMOOBB  </a>
       
       <ul id="nav-mobile" class="right hide-on-med-and-down white-text">
-        <li><a href="" class="white-text"><h5>s'inscrire</h5></a></li>
+        <li><a href="" class="white-text"><h5>Mon Compte</h5></a></li>
         <li><a href=""class="white-text"><h5>Contacter nous</h5></a></li>
         <li><a href=""class="white-text"><h5>Aide</h5></a></li>
         <li><a href=""class="white-text"><h5>Travailler avce nous</h5></a></li>
+            <li><a href="/AgenceImmobiliere/LogoutServlet" class="white-text"><h5>Se deconnecter</h5></a></li>
     
       </ul>
    

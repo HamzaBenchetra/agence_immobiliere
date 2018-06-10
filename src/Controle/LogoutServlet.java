@@ -30,6 +30,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		response.sendRedirect("/AgenceImmobiliere/LoginEmploye");break;
 		case("Agent") : request.getSession().invalidate();
 		response.sendRedirect("/AgenceImmobiliere/LoginEmploye");break;
+
 		case("Client") : 
 			Login.logout((int)request.getSession().getAttribute("id"));
 			request.getSession().invalidate();

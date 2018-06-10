@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Model.Appartement;
 import Model.OperationsClient;
@@ -32,7 +33,8 @@ public class ListAppartGlobale extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		String i=(String) request.getAttribute("msg");
+		System.out.println(i);
 		   ArrayList<Integer> Etage =OperationsClient.RecupererEtage();
 		   ArrayList<String> Localite =OperationsClient.RecupererLocalite();
 		   ArrayList<String> type =OperationsClient.RecupererTypeAppart();
@@ -44,7 +46,17 @@ public class ListAppartGlobale extends HttpServlet {
 		   request.setAttribute("ListLocalite",Localite);
 		   request.setAttribute("ListType",type);
 		   request.setAttribute("Secteur",secteur);
-		   this.getServletContext().getRequestDispatcher("/Internaute.jsp").forward(request, response);
+		   
+		   
+
+			if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+				System.out.println(request.getSession().getAttribute("type"));
+				   this.getServletContext().getRequestDispatcher("/Internaute.jsp").forward(request, response);
+			}else {
+				HttpSession s=request.getSession(true);
+				   this.getServletContext().getRequestDispatcher("/Client.jsp").forward(request, response);
+
+			}		
 	}
 
 	/**

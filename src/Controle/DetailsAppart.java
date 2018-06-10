@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Model.Appartement;
 import Model.OperationsClient;
@@ -36,7 +37,16 @@ public class DetailsAppart extends HttpServlet {
 //System.out.println(id);
 		Appartement t=OperationsClient.AfficherAppart(id);
 		request.setAttribute("Appart",t);
-		   this.getServletContext().getRequestDispatcher("/detailsAp.jsp").forward(request, response);
+		
+		
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			   this.getServletContext().getRequestDispatcher("/detailsAp.jsp").forward(request, response);
+		}else {
+			HttpSession s=request.getSession(true);
+			   this.getServletContext().getRequestDispatcher("/detailsApClient.jsp").forward(request, response);
+
+		}
 	}
 
 	/**

@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession s=request.getSession(true);
 			s.setAttribute("type", "Client");
 			s.setAttribute("id", b);
-			this.getServletContext().getRequestDispatcher("/EspaceClient.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/ListAppartGlobale").forward(request, response);
 		}
 		else {
 			request.setAttribute("e", -1);

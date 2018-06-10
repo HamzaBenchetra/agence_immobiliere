@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Model.Appartement;
 import Model.OperationsClient;
@@ -53,9 +54,22 @@ public class ListAppartRech extends HttpServlet {
 		System.out.println(etage);
 		System.out.println(minPrix);
 		System.out.println(maxPrix);
-		ArrayList<Appartement> A =OperationsClient.RechercherAppart(Loc,type,etage,Secteur,maxPrix,minPrix);
+		
+		System.out.println("hna sa3");
+		ArrayList<Appartement> A =OperationsClient.RechercherAppart(Loc, type, etage, Secteur, minPrix ,maxPrix);
 		   request.setAttribute("ListAppart",A);
-		   this.getServletContext().getRequestDispatcher("/listAppart.jsp").forward(request, response);	
+			System.out.println(A.size());
+
+		   
+		   
+		   if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+				System.out.println(request.getSession().getAttribute("type"));
+				   this.getServletContext().getRequestDispatcher("/listAppart.jsp").forward(request, response);	
+			}else {
+				HttpSession s=request.getSession(true);
+				   this.getServletContext().getRequestDispatcher("/listAppartClient.jsp").forward(request, response);	
+
+			}
 		   }
 	}
 

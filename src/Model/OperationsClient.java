@@ -152,7 +152,20 @@ public static ArrayList<String>  RecupererTypeAppart(){
 	}
 	   return E;		
 }
+public static void AnnulerRDV(int idRDV) {
+	ConnecterBD();
+	
+	try {
+		PreparedStatement ps=connexion.prepareStatement("delete from rdv where idRDV="+idRDV+";");
+		ps.executeUpdate();
+		
+		 
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
 
+	
+}
 public static ArrayList<String>  RecupererSecteur(){
 	
 	ConnecterBD();
@@ -179,16 +192,31 @@ public static ArrayList<String>  RecupererSecteur(){
 	   return E;		
 }
 public static ArrayList<Appartement> RechercherAppart(String localite,String type,int etage,String secteur,int max,int min){
+	System.out.println(localite);
+	System.out.println(type);
+	System.out.println(etage);
+	System.out.println(secteur);
+	System.out.println(max);
+	System.out.println(min);
 	ConnecterBD();
-	
+	System.out.println("ani hna 1");
+
 	ArrayList<Appartement> a = new ArrayList<Appartement>();
 	try {
 	Statement statement = connexion.createStatement();
-	ResultSet rs=statement.executeQuery("select * from appartement as a,batiment as b,secteur as s,localite as l where a.idbat=b.idbatiment and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and l.nomlocalite='"+localite+"' and type='"+type+"' and nomSecteur='"+secteur+"' and etage="+etage+" and prix between "+min+" AND "+max+";");
-	while(rs.next()){
-		Appartement A=new Appartement();
+//	ResultSet rs=statement.executeQuery("select * from appartement as a,batiment as b,secteur as s,localite as l where a.idbat=b.idbatiment and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and l.nomlocalite='"+localite+"' and type='"+type+"' and nomSecteur='"+secteur+"' and etage="+etage+" and prix between "+min+" AND "+max+";");
+//	ResultSet rs=statement.executeQuery("select * from appartement as a,batiment as b,secteur as s,localite as l where a.idbat=b.idbatiment and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and l.nomlocalite='Ali mendjli' and type='F3' and nomSecteur='AADL' and etage=2 and prix between 100 AND 150;");
+	ResultSet rs=statement.executeQuery("select nomlocalite,nomsecteur,idappart,idBat,etage,prix,type,Description from appartement as a,batiment as b,secteur as s,localite as l where a.idbat=b.idbatiment and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and nomLocalite='"+localite+"' and s.nomSecteur='"+secteur+"' and type='"+type+"' and etage="+etage+" and prix between "+max+" AND "+min+" ;");
 
-		
+	//System.out.println("ani hna 81"+rs);
+
+	
+	while(rs.next()){
+		System.out.println("ani hna 81"+rs.getInt("idAppart"));
+
+		Appartement A=new Appartement();
+System.out.println("aw dkhoul");
+		System.out.println("ani hna");
 		A.setIdAppart(rs.getInt("idAppart"));
 		A.setIdBatiment(rs.getInt("idBat"));
 		A.setType(rs.getString("type"));
@@ -196,14 +224,16 @@ public static ArrayList<Appartement> RechercherAppart(String localite,String typ
 		A.setPrix(rs.getDouble("prix"));
 		A.setNomRegion(rs.getString("nomSecteur"));
 		A.setNomLocal(rs.getString("nomLocalite"));
+		A.setDescription(rs.getString("Description"));
+
 		A.setImages(OperationsClient.ImageAppart(A.getIdAppart()));
 		a.add(A);
 	}
 	return a ;
 	
-	}catch(Exception e){
+	}catch(Exception e){		System.out.println("erreur fla requete");
+
 		e.printStackTrace();
-		
 	}
 	return a;
 }
@@ -241,6 +271,7 @@ public static ArrayList<String> ImageAppart(int id){
 		Appartement A=new Appartement();
 		try {
 		Statement statement = connexion.createStatement();
+	//	String Query=("select * from appartement as a,batiment as b,secteur as s,localite as l where a.idbat=b.idbatiment and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and l.nomlocalite='Ali mendjli' and type='F3' and nomSecteur='AADL' and etage=2 and prix between 100 AND 150;");
 		String Query="select * from appartement as a,batiment as b, secteur as s, localite as l where b.idbatiment=a.idBat and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and a.etat=0 and a.idAppart="+id+";";
 		ResultSet rs=statement.executeQuery(Query);
 		
@@ -259,7 +290,8 @@ public static ArrayList<String> ImageAppart(int id){
 		return A ;
 		
 		}catch(Exception e){
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			//e.printStackTrace();
 			
 		}
 		return A;
@@ -296,6 +328,10 @@ public static ArrayList<String> ImageAppart(int id){
 			return false;
 		}
 	}
+/**
+ * @param idc
+ * @return
+ */
 public static ArrayList<RDV> RecupererListeRDV(int idc){
 		
 		ConnecterBD();
@@ -325,14 +361,47 @@ public static ArrayList<RDV> RecupererListeRDV(int idc){
 		}
 		   return R ;		
 	}	
+public static ArrayList<Appartement> RecupererListeAppartRDV(int idC){
 	
+	ConnecterBD();
+	   ArrayList<Appartement> R = new ArrayList<Appartement>();
+	   try {
+		  // select * from rdv as r,appartement as a where r.idapp=a.idappart and r.idRDV=1;
+	 Statement statement = connexion.createStatement();
+		String Query="select * from rdv as r,appartement as a,batiment as b, secteur as s, localite as l where b.idbatiment=a.idBat and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and r.idapp=a.idappart and r.idC="+idC;
+	//	select * from appartement as a,batiment as b, secteur as s, localite as l where b.idbatiment=a.idBat and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and a.etat=0 and a.idAppart="+id+";";
+		ResultSet rs=statement.executeQuery(Query);
+		
+	//	ResultSet r = null;
+		while(rs.next()){
+			Appartement A=new Appartement();
+			A.setIdAppart(rs.getInt("idAppart"));
+			A.setIdBatiment(rs.getInt("idBat"));
+			A.setType(rs.getString("type"));
+			A.setEtage(rs.getInt("etage"));
+			A.setPrix(rs.getDouble("prix"));
+		//	A.setNomRegion(rs.getString("nomSecteur"));
+			A.setNomLocal(rs.getString("nomLocalite"));
+			A.setDescription(rs.getString("Description"));
+			A.setImages(OperationsClient.ImageAppart(A.getIdAppart()));
+			
+			R.add(A);
+		}
+		return R ;
+   } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		
+	}
+	   return R ;		
+}	
 	public static void main(String[] args) {
-		System.out.println("qsdfsdgbfgfvdc");
-		Appartement v = OperationsClient.AfficherAppart(2);
-		System.out.println(v.getImages());
-		/*for(Appartement v : v)
-		    System.out.println(s.getImages().get(0));
-		    		*/
+	//	System.out.println("qsdfsdgbfgfvdc");
+		/*ArrayList<Appartement> v = OperationsClient.RechercherAppart("Ali mendjli","F3",2,"AADL",100,150);
+
+		for(Appartement v1 : v)
+		    System.out.println(v1.getDescription());*/
+	//OperationsClient.AnnulerRDV(6);
 		
 
 }
