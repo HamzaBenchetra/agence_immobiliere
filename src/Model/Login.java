@@ -38,7 +38,7 @@ public class Login {
 			 ResultSet rs=s.executeQuery("Select * from client;");
 			 
 			 while(rs.next()){
-				if((mail.equals(rs.getString("mail"))&&mdpss.equals(rs.getString("mdpss")))) {
+				if((mail.equals(rs.getString("mail"))&&mdpss.equals(rs.getString("mdpss")))||(mail.equals(rs.getString("numtel"))&&mdpss.equals(rs.getString("mdpss")))) {
 					id=rs.getInt("idClient");
 					DateFormat dt= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					Date date=new Date();
