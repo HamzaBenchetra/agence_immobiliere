@@ -1,6 +1,10 @@
 package Model;
 
 public class StatsAgent {
+@Override
+	public String toString() {
+		return "StatsAgent [nom=" + nom + ", prenom=" + prenom + ", countA=" + countA + "]";
+	}
 private String nom,prenom;
 private int countA;
 public String getNom() {

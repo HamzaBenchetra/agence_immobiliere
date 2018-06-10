@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
+    <title>Espace Admin</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -52,7 +52,6 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Inscriptions</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="/AgenceImmobiliere/AfficherListDemandes.jsp">valider</a></li>
-                            <li><i class="fa fa-table"></i><a href="tables-data.html">Supprimer</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -65,10 +64,10 @@
 
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Localitées</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>LocalitÃ©es</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/AgenceImmobiliere/ControleLocalite?what=add">Ajouter une localité</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="/AgenceImmobiliere/ControleLocalite?what=mod">Modifier une localité</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/AgenceImmobiliere/ControleLocalite?what=add">Ajouter une localitÃ©</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="/AgenceImmobiliere/ControleLocalite?what=mod">Modifier une localitÃ©</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -90,24 +89,19 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-line-chart"></i><a href="/AgenceImmobiliere/ControleClient?what=block">Bloquer</a></li>
                             <li><i class="menu-icon fa fa-area-chart"></i><a href="/AgenceImmobiliere/ControleClient?what=cons">Consulter profile</a></li>
-                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="/AgenceImmobiliere/ControleClient?what=del">Supprimer</a></li>
                         </ul>
                     </li>
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Employés</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>EmployÃ©s</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-map-o"></i><a href="#">Approuver</a></li>
-                            <li><i class="menu-icon fa fa-street-view"></i><a href="#">Affecter des agents</a></li>
-                            <li><i class="menu-icon fa fa-street-view"></i><a href="#">Licensier</a></li>
-                            <li><i class="menu-icon fa fa-street-view"></i><a href="#">Avertir</a></li>
+                            <li><i class="menu-icon fa fa-street-view"></i><a href="/AgenceImmobiliere/ControleAgent">Affecter des agents</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Statistiques</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="#">Statistiques des visites</a></li>
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="#">statistiques des inscriptions</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="/AgenceImmobiliere/Statistiques">Statistiques des visites</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -258,10 +252,10 @@
             </div>
         </div>
         <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show" id="msg" style="display : none">
-            <span class="badge badge-pill badge-primary">Succès</span>
-               Client Bloqué, un e-mail lui a été envoyé pour l'en informer.
+            <span class="badge badge-pill badge-primary">SuccÃ¨s</span>
+               Client BloquÃ©, un e-mail lui a Ã©tÃ© envoyÃ© pour l'en informer.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-               <span aria-hidden="true">×</span>
+               <span aria-hidden="true">Ã—</span>
             </button>
         </div>
 		<div class="card">
@@ -321,7 +315,7 @@
     							   document.getElementById("bloquer").disabled = true;
     	    					   document.getElementById("bloquer").setAttribute('class','btn btn-danger');
     							   $( "#messsage" ).css({'display': 'block'});
-    							   $("#messsage").append("<h2>Ce client est déjà bloqué.</h2>");
+    							   $("#messsage").append("<h2>Ce client est dÃ©jÃ  bloquÃ©.</h2>");
     						   }else{
     							   $("#messsage").html(" ")
     						   $( "#numclient" ).css({'background-color': 'white'});

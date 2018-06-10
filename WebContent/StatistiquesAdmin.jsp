@@ -1,7 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-    <%@page import="Model.Localite"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@page import="Model.StatsAgent"%>
+    <%@page import="Model.StatsType"%>
+    <%@page import="Model.StatsLocalite"%>
     <%@page import="java.util.ArrayList"%>
+	<%@page import="Model.OperationsRESP" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -122,84 +125,6 @@
 
             <div class="header-menu">
 
-                <div class="col-sm-7">
-                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
-                    <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
-                        <div class="form-inline">
-                            <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
-                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
-                            </form>
-                        </div>
-
-                        <div class="dropdown for-notification">
-                          <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-bell"></i>
-                            <span class="count bg-danger">5</span>
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="notification">
-                            <p class="red">You have 3 Notification</p>
-                            <a class="dropdown-item media bg-flat-color-1" href="#">
-                                <i class="fa fa-check"></i>
-                                <p>Server #1 overloaded.</p>
-                            </a>
-                            <a class="dropdown-item media bg-flat-color-4" href="#">
-                                <i class="fa fa-info"></i>
-                                <p>Server #2 overloaded.</p>
-                            </a>
-                            <a class="dropdown-item media bg-flat-color-5" href="#">
-                                <i class="fa fa-warning"></i>
-                                <p>Server #3 overloaded.</p>
-                            </a>
-                          </div>
-                        </div>
-
-                        <div class="dropdown for-message">
-                          <button class="btn btn-secondary dropdown-toggle" type="button"
-                                id="message"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="ti-email"></i>
-                            <span class="count bg-primary">9</span>
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="message">
-                            <p class="red">You have 4 Mails</p>
-                            <a class="dropdown-item media bg-flat-color-1" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/1.jpg"></span>
-                                <span class="message media-body">
-                                    <span class="name float-left">Jonathan Smith</span>
-                                    <span class="time float-right">Just now</span>
-                                        <p>Hello, this is an example msg</p>
-                                </span>
-                            </a>
-                            <a class="dropdown-item media bg-flat-color-4" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/2.jpg"></span>
-                                <span class="message media-body">
-                                    <span class="name float-left">Jack Sanders</span>
-                                    <span class="time float-right">5 minutes ago</span>
-                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                </span>
-                            </a>
-                            <a class="dropdown-item media bg-flat-color-5" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/3.jpg"></span>
-                                <span class="message media-body">
-                                    <span class="name float-left">Cheryl Wheeler</span>
-                                    <span class="time float-right">10 minutes ago</span>
-                                        <p>Hello, this is an example msg</p>
-                                </span>
-                            </a>
-                            <a class="dropdown-item media bg-flat-color-3" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/4.jpg"></span>
-                                <span class="message media-body">
-                                    <span class="name float-left">Rachel Santos</span>
-                                    <span class="time float-right">15 minutes ago</span>
-                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                </span>
-                            </a>
-                          </div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
@@ -208,35 +133,13 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                                <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-
-                                <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
-
-                                <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
+                                
 
                                 <a class="nav-link" href="/AgenceImmobiliere/LogoutServlet"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
-                    <div class="language-select dropdown" id="language-select">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown"  id="language" aria-haspopup="true" aria-expanded="true">
-                            <i class="flag-icon flag-icon-us"></i>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="language" >
-                            <div class="dropdown-item">
-                                <span class="flag-icon flag-icon-fr"></span>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-es"></i>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-us"></i>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-it"></i>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                 </div>
             </div>
@@ -248,66 +151,212 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Gestion des regions</h1>
+                        <h1>Acceuil</h1>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show" id="msg" style="display : none">
-            <span class="badge badge-pill badge-primary">Succès</span>
-               Region ajoutée avec succès.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-               <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        <%ArrayList<Localite> l=(ArrayList<Localite>)request.getAttribute("LL"); %>
-		<div class="card">
-                      <div class="card-header">
-                        <strong>Ajouter une region</strong>
-                      </div>
-                      <div class="card-body card-block">
-                        <form action="" method="post" class="">
-                          <div class="row form-group">
-                            <div class="col col-md-3"><label for="idLocalite" class=" form-control-label">Nom de la localite</label></div>
-                            <div class="col-12 col-md-9">
-                              <select name="idLocalite" id="idLocalite" class="form-control">
-                                <option value="0">Selectionner une localité</option>
-                                <%for(int i=0;i<l.size();i++){ %>
-                                <option value=<%=l.get(i).getIdLocalite()%>><%out.print(l.get(i).getNomLocalite());%></option>
-                                <%} %>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="form-group"><label for="nomRegion" class=" form-control-label">Nom de la region</label><input type="text" id="nomRegion" name="nomRegion" placeholder="Nom de la region" class="form-control"></div>
-	                        <button type="submit" class="btn btn-primary btn-sm">
-	                          <i class="fa fa-dot-circle-o"></i> Ajouter
-	                        </button>
+		<div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+                        <form action="/AgenceImmobiliere/StatsExcel" method="get">
+                        	<input type="hidden" name="TypeI" value="Excel">
+                        	<button type="submit" class="btn btn-primary">Exporter en excel</button>
                         </form>
-                      </div>
-                      
-                    </div>
+				</div>
+
+            </div><!-- .animated -->
+        </div>
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="mb-3">Nombre de visites par agent </h4>
+                                    <canvas id="myChart" width="200" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div><!-- /# column -->
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="mb-3">Nombre de visites par localite </h4>
+                                    <canvas id="myChart1" width="200" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div>
+				</div>
+
+            </div><!-- .animated -->
+        </div><!-- .content -->
         
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="mb-3">Nombre de visites par type d'appartement </h4>
+                                    <canvas id="myChart2" width="200" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div><!-- /# column -->
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="mb-3">Ratio des ventes </h4>
+                                    <canvas id="myDoughnutChart " width="100" height="100"></canvas>
+                                </div>
+                            </div>
+                        </div>
+				</div>
+
+            </div><!-- .animated -->
+        </div>
+        <!-- .content -->
 
 
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
-	
 
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
         <!--  Chart js -->
-    
-    <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
-    <script>
-	    var m='<%= request.getAttribute("msg")%>';
-	    console.log(m);
-	    if(m=="OK"){
-	    	 $( "#msg" ).css({'display': 'block'});
-	    }
-    </script>
-    
+    <script src="assets/js/lib/chart-js/Chart.bundle.js"></script>
+    <script src="assets/js/lib/chart-js/chartjs-init.js"></script>
+    <%ArrayList<StatsAgent> LA=(ArrayList<StatsAgent>)request.getAttribute("ListA"); %>
+    <%ArrayList<StatsLocalite> LL=(ArrayList<StatsLocalite>)request.getAttribute("ListL"); %>
+	<%ArrayList<StatsType> LT=(ArrayList<StatsType>)request.getAttribute("ListT"); %>
+	 
+	<script>
+		var ctx = document.getElementById("myChart").getContext('2d');
+		var myChart = new Chart(ctx, {
+		    type: 'bar',
+		    data: {
+		        labels: [<%for(StatsAgent s: LA) {%><%="\""+s.getNom()+" "+s.getPrenom()+"\","%><%}%>],
+		        datasets: [{
+		            label: '# de visites',
+		            data: [<%for(StatsAgent s: LA) {%><%=s.getCountA()+","%><%}%>],
+		            backgroundColor: [
+		                'rgba(255, 99, 132, 0.2)',
+		                'rgba(54, 162, 235, 0.2)',
+		                'rgba(255, 206, 86, 0.2)',
+		                'rgba(75, 192, 192, 0.2)'
+		            ],
+		            borderColor: [
+		                'rgba(255,99,132,1)',
+		                'rgba(54, 162, 235, 1)',
+		                'rgba(255, 206, 86, 1)',
+		                'rgba(75, 192, 192, 1)'
+		            ],
+		            borderWidth: 1
+		        }]
+		    },
+		    options: {
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero:true
+		                }
+		            }]
+		        }
+		    }
+		});
+	</script>
+	<% float R=(float)request.getAttribute("Ratio");%>
+	<script>
+	var ctx = document.getElementById("myDoughnutChart").getContext('2d');
+
+	var myDoughnutChart = new Chart(ctx, {
+	    type: 'pie',
+	    data:  {
+	    	    datasets: [{
+	    	        data: [<%=R*100%>,<%=(100-(R*100))%>]
+	    	    }],
+
+	    	    // These labels appear in the legend and in the tooltips when hovering different arcs
+	    	    labels: [<%="\""+R+"\""%>,
+	    	       ' '
+	    	    ]
+	    	},
+	});
+	</script>
+	<script>
+		var ctx = document.getElementById("myChart1").getContext('2d');
+		var myChart1 = new Chart(ctx, {
+		    type: 'bar',
+		    data: {
+		        labels: [<%for(StatsLocalite s: LL) {%><%="\""+s.getNomLocalite()+"\","%><%}%>],
+		        datasets: [{
+		            label: '# de visites',
+		            data: [<%for(StatsLocalite s: LL) {%><%=s.getCountL()+","%><%}%>],
+		            backgroundColor: [
+		                'rgba(255, 99, 132, 0.2)',
+		                'rgba(54, 162, 235, 0.2)',
+		                'rgba(255, 206, 86, 0.2)'
+		            ],
+		            borderColor: [
+		                'rgba(255,99,132,1)',
+		                'rgba(54, 162, 235, 1)',
+		                'rgba(255, 206, 86, 1)'
+		            ],
+		            borderWidth: 1
+		        }]
+		    },
+		    options: {
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero:true
+		                }
+		            }]
+		        }
+		    }
+		});
+	</script>
+	
+	<script>
+		var ctx = document.getElementById("myChart2").getContext('2d');
+		var myChart2 = new Chart(ctx, {
+		    type: 'bar',
+		    data: {
+		        labels: [<%for(StatsType s: LT) {%><%="\""+s.getType()+"\","%><%}%>],
+		        datasets: [{
+		            label: '# de visites',
+		            data: [<%for(StatsType s: LT) {%><%=s.getCountT()+","%><%}%>],
+		            backgroundColor: [
+		                'rgba(255, 99, 132, 0.2)',
+		                'rgba(54, 162, 235, 0.2)',
+		                'rgba(255, 206, 86, 0.2)'
+		            ],
+		            borderColor: [
+		                'rgba(255,99,132,1)',
+		                'rgba(54, 162, 235, 1)',
+		                'rgba(255, 206, 86, 1)'
+		            ],
+		            borderWidth: 1
+		        }]
+		    },
+		    options: {
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero:true
+		                }
+		            }]
+		        }
+		    }
+		});
+	</script>
+	
 </body>
 </html>

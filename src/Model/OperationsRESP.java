@@ -60,7 +60,7 @@ public class OperationsRESP {
 		 ArrayList<StatsLocalite> ls=new ArrayList<StatsLocalite>();
 		 
 		 Statement statement = connexion.createStatement();
-		 String query="select nomLocalite,Count(idRDV) from Batiment b,Localite l, Appartement a left join rdv r on a.idAppart=r.idApp where a.idBat=b.idBatiment and b.idLocal=l.idLocalite group by idLocalite;";
+		 String query="select nomLocalite,Count(idRDV) from Batiment b,Localite l,secteur as s, Appartement a left join rdv r on a.idAppart=r.idApp where b.idsecteur=s.idsecteur and a.idBat=b.idBatiment group by idLocalite;";
 		 ResultSet rs=statement.executeQuery(query);
 			while(rs.next()){
 				StatsLocalite s=new StatsLocalite();
@@ -141,7 +141,7 @@ public class OperationsRESP {
 public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		// System.out.println(StatLocalite(2));
-		 ArrayList<StatsAgent> A=StatAgent();
+		 /*ArrayList<StatsAgent> A=StatAgent();
 		 ArrayList<StatsLocalite> B=StatLocalite();
 		 ArrayList<StatsType> C=StatType();
 		 for(StatsAgent s: A) {
@@ -152,7 +152,17 @@ public static void main(String[] args) {
 		 }
 		 for(StatsType s: C) {
 			 System.out.println(s.getType()+" "+s.getCountT());
-		 }
+		 }*/
+	for(StatsAgent s: StatAgent())
+		System.out.println(s.toString());
+	
+	for(StatsLocalite s: StatLocalite())
+		System.out.println(s.toString());
+	
+	for(StatsType s: StatType())
+		System.out.println(s.toString());
+	
+	ratio();
 	}
 
 }

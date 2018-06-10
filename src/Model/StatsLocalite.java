@@ -1,6 +1,10 @@
 package Model;
 
 public class StatsLocalite {
+@Override
+	public String toString() {
+		return "StatsLocalite [nomLocalite=" + nomLocalite + ", countL=" + countL + "]";
+	}
 private String nomLocalite;
 private int countL;
 public String getNomLocalite() {

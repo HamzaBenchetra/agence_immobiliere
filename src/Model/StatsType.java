@@ -1,6 +1,10 @@
 package Model;
 
 public class StatsType {
+@Override
+	public String toString() {
+		return "StatsType [type=" + type + ", countT=" + countT + "]";
+	}
 private String type;
 private int countT;
 public String getType() {
