@@ -17,13 +17,17 @@ public class ListeRDVAgent extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);;
+		}else {
 		HttpSession s=request.getSession(true);
 		int i=(int)s.getAttribute("idA");
 		request.setAttribute("RDV",Fonctions.RecupererListeRDVAgent(i));
 		
 
 		this.getServletContext().getRequestDispatcher("/ListeRDVAgent.jsp").forward(request, response);
-	}
+	}}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		

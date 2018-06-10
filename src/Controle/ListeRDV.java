@@ -21,6 +21,10 @@ public class ListeRDV extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginServlet").forward(request, response);;
+		}else {
 		HttpSession s=request.getSession(true);
 		int ID=(int) s.getAttribute("id");
 		ArrayList<RDV> L=OperationsClient.RecupererListeRDV(ID);
@@ -28,7 +32,7 @@ public class ListeRDV extends HttpServlet {
 		request.setAttribute("RDVs", L);
 		request.setAttribute("Apparts", allapp);
 		this.getServletContext().getRequestDispatcher("/ListeRDV.jsp").forward(request, response);
-	}
+	}}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

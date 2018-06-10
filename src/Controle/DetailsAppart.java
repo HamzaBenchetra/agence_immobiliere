@@ -34,11 +34,10 @@ public class DetailsAppart extends HttpServlet {
 		
 		
 		int id=Integer.parseInt(request.getParameter("id"));
-//System.out.println(id);
+		//System.out.println(id);
 		Appartement t=OperationsClient.AfficherAppart(id);
 		request.setAttribute("Appart",t);
-		
-		
+	
 		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
 			System.out.println(request.getSession().getAttribute("type"));
 			   this.getServletContext().getRequestDispatcher("/detailsAp.jsp").forward(request, response);

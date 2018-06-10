@@ -18,6 +18,10 @@ public class PrendreRDV extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginServlet").forward(request, response);;
+		}else {
 		int id=Integer.parseInt(request.getParameter("IDApp"));
 		
 		HttpSession s = request.getSession();
@@ -26,9 +30,13 @@ public class PrendreRDV extends HttpServlet {
 		this.getServletContext().getRequestDispatcher("/PrendreRDV.jsp").forward(request, response);
 	}
 	
-	
+	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginServlet").forward(request, response);;
+		}else {
 		HttpSession s=request.getSession(true);	
 		int idC=(int) s.getAttribute("id");
 		
@@ -52,4 +60,4 @@ public class PrendreRDV extends HttpServlet {
 		this.getServletContext().getRequestDispatcher("/Reponse.jsp").forward(request, response);
 	}
 
-}
+}}

@@ -17,6 +17,7 @@ public class Statistiques extends HttpServlet {
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
 		if(request.getSession()==null) {
 			response.getWriter().append("IF").append(request.getContextPath());
 			this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);
@@ -42,6 +43,7 @@ public class Statistiques extends HttpServlet {
 						this.getServletContext().getRequestDispatcher("/Statistiques.jsp").forward(request, response);
 					}
 		}
+
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

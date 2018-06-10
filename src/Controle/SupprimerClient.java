@@ -17,11 +17,12 @@ public class SupprimerClient extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession s=request.getSession(true);
-		if(s.isNew()) {
-			s.invalidate();
-			this.getServletContext().getRequestDispatcher("/Mustlogin.jsp").forward(request, response);
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginAdmin").forward(request, response);;
 		}else {
+		HttpSession s=request.getSession(true);
+		
 			if(((String) s.getAttribute("type")).equalsIgnoreCase("Admin")) {
 				Fonctions.SupprimerClient(Integer.parseInt(request.getParameter("IDC")));
 				this.getServletContext().getRequestDispatcher("/AfficherListClient.jsp").forward(request, response);
@@ -29,8 +30,8 @@ public class SupprimerClient extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/AccessDenied.jsp").forward(request, response);
 
 			}
-		}
-	}
+		
+	}}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

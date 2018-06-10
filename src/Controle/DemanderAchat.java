@@ -18,6 +18,10 @@ public class DemanderAchat extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession()==null||request.getSession().getAttribute("type")==null) {
+			System.out.println(request.getSession().getAttribute("type"));
+			this.getServletContext().getRequestDispatcher("/LoginEmploye").forward(request, response);;
+		}else {
 		HttpSession s=request.getSession(true);
 	//	RDV r=(RDV) s.getAttribute("RDV");
 		
@@ -25,7 +29,7 @@ public class DemanderAchat extends HttpServlet {
 		int idAch=(int) s.getAttribute("idAch");
 		OperationsOperateur.insererDemande(idAp,idAch);
 		this.getServletContext().getRequestDispatcher("/DemandeOK.jsp").forward(request, response);
-	}
+	}}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
