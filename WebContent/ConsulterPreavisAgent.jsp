@@ -123,6 +123,8 @@
                     <thead>
 					<tr>
 					<th><h3>ID RDV </h3></th>
+					<th><h3>Date RDV</h3></th>
+					
 					<th><h3>Avis</h3></th>
 					<th><h3>Contenu</h3></th>	
 					<th><h3>Modifier RDV</h3></th>				
@@ -132,7 +134,9 @@
 				<tbody>
 				<tr>
 					<td><%= allR.get(i).getIdRDV()%></td>
-					<td><%= allR.get(i).getAvis()%></td>
+					<td><%= OperationsClient.RecupererDatePreavis(allR.get(i).getIdpreavis())%></td>
+				<td><%= allR.get(i).getAvis()%></td>
+					
 					<td><%= allR.get(i).getC()%></td>
 					<form action="/AgenceImmobiliere/ModifierPreavis" method="get">
 	 <input type="hidden" name="idPreavis" id="what" value="<%= allR.get(i).getIdpreavis()%>">

@@ -32,7 +32,6 @@ if(request.getSession()==null||request.getSession().getAttribute("type")==null) 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
-
 </head>
 <body>
         <!-- Left Panel -->
@@ -63,6 +62,8 @@ if(request.getSession()==null||request.getSession().getAttribute("type")==null) 
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Preavis</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/DonnerPreavis">Donner un preavis</a></li>
+                              <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/ConsulterPreavis">Consulter preavis </a></li>
+                            
                         </ul>
                     </li>
                 </ul>
@@ -101,7 +102,7 @@ if(request.getSession()==null||request.getSession().getAttribute("type")==null) 
 				</div>
             </div>
 
-        </header><!-- /header -->
+        </header>-- /header -->
         <!-- Header-->
 
         <div class="breadcrumbs">
