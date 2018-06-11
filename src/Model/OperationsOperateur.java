@@ -76,11 +76,16 @@ public class OperationsOperateur {
 	}
 	public static boolean FixerRdvOperateur(int idApp, int idC, String d) {
 		ConnecterBD();
-		try {
-			
+		try {	int idL=0;
+				Statement stt=connexion.createStatement();
+				ResultSet rssss=stt.executeQuery("select idLocalite from appartement a,batiment b,secteur s,localite l where a.idbat=b.idbatiment and b.idSecteur=s.idsecteur and s.idlocal=l.idlocalite and a.idAppart="+idApp+";");
+				if(rssss.next()) {
+					idL=rssss.getInt("idLocalite");
+					
+				}
 				int idA=0;
 				Statement st=connexion.createStatement();
-				ResultSet rs=st.executeQuery("select idAgent,count(idRDV) from Agent  left join rdv on Agent.idAgent=rdv.idA where idAgent not in (select idA From RDV where date="+d+" ) group by idAgent order by count(idRDV) asc;");
+				ResultSet rs=st.executeQuery("select idAgent,count(idRDV) from Agent  left join rdv on Agent.idAgent=rdv.idA where idAgent not in (select idA From RDV where date='"+d+"' ) and agent.etat=1 and agent.idL="+idL+" group by idAgent order by count(idRDV) asc;");
 				if(rs.next()) {
 					idA=rs.getInt("idAgent");
 					
