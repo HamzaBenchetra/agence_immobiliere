@@ -27,7 +27,63 @@ public class OperationsClient {
 			}                   
 	        
 	  }
-
+	public static ArrayList<RDV> RecupererListeRDV(){
+		ConnecterBD();
+		
+		   ArrayList<RDV> R = new ArrayList<RDV>();
+		   try {
+				
+		 Statement statement = connexion.createStatement();
+			String Query="SELECT * from rdv  ;";
+			ResultSet rs=statement.executeQuery(Query);
+			
+		//	ResultSet r = null;
+			while(rs.next()){
+				RDV r=new RDV ();
+				r.setIdRDV(rs.getInt("idRDV"));
+				r.setIdApp(rs.getInt("idApp"));
+				r.setIdAgent(rs.getInt("idA"));
+				r.setD(rs.getString("date"));
+				r.setEtat(rs.getBoolean("etat"));
+				r.setIdClient(rs.getInt("idC"));
+				R.add(r);
+			}
+			return R ;
+	   } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		   return R ;		
+	}	
+	public static ArrayList<Preaviss> RecupererListePreavis(){
+		ConnecterBD();
+		
+		   ArrayList<Preaviss> R = new ArrayList<Preaviss>();
+		   try {
+				
+		 Statement statement = connexion.createStatement();
+			String Query="SELECT * from preavis  ;";
+			ResultSet rs=statement.executeQuery(Query);
+			
+		//	ResultSet r = null;
+			while(rs.next()){
+				Preaviss r=new Preaviss ();
+				r.setIdpreavis(rs.getInt("idpreavis"));
+				r.setIdAgent(rs.getInt("idAgent"));
+				r.setAvis(rs.getInt("avis"));
+				r.setIdRDV(rs.getInt("idRDV"));
+				r.setC(rs.getString("contenu"));
+				R.add(r);
+			}
+			return R ;
+	   } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		   return R ;		
+	}
 public static ArrayList<Appartement> RecupererListeApparts(){
 		
 		ConnecterBD();
@@ -180,6 +236,19 @@ public static void ModifierRDV(int idRDV,String date){
 
 	
 }
+public static void ModifierPreavis(int idPrv,int avis,String c){
+	ConnecterBD();
+		try {
+		PreparedStatement ps=connexion.prepareStatement("update  preavis set avis ="+avis+",contenu ="+c+" where idpreavis = "+idPrv+" ;");
+		ps.executeUpdate();
+		
+		 
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+
+	
+}
 
 public static ArrayList<String>  RecupererSecteur(){
 	
@@ -206,13 +275,13 @@ public static ArrayList<String>  RecupererSecteur(){
 	}
 	   return E;		
 }
-public static ArrayList<Appartement> RechercherAppart(String localite,String type,int etage,String secteur,int max,int min){
-	System.out.println(localite);
+public static ArrayList<Appartement> RechercherAppart(String localite,String type,int etage,String secteur,int min,int max){
+	/*System.out.println(localite);
 	System.out.println(type);
 	System.out.println(etage);
 	System.out.println(secteur);
-	System.out.println(max);
 	System.out.println(min);
+	System.out.println(max);*/
 	ConnecterBD();
 	System.out.println("ani hna 1");
 
@@ -221,7 +290,7 @@ public static ArrayList<Appartement> RechercherAppart(String localite,String typ
 	Statement statement = connexion.createStatement();
 //	ResultSet rs=statement.executeQuery("select * from appartement as a,batiment as b,secteur as s,localite as l where a.idbat=b.idbatiment and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and l.nomlocalite='"+localite+"' and type='"+type+"' and nomSecteur='"+secteur+"' and etage="+etage+" and prix between "+min+" AND "+max+";");
 //	ResultSet rs=statement.executeQuery("select * from appartement as a,batiment as b,secteur as s,localite as l where a.idbat=b.idbatiment and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and l.nomlocalite='Ali mendjli' and type='F3' and nomSecteur='AADL' and etage=2 and prix between 100 AND 150;");
-	ResultSet rs=statement.executeQuery("select nomlocalite,nomsecteur,idappart,idBat,etage,prix,type,Description from appartement as a,batiment as b,secteur as s,localite as l where a.idbat=b.idbatiment and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and nomLocalite='"+localite+"' and s.nomSecteur='"+secteur+"' and type='"+type+"' and etage="+etage+" and prix between "+max+" AND "+min+" ;");
+	ResultSet rs=statement.executeQuery("select nomlocalite,nomsecteur,idappart,idBat,etage,prix,type,Description from appartement as a,batiment as b,secteur as s,localite as l where a.idbat=b.idbatiment and b.idsecteur=s.idsecteur and s.idlocal=l.idlocalite and nomLocalite='"+localite+"' and s.nomSecteur='"+secteur+"' and type='"+type+"' and etage="+etage+" and prix between "+min+" AND "+max+" ;");
 
 	//System.out.println("ani hna 81"+rs);
 
@@ -412,10 +481,10 @@ public static ArrayList<Appartement> RecupererListeAppartRDV(int idC){
 }	
 	public static void main(String[] args) {
 	//	System.out.println("qsdfsdgbfgfvdc");
-		/*ArrayList<Appartement> v = OperationsClient.RechercherAppart("Ali mendjli","F3",2,"AADL",100,150);
-
-		for(Appartement v1 : v)
-		    System.out.println(v1.getDescription());*/
+		ArrayList<RDV> v = OperationsClient.RecupererListeRDV();
+System.out.println(v.size());
+		for(RDV v1 : v)
+		    System.out.println(v1.getIdApp());
 	//OperationsClient.AnnulerRDV(6);
 		
 

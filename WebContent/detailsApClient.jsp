@@ -61,13 +61,13 @@
   	<div class="row card">
   		
   		<div class="col s6 m6 l4">
-  			<img src=<%=Ap.getImages().get(0)%> class="materialbox responsive-img card">
+  			<img src="<%=Ap.getImages().get(0)%>" class="materialbox responsive-img card">
   		</div>
   		<div class="col s6 m6 l4">
-  			<img src=<%=Ap.getImages().get(1)%> class="materialbox responsive-img card">
+  			<img src="<%=Ap.getImages().get(1)%>" class="materialbox responsive-img card">
   		</div>
   		<div class="col s6 m6 l4">
-  			<img src=<%=Ap.getImages().get(2)%> class="materialbox responsive-img card">
+  			<img src="<%=Ap.getImages().get(2)%>" class="materialbox responsive-img card">
   		</div>
 
 

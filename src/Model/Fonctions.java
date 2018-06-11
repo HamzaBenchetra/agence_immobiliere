@@ -363,7 +363,7 @@ public class Fonctions {
 			   try {
 					
 			 Statement statement = connexion.createStatement();
-				String Query="SELECT * from rdv where idA="+ida+" And date<CURDATE() order by date;";
+				String Query="SELECT * from rdv where idA="+ida+" And etat=0 And date<CURDATE() order by date;";
 				ResultSet rs=statement.executeQuery(Query);
 				
 			//	ResultSet r = null;
