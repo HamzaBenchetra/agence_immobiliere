@@ -56,7 +56,7 @@ public class ListAppartRech extends HttpServlet {
 		System.out.println(maxPrix);
 		
 		System.out.println("hna sa3");
-		ArrayList<Appartement> A =OperationsClient.RechercherAppart(Loc, type, etage, Secteur, minPrix ,maxPrix);
+		ArrayList<Appartement> A =OperationsClient.RechercherAppart(Loc, type, etage, Secteur,minPrix,maxPrix );
 		   request.setAttribute("ListAppart",A);
 			System.out.println(A.size());
 

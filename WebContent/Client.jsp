@@ -216,7 +216,7 @@
    										<c:forEach items="${ListAppart}" var="Appart"   >
 					      <div class="card">
 					        <div class="card-image">
-					          <img src=${Appart.getImages().get(0)}>
+					          <img src="${Appart.getImages().get(0)}">
 					          <span class="card-title">le Type D'appartement ${Appart.getType()}</span>
 					          <a href="/AgenceImmobiliere/DetailsAppart?id=${Appart.getIdAppart()}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
 					        </div>
