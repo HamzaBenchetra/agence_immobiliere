@@ -55,9 +55,10 @@
                                     <label class=" form-control-label">Mobile</label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                                        <input name="NumTel" class="form-control" required>
+                                        <input id="NumTel" name="NumTel" class="form-control" required>
                                     </div>
                                     <small class="form-text text-muted">ex. 0555 55 55 55</small>
+                             <div id="messsage" style="color : red;display : none"></div>
                         </div>
                         <div class="form-group">
                             <label>Email address</label>
@@ -97,7 +98,7 @@
                             </label>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">ENVOYER</button>
+                        <button type="submit" id="inscrire" class="btn btn-primary btn-flat m-b-30 m-t-30">ENVOYER</button>
                         
                         <div class="register-link m-t-15 text-center">
                             <p>Déja membre ? <a href="/AgenceImmobiliere/LoginServlet"> connectez vous!</a></p>
@@ -113,7 +114,39 @@
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
+        <!--  Chart js -->
+    <!--   <script src="assets/js/lib/chart-js/chartjs-init.js"></script>-->
+    <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
+	<script>$( "#NumTel" ).change(function() {
 
+    	   $.ajax({url: "http://localhost:8080/AgenceImmobiliere/api?action=numclient&val="+$( "#NumTel" ).val(),
+    			   success: function(result){
+    				   console.log(result);
+    				   if(result ==="ghalt"){//hna tgerer lgholta
+    					   $( "#NumTel" ).css({'background-color': '#59CC6F'});
+    					   $( "#messsage" ).html(" ")
+							   document.getElementById("inscrire").disabled = false;
+	    					   document.getElementById("inscrire").setAttribute('class','btn btn-primary');
+							   $( "#messsage" ).css({'display': 'none'});
+    					   }else{
+    					   	if(result ==="bloque"){
+    					   		$( "#NumTel" ).css({'background-color': '#ef5350'});
+    					   		
+ 							   document.getElementById("inscrire").disabled = true;
+ 	    					   document.getElementById("inscrire").setAttribute('class','btn btn-danger');
+ 							   $( "#messsage" ).css({'display': 'block'});
+ 							  $("#messsage").append("<p>Ce client est bloqué vou ne pouvez pas luis résérver de rendez-vous.</p>");
+    					   	}
+    					   }	
+    	    },
+    	    error :  function(error){}
+    	   
+    	   
+    	   });
+    
+    
+    });
+    </script>
 
 </body>
 </html>

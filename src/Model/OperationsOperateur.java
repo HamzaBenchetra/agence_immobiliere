@@ -85,13 +85,13 @@ public class OperationsOperateur {
 				}
 				int idA=0;
 				Statement st=connexion.createStatement();
-				ResultSet rs=st.executeQuery("select idAgent,count(idRDV) from Agent  left join rdv on Agent.idAgent=rdv.idA where idAgent not in (select idA From RDV where date='"+d+"' ) and agent.etat=1 and agent.idL="+idL+" group by idAgent order by count(idRDV) asc;");
+				ResultSet rs=st.executeQuery("select idAgent,count(idRDV) from Agent  left join rdv on Agent.idAgent=rdv.idA where idAgent not in (select idA From RDV where date='"+d+"') and agent.etat=1 and agent.idL="+idL+" group by idAgent order by count(idRDV) asc;");
 				if(rs.next()) {
 					idA=rs.getInt("idAgent");
 					
 				}
 				
-				PreparedStatement ss=connexion.prepareStatement("insert into RDV (idApp,idA,idC,date)values("+idApp+","+idA+","+idC+","+d+");");
+				PreparedStatement ss=connexion.prepareStatement("insert into RDV (idApp,idA,idC,date)values("+idApp+","+idA+","+idC+",'"+d+"');");
 				ss.executeUpdate();
 				//System.out.println(i);
 				System.out.println("RDV ok");

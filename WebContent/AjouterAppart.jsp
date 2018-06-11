@@ -302,10 +302,7 @@
                             <div class="col col-md-3"><label for="description" class=" form-control-label">Description de l'appartement</label></div>
                             <div class="col-12 col-md-9"><textarea name="description" id="description" rows="9" placeholder="Description Generale..." class="form-control"></textarea></div>
                           </div>
-                          <div class="row form-group">
-                            <div class="col col-md-3"><label for="file-multiple-input" class=" form-control-label">Photos</label></div>
-                            <div class="col-12 col-md-9"><input type="file" id="Image" name="Image" multiple="true" class="form-control-file"></div>
-                          </div>
+                          
                           <input type="hidden" value="add" id="what" name="what">
                         	<button type="submit" class="btn btn-primary btn-sm">
                           		<i class="fa fa-dot-circle-o"></i> Submit

@@ -286,9 +286,12 @@
                 		  <input type="hidden" name="idC" id="idC" value="">
                 		  <input type="hidden" name="nomC" id="nomC" value="">
                 		  <input type="hidden" name="prenomC" id="prenomC" value="">
-                          <button type="submit" class="btn btn-primary btn-sm">
+                          <button id="trouver" type="submit" class="btn btn-primary btn-sm">
                           <i class="fa fa-dot-circle-o"></i> Trouver</button>
                         </form>
+                        <div id="messsage" style="color : red;display : none;">
+                        	
+                        </div>
                       </div>
                       
                     </div>
@@ -348,6 +351,19 @@
     					   $( "#numclient" ).css({'background-color': '#ef5350'});
     					   $( "#forminscrip" ).css({'display': 'block'});
     					   }else{
+    					   	if(result ==="bloque"){
+    					   		$( "#numclient" ).css({'background-color': '#ef5350'});
+    					   		
+ 							   document.getElementById("trouver").disabled = true;
+ 	    					   document.getElementById("trouver").setAttribute('class','btn btn-danger');
+ 							   $( "#messsage" ).css({'display': 'block'});
+ 							  $("#messsage").append("<h2>Ce client est bloqué vou ne pouvez pas luis résérver de rendez-vous.</h2>");
+    					   	}else{
+    					   		$( "#numclient" ).css({'background-color': 'white'});
+    					   		$( "#messsage" ).html(" ")
+  							   document.getElementById("trouver").disabled = false;
+  	    					   document.getElementById("trouver").setAttribute('class','btn btn-primary');
+  							   $( "#messsage" ).css({'display': 'none'});
     						   var Client = JSON.parse(result);
     						   console.log(Client.id);
     						   console.log(Client.nom);
@@ -356,6 +372,7 @@
     						   document.getElementById("nomC").setAttribute('value',Client.nom);
     						   document.getElementById("prenomC").setAttribute('value',Client.prenom);
     				       }
+    					   }	
     	    },
     	    error :  function(error){}
     	   
