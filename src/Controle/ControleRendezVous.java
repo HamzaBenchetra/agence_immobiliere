@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import Model.Appartement;
 import Model.Fonctions;
+import Model.OperationsClient;
 import Model.OperationsOperateur;
 
 @WebServlet("/ControleRendezVous")
@@ -78,6 +79,15 @@ public class ControleRendezVous extends HttpServlet {
 							int idClient=Integer.parseInt((String) s.getAttribute("idClient"));
 							String date=request.getParameter("date");
 							String heure=request.getParameter("heure");
+							ArrayList<Integer> Etage =OperationsClient.RecupererEtage();
+							   ArrayList<String> Localite =OperationsClient.RecupererLocalite();
+							   ArrayList<String> type1 =OperationsClient.RecupererTypeAppart();
+							   ArrayList<String> secteur =OperationsClient.RecupererSecteur();
+							  
+							   request.setAttribute("ListEtage",Etage);
+							   request.setAttribute("ListLocalite",Localite);
+							   request.setAttribute("ListType",type1);
+							   request.setAttribute("Secteur",secteur);
 							boolean b = OperationsOperateur.FixerRdvOperateur(idAppartement,idClient,"'"+date+" "+heure+"'");
 							if(b) {
 								request.setAttribute("msg", "OK");

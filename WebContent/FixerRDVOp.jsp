@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="Model.Localite"%>
+    <%@page import="Model.Region"%>
+    <%@page import="java.util.ArrayList"%>
+    <%@page import="Model.Fonctions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -287,22 +291,23 @@
                       </div>
                       <div class="card-body card-block">
                         <form action="/AgenceImmobiliere/ControleRendezVous" method="post" class="form-horizontal">
-                      
+                          <%ArrayList<Localite> l=Fonctions.ListeLocalitees(); %>
                           <div class="row form-group">
-                            <div class="col col-md-3"><label for="select" class=" form-control-label">Localite</label></div>
+                            <div class="col col-md-3"><label for="localite" class=" form-control-label">Localite</label></div>
                             <div class="col-12 col-md-9">
-                              <select name="localite" id="select" class="form-control">
+                              <select name="localite" id="localite" class="form-control">
                                 <option value="0">Choisir une localite</option>
-                                <option value="1">Ali Mendjli</option>
+                                <%for(Localite L : l){ %> 
+                                <option value="<%=L.getIdLocalite()%>"><%=L.getNomLocalite() %></option>
+                                <%} %>
                               </select>
                             </div>
                           </div>
                           <div class="row form-group">
-                            <div class="col col-md-3"><label for="select" class=" form-control-label">Region</label></div>
+                            <div class="col col-md-3"><label for="region" class=" form-control-label">Region</label></div>
                             <div class="col-12 col-md-9">
-                              <select name="region" id="select" class="form-control">
+                              <select name="region" id="region" class="form-control">
                                 <option value="0">Choisir une region</option>
-                                <option value="1">AADL</option>
                               </select>
                             </div>
                           </div>
@@ -383,16 +388,36 @@
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
         <!--  Chart js -->
-    <script src="assets/js/lib/chart-js/Chart.bundle.js"></script>
-    <!--   <script src="assets/js/lib/chart-js/chartjs-init.js"></script>-->
-    <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
-	<script>
-	var m='<%= request.getAttribute("msg")%>';
+
+	<script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
+    <script>$( "#localite" ).change(function() {
+    	
+    	   $.ajax({url: "http://localhost:8080/AgenceImmobiliere/api?action=idLocalite&val="+$( "#localite" ).val(),
+    			   success: function(result){
+    				   var Region = JSON.parse(result);
+    				   
+    				   $('#region').html(" ")
+    					for(i=0;i<Region.length;i++){
+    						$('#region').append("<option value = \""+Region[i].idRegion+"\">"+Region[i].nomRegion+"</option>");
+    						
+    					}
+    					
+    				
+    	    },
+    	    error :  function(error){}
+    	   
+    	   
+    	   });
+    
+    
+    });
+    var m='<%= request.getAttribute("msg")%>';
     console.log(m);
     if(m=="OK"){
     	 $( "#msg" ).css({'display': 'block'});
     }
-	</script>
+    
+</script>
 
 </body>
 </html>

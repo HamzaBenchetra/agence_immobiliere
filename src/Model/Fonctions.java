@@ -296,7 +296,7 @@ public class Fonctions {
 						ca.setDatenais(rs.getString("datenais"));
 						ca.setMail(rs.getString("mail"));
 						ca.setSexe(rs.getString("sexe"));
-						ca.setAuthorisation(rs.getString("Authorisation"));
+						ca.setAuthorisation(rs.getString("Autorisation"));
 					}
 					return ca;
 				} catch (SQLException e) {
@@ -321,6 +321,8 @@ public class Fonctions {
 				pstt.executeUpdate();
 				PreparedStatement psttt=connexion.prepareStatement("update rdv set etat =1 where idApp="+idA+";");
 				psttt.executeUpdate();
+				PreparedStatement pstttt=connexion.prepareStatement("delete from demandesAchat where idc="+idc+" and idApp="+idA+";");
+				pstttt.executeUpdate();
 				Statement s=connexion.createStatement();
 				ResultSet r=s.executeQuery("select mail,date,numtel from client as c , rdv as r where c.idClient=r.idC and r.idApp="+idA+" and c.idclient<>"+idc+" and r.date>CURDATE() ;");
 				String mail=" ";
@@ -644,6 +646,24 @@ public class Fonctions {
 					b.setIdRegion(rs.getInt(2));
 					b.setNbrEtages(rs.getInt(3));
 					b.setNbrApparts(rs.getInt(4));
+					L.add(b);
+				}
+				return L;
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			return null;
+		}
+		public static ArrayList<Region> ListeRegion(int id) {
+			ConnecterBD();
+			try {
+				ArrayList<Region> L=new ArrayList<Region>();
+				Statement s=connexion.createStatement();
+				ResultSet rs=s.executeQuery("select * from secteur where idLocal="+id+";");
+				while(rs.next()) {
+					Region b=new Region();
+					b.setIdRegion(rs.getInt(1));
+					b.setNomRegion(rs.getString(3));
 					L.add(b);
 				}
 				return L;

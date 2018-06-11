@@ -170,22 +170,14 @@
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="mb-3">Nombre de visites par agent </h4>
-                                    <canvas id="myChart" width="200" height="200"></canvas>
+                                    <canvas id="myChart" width="200" height="50"></canvas>
                                 </div>
                             </div>
                         </div><!-- /# column -->
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="mb-3">Nombre de visites par localite </h4>
-                                    <canvas id="myChart1" width="200" height="200"></canvas>
-                                </div>
-                            </div>
-                        </div>
 				</div>
 
             </div><!-- .animated -->
@@ -201,19 +193,35 @@
                                     <canvas id="myChart2" width="200" height="200"></canvas>
                                 </div>
                             </div>
-                        </div><!-- /# column -->
+                        </div>
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="mb-3">Ratio des ventes </h4>
-                                    <canvas id="myDoughnutChart " width="100" height="100"></canvas>
+                                    <h4 class="mb-3">Nombre de visites par localite </h4>
+                                    <canvas id="myChart1" width="200" height="200"></canvas>
                                 </div>
                             </div>
-                        </div>
+                        </div><!-- /# column -->
+                        
 				</div>
 
             </div><!-- .animated -->
         </div>
+        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="mb-3">Ratio des ventes </h4>
+                                    <div class="container">
+									  <div class="progress">
+									  <% float R=(float)request.getAttribute("Ratio");%>
+									    <div class="progress-bar" role="progressbar" aria-valuenow="<%=R*100 %>" aria-valuemin="0" aria-valuemax="100" style="width:<%=R*100 %>%">
+									      <%out.print(R); %>
+									    </div>
+									  </div>
+									</div>
+                                </div>
+                            </div>
+                        </div>
         <!-- .content -->
 
 
@@ -272,24 +280,8 @@
 		    }
 		});
 	</script>
-	<% float R=(float)request.getAttribute("Ratio");%>
-	<script>
-	var ctx = document.getElementById("myDoughnutChart").getContext('2d');
 
-	var myDoughnutChart = new Chart(ctx, {
-	    type: 'pie',
-	    data:  {
-	    	    datasets: [{
-	    	        data: [<%=R*100%>,<%=(100-(R*100))%>]
-	    	    }],
-
-	    	    // These labels appear in the legend and in the tooltips when hovering different arcs
-	    	    labels: [<%="\""+R+"\""%>,
-	    	       ' '
-	    	    ]
-	    	},
-	});
-	</script>
+	
 	<script>
 		var ctx = document.getElementById("myChart1").getContext('2d');
 		var myChart1 = new Chart(ctx, {

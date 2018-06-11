@@ -1,6 +1,7 @@
 package Controle.ControleAppart;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import Model.Appartement;
@@ -15,6 +17,7 @@ import Model.Client;
 import Model.Fonctions;
 import Model.OperationsAdmin;
 import Model.OperationsOperateur;
+import Model.Region;
 
 @WebServlet("/api")
 public class api extends HttpServlet {
@@ -155,7 +158,21 @@ public class api extends HttpServlet {
 				response.getWriter().append(""+idL);
 			}
 		}break;
-
+		case "idLocalite":{
+			ArrayList<Region> ListeR=Fonctions.ListeRegion(Integer.parseInt(val));
+			System.out.println(val);
+			JSONArray ListeRegions=new JSONArray();
+			
+			for(Region R : ListeR) {
+				JSONObject Region = new JSONObject();
+				Region.put("idRegion", R.getIdRegion());
+				Region.put("nomRegion", R.getNomRegion());
+				System.out.println(R.getIdRegion()+" "+R.getNomRegion());
+				ListeRegions.add(Region);
+			}
+			response.getWriter().append(ListeRegions.toJSONString());
+			
+		}break;
 		default:
 			break;
 		}

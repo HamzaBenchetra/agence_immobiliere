@@ -30,10 +30,14 @@ public class OperationsAdmin {
 		int statut = -5;
 		ConnecterBD();
 		try {
-			System.out.println("validiiii");
 		PreparedStatement pst=connexion.prepareStatement("update "+ t +" set etat =1, idAdmin="+idA+" where id"+t+"="+id+";");
-		
 		statut= pst.executeUpdate();
+		
+		Statement s = (Statement) connexion.createStatement();
+		ResultSet rs=s.executeQuery("select mail from "+t+" where id"+t+"="+id+";");
+		if(rs.next()) {
+			//Contact.EnvoyerMailDemandeAccepte(rs.getString(1));
+		}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -47,8 +51,14 @@ public class OperationsAdmin {
 		ConnecterBD();
 		PreparedStatement ps;
 		try {
+			Statement s = (Statement) connexion.createStatement();
+			ResultSet rs=s.executeQuery("select mail from "+type+" where id"+type+"="+id+";");
+			if(rs.next()) {
+				Contact.EnvoyerMailDemandeRefuse(rs.getString(1));
+			}
 			ps = connexion.prepareStatement("delete from "+type+" where id"+type+"="+id+";");
 			ps.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

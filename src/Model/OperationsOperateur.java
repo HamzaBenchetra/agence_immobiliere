@@ -80,7 +80,7 @@ public class OperationsOperateur {
 			
 				int idA=0;
 				Statement st=connexion.createStatement();
-				ResultSet rs=st.executeQuery("select idAgent,count(idRDV) from Agent left join rdv on Agent.idAgent=rdv.idA where idAgent not in (select idA From RDV where date="+d+" ) group by idAgent order by count(idRDV) asc;");
+				ResultSet rs=st.executeQuery("select idAgent,count(idRDV) from Agent  left join rdv on Agent.idAgent=rdv.idA where idAgent not in (select idA From RDV where date="+d+" ) group by idAgent order by count(idRDV) asc;");
 				if(rs.next()) {
 					idA=rs.getInt("idAgent");
 					
@@ -90,6 +90,16 @@ public class OperationsOperateur {
 				ss.executeUpdate();
 				//System.out.println(i);
 				System.out.println("RDV ok");
+				Statement sss=connexion.createStatement();
+				ResultSet rss=sss.executeQuery("select numtel from client where idClient="+idC+";");
+				if(rss.next()) {
+					Contact.sendSmsRDV(rss.getString(1), d);
+				}
+				Statement ssss=connexion.createStatement();
+				ResultSet rsss=ssss.executeQuery("select numtel from agent where idAgent="+idA+";");
+				if(rsss.next()) {
+					Contact.sendSmsRDV(rsss.getString(1), d);
+				}
 				return true;
 			
 			
@@ -104,9 +114,11 @@ public class OperationsOperateur {
 	public static int creerCompteClient(String nom, String prenom, String tel) {
 		ConnecterBD();
 		int id=0;
+		int mdpss=(int)(Math.random()*(99999999-10000000))+10000000;
 		try {
-			PreparedStatement ps=connexion.prepareStatement("insert into client (nom,prenom,numtel,etat) values('"+nom+"','"+prenom+"','"+tel+"',1);");
+			PreparedStatement ps=connexion.prepareStatement("insert into client (nom,prenom,numtel,etat,mdpss) values('"+nom+"','"+prenom+"','"+tel+"',1,'"+mdpss+"');");
 			ps.executeUpdate();
+			Contact.sendSmsMdpss(tel, mdpss);
 			Statement s = connexion.createStatement();
 			ResultSet rs=s.executeQuery("select idclient from client where numtel='"+tel+"';");
 			while(rs.next()) {

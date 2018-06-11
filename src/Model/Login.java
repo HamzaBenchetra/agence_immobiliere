@@ -35,7 +35,7 @@ public class Login {
 		 int id=0;
 		 try {
 			 Statement s=connexion.createStatement();
-			 ResultSet rs=s.executeQuery("Select * from client;");
+			 ResultSet rs=s.executeQuery("Select * from client where etat=1 and Autorisation='autorise';");
 			 
 			 while(rs.next()){
 				if((mail.equals(rs.getString("mail"))&&mdpss.equals(rs.getString("mdpss")))||(mail.equals(rs.getString("numtel"))&&mdpss.equals(rs.getString("mdpss")))) {
@@ -64,7 +64,14 @@ public class Login {
 		 int i=0;
 		 try {
 			 Statement s=connexion.createStatement();
-			 ResultSet rs=s.executeQuery("Select * from "+type+";");
+			 ResultSet rs;
+			if(type.equals("Admin")||type.equals("respventes")) {
+				 rs=s.executeQuery("Select * from "+type+";");
+
+			}else {
+				 rs=s.executeQuery("Select * from "+type+" where etat=1;");
+
+			}
 			 while(rs.next()){
 				if((mail.equals(rs.getString("mail"))&&mdpss.equals(rs.getString("mdpss")))||(mail.equals(rs.getString("numtel"))&&mdpss.equals(rs.getString("mdpss"))))
 						i= rs.getInt(1);
