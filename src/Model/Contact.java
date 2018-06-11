@@ -71,11 +71,121 @@ public class Contact {
 		}
 		
 	}
+	public static void EnvoyerMailDemandeRefuse(String d) {
+		Properties props=new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+		
+		Session session=Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		});
+		
+		try {
+			Message message=new MimeMessage(session);
+			message.setFrom(new InternetAddress(username));
+			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(d));
+			message.setSubject("Votre Rendez-Vous");
+			message.setText("Nous avons le regret de vous informer que votre demande d'emploie a été déclinée pour des raisons profesionnels");
+			Transport.send(message);
+			System.out.println("ok");
+		}catch(MessagingException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+	public static void EnvoyerMailDemandeAccepte(String d) {
+		Properties props=new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+		
+		Session session=Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		});
+		
+		try {
+			Message message=new MimeMessage(session);
+			message.setFrom(new InternetAddress(username));
+			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(d));
+			message.setSubject("Votre Rendez-Vous");
+			message.setText("Nous vous informons que vous avez été accépté comme employé dans notre scocieté immobiliere");
+			Transport.send(message);
+			System.out.println("ok");
+		}catch(MessagingException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
 	public static String sendSms(String tel,String date) {
 		try {
 			// Construct data
-			String apiKey = "apikey=" + "7qd1CZ3+OsU-Al9RRKnoUWq0r59HHbEdNBa0UJJAh9";
+			String apiKey = "apikey=" + "7qd1CZ3+OsU-g4UCx2wxZSatFVkbwYrECmsUhKuvTL";
 			String message = "&message=" + "Votre RDV du "+date+" est annulé car l'appartement a été vendu";
+			String sender = "&sender=" + "Agence Immo";
+			String numbers = "&numbers=" + tel;
+			
+			// Send data
+			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
+			String data = apiKey + numbers + message + sender;
+			conn.setDoOutput(true);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
+			conn.getOutputStream().write(data.getBytes("UTF-8"));
+			final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			final StringBuffer stringBuffer = new StringBuffer();
+			String line;
+			while ((line = rd.readLine()) != null) {
+				stringBuffer.append(line);
+			}
+			rd.close();
+			
+			return stringBuffer.toString();
+		} catch (Exception e) {
+			System.out.println("Error SMS "+e);
+			return "Error "+e;
+		}
+	}
+	public static String sendSmsRDV(String tel,String date) {
+		try {
+			// Construct data
+			String apiKey = "apikey=" + "7qd1CZ3+OsU-g4UCx2wxZSatFVkbwYrECmsUhKuvTL";
+			String message = "&message=" + "Votre RDV du "+date+" est fixé.";
+			String sender = "&sender=" + "Agence Immo";
+			String numbers = "&numbers=" + tel;
+			
+			// Send data
+			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
+			String data = apiKey + numbers + message + sender;
+			conn.setDoOutput(true);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
+			conn.getOutputStream().write(data.getBytes("UTF-8"));
+			final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			final StringBuffer stringBuffer = new StringBuffer();
+			String line;
+			while ((line = rd.readLine()) != null) {
+				stringBuffer.append(line);
+			}
+			rd.close();
+			
+			return stringBuffer.toString();
+		} catch (Exception e) {
+			System.out.println("Error SMS "+e);
+			return "Error "+e;
+		}
+	}
+	public static String sendSmsMdpss(String tel,int mdpss) {
+		try {
+			// Construct data
+			String apiKey = "apikey=" + "7qd1CZ3+OsU-g4UCx2wxZSatFVkbwYrECmsUhKuvTL";
+			String message = "&message=" + "Pour vous connecter a votre compte utilisez votre numero de telephone et ce mot de passe"+mdpss+".";
 			String sender = "&sender=" + "Agence Immo";
 			String numbers = "&numbers=" + tel;
 			
@@ -103,7 +213,7 @@ public class Contact {
 	public static String sendNotif(String tel,String date) {
 		try {
 			// Construct data
-			String apiKey = "apikey=" + "7qd1CZ3+OsU-Al9RRKnoUWq0r59HHbEdNBa0UJJAh9";
+			String apiKey = "apikey=" + "7qd1CZ3+OsU-g4UCx2wxZSatFVkbwYrECmsUhKuvTL";
 			String message = "&message=" + "N'ouvliez pas que vous avez rendez-vous demain à "+date+" Soyez à l'heure.";
 			String sender = "&sender=" + "Agence Immo";
 			String numbers = "&numbers=" + tel;
@@ -163,5 +273,8 @@ public static void main(String[] args) {
 	//sendSms("213799957655","2018-05-12 10:00:00.0");
 	//sendSms("213696689498","2018-05-12 10:00:00.0");
 	Notifier("08:00:00");
+	sendSms("213669601401", "2018-06-12 10:00:00.0");
+	sendSmsMdpss("213669601401", 37325423);
+	sendSmsRDV("213669601401", "2018-06-12");
 }
 }

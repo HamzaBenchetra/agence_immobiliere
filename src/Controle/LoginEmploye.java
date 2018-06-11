@@ -1,6 +1,8 @@
 package Controle;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Model.Login;
+import Model.OperationsClient;
 
 @WebServlet("/LoginEmploye")
 public class LoginEmploye extends HttpServlet {
@@ -37,6 +40,7 @@ public class LoginEmploye extends HttpServlet {
 			HttpSession s=request.getSession(true);
 			s.setAttribute("type", type);
 			s.setAttribute("idO", i);
+			   
 			this.getServletContext().getRequestDispatcher("/Operateur.jsp").forward(request, response);
 		}
 		else {

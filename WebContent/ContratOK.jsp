@@ -131,9 +131,10 @@
                                             <hr>
                                             <%String s=(String)request.getSession().getAttribute("lien");
                         		System.out.println(s);%>
-                                            <form action="Contrats\<%=s%>" >
+                                            <form action="/AgenceImmobiliere/Contrats/<%=s%>" >
 					                        	<button type="submit" class="btn btn-primary" >Afficher les détails du contrat</button>
-					                        </form> 
+					                        </form>
+					                        <a href="/AgenceImmobiliere/Contrats/Contratabritcharaf-2018-06-11.pdf" >telecharger le contrat en pdf</a> 
                                         </div>
                                     </div>
                                 </div>

@@ -25,6 +25,7 @@ public class LoginAdmin extends HttpServlet {
 		String mail=request.getParameter("mail");
 		String mdpss=request.getParameter("pass");
 		String type=request.getParameter("type");
+		System.out.println(type);
 		int b=0;
 		b=Login.AuthentificationEmploye(type, mail, mdpss);
 		if(b!=0) {

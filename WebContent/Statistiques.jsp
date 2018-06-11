@@ -176,7 +176,13 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="mb-3">Ratio des ventes </h4>
-                                    <canvas id="myDoughnutChart " width="100" height="100"></canvas>
+                                    <div class="container">
+									  <div class="progress">
+									    <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="1" style="width:50%">
+									      0.5
+									    </div>
+									  </div>
+									</div>
                                 </div>
                             </div>
                         </div>

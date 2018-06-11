@@ -32,7 +32,7 @@ public class OperationsRESP {
 		 ArrayList<StatsAgent> ls=new ArrayList<StatsAgent>();
 		 
 		 Statement statement = connexion.createStatement();
-		 String query="select nom,prenom,count(idRDV) from Agent left join rdv on Agent.idAgent=rdv.idA group by nom order by count(idRDV);";
+		 String query="select nom,prenom,count(idRDV) from Agent left join rdv on Agent.idAgent=rdv.idA where Agent.etat=1 group by nom order by count(idRDV);";
 		 ResultSet rs=statement.executeQuery(query);
 			while(rs.next()){
 				StatsAgent s=new StatsAgent();
@@ -60,7 +60,7 @@ public class OperationsRESP {
 		 ArrayList<StatsLocalite> ls=new ArrayList<StatsLocalite>();
 		 
 		 Statement statement = connexion.createStatement();
-		 String query="select nomLocalite,Count(idRDV) from Batiment b,Localite l,secteur as s, Appartement a left join rdv r on a.idAppart=r.idApp where b.idsecteur=s.idsecteur and a.idBat=b.idBatiment group by idLocalite;";
+		 String query="select nomLocalite,Count(idRDV) from Batiment as b,Localite as l,secteur as s, Appartement as a left join rdv r on a.idAppart=r.idApp where b.idsecteur=s.idsecteur and a.idBat=b.idBatiment and s.idLocal=l.idLocalite group by nomlocalite;";
 		 ResultSet rs=statement.executeQuery(query);
 			while(rs.next()){
 				StatsLocalite s=new StatsLocalite();
