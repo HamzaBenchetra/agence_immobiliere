@@ -5,8 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.mysql.jdbc.Statement;
+import java.sql.Statement;
 
 public class OperationsAdmin {
 	private static Connection connexion;
@@ -36,7 +35,7 @@ public class OperationsAdmin {
 		Statement s = (Statement) connexion.createStatement();
 		ResultSet rs=s.executeQuery("select mail from "+t+" where id"+t+"="+id+";");
 		if(rs.next()) {
-			//Contact.EnvoyerMailDemandeAccepte(rs.getString(1));
+			Contact.EnvoyerMailDemandeAccepte(rs.getString(1));
 		}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -156,8 +155,13 @@ public class OperationsAdmin {
 		System.out.println(i);
 		PreparedStatement ps;
 		try {
-			ps = connexion.prepareStatement("UPDATE client SET Authorisation='bloque'  WHERE idClient="+i+";");
+			ps = connexion.prepareStatement("UPDATE client SET Autorisation='bloque'  WHERE idClient="+i+";");
 			ps.executeUpdate();
+			Statement s=connexion.createStatement();
+			ResultSet rs=s.executeQuery("select numtel from client where idClient="+i+";");
+			if(rs.next()) {
+				Contact.sendSmsBloque("213"+Integer.parseInt(rs.getString(1)));
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

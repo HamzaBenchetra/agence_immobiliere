@@ -76,6 +76,7 @@ public class ControleRendezVous extends HttpServlet {
 						}
 						if(op.equalsIgnoreCase("dateR")) {
 							int idAppartement=Integer.parseInt((String) s.getAttribute("idApp"));
+							System.out.println(s.getAttribute("idClient"));
 							int idClient=Integer.parseInt((String) s.getAttribute("idClient"));
 							String date=request.getParameter("date");
 							String heure=request.getParameter("heure");

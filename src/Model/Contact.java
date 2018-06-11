@@ -126,8 +126,8 @@ public class Contact {
 	public static String sendSms(String tel,String date) {
 		try {
 			// Construct data
-			String apiKey = "apikey=" + "7qd1CZ3+OsU-g4UCx2wxZSatFVkbwYrECmsUhKuvTL";
-			String message = "&message=" + "Votre RDV du "+date+" est annulé car l'appartement a été vendu";
+			String apiKey = "apikey=" + "7qd1CZ3+OsU-HXRH7RrC4ThW6UV2nFL540yTqEys8a";
+			String message = "&message=" + "Votre RDV du "+date+" est annule car l'appartement a ete vendu";
 			String sender = "&sender=" + "Agence Immo";
 			String numbers = "&numbers=" + tel;
 			
@@ -155,8 +155,8 @@ public class Contact {
 	public static String sendSmsRDV(String tel,String date) {
 		try {
 			// Construct data
-			String apiKey = "apikey=" + "7qd1CZ3+OsU-g4UCx2wxZSatFVkbwYrECmsUhKuvTL";
-			String message = "&message=" + "Votre RDV du "+date+" est fixé.";
+			String apiKey = "apikey=" + "7qd1CZ3+OsU-HXRH7RrC4ThW6UV2nFL540yTqEys8a";
+			String message = "&message=" + "Votre RDV du "+date+" est fixe.";
 			String sender = "&sender=" + "Agence Immo";
 			String numbers = "&numbers=" + tel;
 			
@@ -184,8 +184,8 @@ public class Contact {
 	public static String sendSmsMdpss(String tel,int mdpss) {
 		try {
 			// Construct data
-			String apiKey = "apikey=" + "7qd1CZ3+OsU-g4UCx2wxZSatFVkbwYrECmsUhKuvTL";
-			String message = "&message=" + "Pour vous connecter a votre compte utilisez votre numero de telephone et ce mot de passe"+mdpss+".";
+			String apiKey = "apikey=" + "7qd1CZ3+OsU-HXRH7RrC4ThW6UV2nFL540yTqEys8a";
+			String message = "&message=" + "Pour vous connecter a votre compte utilisez ce mot de passe"+mdpss+".";
 			String sender = "&sender=" + "Agence Immo";
 			String numbers = "&numbers=" + tel;
 			
@@ -213,8 +213,8 @@ public class Contact {
 	public static String sendNotif(String tel,String date) {
 		try {
 			// Construct data
-			String apiKey = "apikey=" + "7qd1CZ3+OsU-g4UCx2wxZSatFVkbwYrECmsUhKuvTL";
-			String message = "&message=" + "N'ouvliez pas que vous avez rendez-vous demain à "+date+" Soyez à l'heure.";
+			String apiKey = "apikey=" + "7qd1CZ3+OsU-HXRH7RrC4ThW6UV2nFL540yTqEys8a";
+			String message = "&message=" + "N'ouvliez pas que vous avez rendez-vous demain a "+date+" Soyez a l'heure.";
 			String sender = "&sender=" + "Agence Immo";
 			String numbers = "&numbers=" + tel;
 			
@@ -268,13 +268,45 @@ public class Contact {
 		}
 		
 	}
+	public static String sendSmsBloque(String tel) {
+		try {
+			// Construct data
+			String apiKey = "apikey=" + "7qd1CZ3+OsU-HXRH7RrC4ThW6UV2nFL540yTqEys8a";
+			String message = "&message=" + "Votre compte lié a notre site a été bloqué par l'admin.";
+			String sender = "&sender=" + "Agence Immo";
+			String numbers = "&numbers=" + tel;
+			
+			// Send data
+			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
+			String data = apiKey + numbers + message + sender;
+			conn.setDoOutput(true);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
+			conn.getOutputStream().write(data.getBytes("UTF-8"));
+			final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			final StringBuffer stringBuffer = new StringBuffer();
+			String line;
+			while ((line = rd.readLine()) != null) {
+				stringBuffer.append(line);
+			}
+			rd.close();
+			System.out.println(tel+" SMS ENVOYé");
+			return stringBuffer.toString();
+		} catch (Exception e) {
+			System.out.println("Error SMS "+e);
+			return "Error "+e;
+		}
+		
+	}
 public static void main(String[] args) {
 	//sendSms("213794204107","2018-05-12 10:00:00.0");
 	//sendSms("213799957655","2018-05-12 10:00:00.0");
 	//sendSms("213696689498","2018-05-12 10:00:00.0");
-	Notifier("08:00:00");
-	sendSms("213669601401", "2018-06-12 10:00:00.0");
-	sendSmsMdpss("213669601401", 37325423);
-	sendSmsRDV("213669601401", "2018-06-12");
+	/*Notifier("08:00:00");
+	sendSms("213795287375", "2018-06-12 10:00:00.0");
+	sendSmsMdpss("213795287375", 37325423);
+	sendSmsRDV("213795287375", "2018-06-12");*/
+	//sendSmsBloque("213"+Integer.parseInt("0795287375"));
 }
+
 }
