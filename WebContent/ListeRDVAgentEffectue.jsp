@@ -65,6 +65,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Preavis</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/DonnerPreavis">Donner un preavis</a></li>
+                              <li><i class="menu-icon fa fa-th"></i><a href="/AgenceImmobiliere/ConsulterPreavis">Consulter preavis </a></li>
+                            
                         </ul>
                     </li>
                 </ul>
@@ -103,8 +105,7 @@
 				</div>
             </div>
 
-        </header><!-- /header -->
-        <!-- Header-->
+        </header> 
 
         
 <div class="content mt-3">

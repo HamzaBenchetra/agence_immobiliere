@@ -208,6 +208,30 @@ public static ArrayList<String>  RecupererTypeAppart(){
 	}
 	   return E;		
 }
+public static String  RecupererDatePreavis(int idp){
+	
+	ConnecterBD();
+	   String a=null;
+
+	   try {
+			
+		Statement statement = connexion.createStatement();
+		String Query="SELECT  * FROM preavis as p ,rdv as r where p.idRDV=r.idRDV and p.idpreavis="+idp+";";
+		ResultSet rs=statement.executeQuery(Query);
+		
+	//	ResultSet r = null;
+		while(rs.next()){
+			
+			 a=(rs.getString("date"));
+		}
+		return a;
+   } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		
+	}
+	   return a;		
+}
 public static void AnnulerRDV(int idRDV) {
 	ConnecterBD();
 	
@@ -239,7 +263,7 @@ public static void ModifierRDV(int idRDV,String date){
 public static void ModifierPreavis(int idPrv,int avis,String c){
 	ConnecterBD();
 		try {
-		PreparedStatement ps=connexion.prepareStatement("update  preavis set avis ="+avis+",contenu ="+c+" where idpreavis = "+idPrv+" ;");
+		PreparedStatement ps=connexion.prepareStatement("update  preavis set avis ="+avis+",contenu ='"+c+"' where idpreavis = "+idPrv+" ;");
 		ps.executeUpdate();
 		
 		 
@@ -480,13 +504,14 @@ public static ArrayList<Appartement> RecupererListeAppartRDV(int idC){
 	   return R ;		
 }	
 	public static void main(String[] args) {
-	//	System.out.println("qsdfsdgbfgfvdc");
+	/*//	System.out.println("qsdfsdgbfgfvdc");
 		ArrayList<RDV> v = OperationsClient.RecupererListeRDV();
 System.out.println(v.size());
 		for(RDV v1 : v)
 		    System.out.println(v1.getIdApp());
 	//OperationsClient.AnnulerRDV(6);
-		
+		*/
+		System.out.println(OperationsClient.RecupererDatePreavis(1));
 
 }
 }

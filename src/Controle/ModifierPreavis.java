@@ -60,7 +60,7 @@ public class ModifierPreavis extends HttpServlet {
 	
 		
 	//	System.out.println(idAppart);
-		this.getServletContext().getRequestDispatcher("/ListAppartGlobale").forward(request, response);
+		this.getServletContext().getRequestDispatcher("Agent.jsp").forward(request, response);
 		
 		
 	}
